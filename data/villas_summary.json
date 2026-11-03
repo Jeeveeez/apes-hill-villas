@@ -40,13 +40,13 @@
   },
   {
     "vnum": "6",
-    "status": "Complete",
+    "status": "In Progress",
     "kp_act": 26,
     "kp_total": 26,
     "tasks_pass": 14,
     "tasks_total": 23,
-    "open_issues": 0,
-    "total_issues": 4,
+    "open_issues": 1,
+    "total_issues": 5,
     "technician": "Jeevan Panjwani",
     "report_package": "pending",
     "status_url": "villa-6/status.html"

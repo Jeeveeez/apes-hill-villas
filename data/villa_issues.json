@@ -1,4 +1,90 @@
 {
+  "All": [
+    [
+      "REF-001",
+      "All",
+      "Laundry / L20 Downlights",
+      "Template review",
+      "Villa 2 load schedule lists Laundry L20 Downlights as Unassigned. Confirm physical circuit, intended control, and whether assignment is deliberately omitted.",
+      "Medium",
+      "To Verify",
+      "",
+      "2026-10-28",
+      "",
+      "",
+      "Yes"
+    ],
+    [
+      "REF-002",
+      "All",
+      "External / Landscape 1",
+      "Template review",
+      "Villa 2 load schedule lists Landscape 1 relay as Unassigned. Verify actual hardware/control provision in each villa.",
+      "Medium",
+      "To Verify",
+      "",
+      "2026-10-28",
+      "",
+      "",
+      "Yes"
+    ],
+    [
+      "REF-003",
+      "All",
+      "Foyer / KP10 (OLD)",
+      "Naming review",
+      "Report identifies KP10 (OLD); KP9 and KP11 are absent. Do not infer sequential device IDs. Verify renumbering before assigning or engraving.",
+      "Low",
+      "To Verify",
+      "",
+      "2026-10-28",
+      "",
+      "",
+      "Yes"
+    ],
+    [
+      "REF-004",
+      "All",
+      "Garage / KP-GARAGE",
+      "Programming review",
+      "Garage one-button keypad uses Advanced Conditional programming. Must test actual behavior; report does not enumerate condition branches.",
+      "Medium",
+      "To Verify",
+      "",
+      "2026-10-28",
+      "",
+      "",
+      "Yes"
+    ],
+    [
+      "REF-005",
+      "All",
+      "Panel outputs / loads",
+      "Wiring review",
+      "Six module outputs appear unassigned in the template: Adaptive 3-4, 6-4, 7-4, 8-4 and Switching 3-3, 3-4. Confirm field wiring/commissioning rather than assume active loads.",
+      "Medium",
+      "To Verify",
+      "",
+      "2026-10-28",
+      "",
+      "",
+      "Yes"
+    ],
+    [
+      "REF-006",
+      "All",
+      "Fan outputs / pool / PHPM",
+      "Wiring review",
+      "Designer schedules some fan zones with 0 W/unspecified wattage and shows PHPM switching power modules. Verify output mapping and physically connected loads.",
+      "Medium",
+      "To Verify",
+      "",
+      "2026-10-28",
+      "",
+      "",
+      "Yes"
+    ]
+  ],
   "Villa 4": [
     [
       "V4-001",
@@ -171,6 +257,20 @@
       "2026-10-29",
       "Villa 6 program corrected to 4-3 = Bathroom 3 L12/13 Fan and 4-4 = Bathroom 4 L03/05 Fan. Revised project transferred and tested working.",
       "Review"
+    ],
+    [
+      "V6-005",
+      "Villa 6",
+      "Foyer / Living Room Lamp Dimmers",
+      "Defect",
+      "Two expected HQR-3PD-1-SW lamp dimmers are missing from Villa 6: LD-FOYER (Foyer) and LD-LIVING (Kitchen/Living Room). These remain outstanding for punch-list closeout.",
+      "Medium",
+      "Open",
+      "Jeevan Panjwani",
+      "2026-11-03",
+      "",
+      "",
+      ""
     ]
   ],
   "Villa 7": [
@@ -186,6 +286,106 @@
       "2026-10-29",
       "",
       "Advise Apes Hill of the three missing bedroom lamp dimmers and determine replacement supply/install before final closeout.",
+      "No"
+    ]
+  ],
+  "Villa 15": [
+    [
+      "V15-001",
+      "Villa 15",
+      "KP16 / Gang 1 & Gang 2",
+      "Programming Change",
+      "The two physical keypads at KP16 are installed in opposite gang positions relative to the controlled template. Programming was adjusted in Villa 15 to match the actual keypad positions.",
+      "Low",
+      "Closed",
+      "Jeevan Panjwani",
+      "2026-10-29",
+      "2026-10-29",
+      "Villa 15 program updated to match the reversed KP16 keypad positions. Retain as a villa-specific deviation.",
+      "No"
+    ],
+    [
+      "V15-002",
+      "Villa 15",
+      "South Hall / Living Room Downlights \u2014 Outputs 2-3 & 2-4",
+      "Programming Change",
+      "South Hall lighting is linked with the Living Room downlights in Villa 15 and cannot be independently controlled as currently programmed.",
+      "Medium",
+      "Closed",
+      "Jeevan Panjwani",
+      "2026-10-29",
+      "2026-10-29",
+      "Programming adjusted to accommodate the actual South Hall/Living Room field condition. Final system test passed.",
+      "Review"
+    ],
+    [
+      "V15-003",
+      "Villa 15",
+      "Garage Downlights \u2014 Output 4-4",
+      "Defect",
+      "Garage lights do not switch off at all. Earlier closeout assessment was premature; functional issue remains and requires electrician investigation.",
+      "High",
+      "Open",
+      "Jeevan Panjwani",
+      "2026-10-29",
+      "",
+      "Electrician to attend Villa 15 on Oct 30 to investigate why garage lights remain on continuously, correct the field wiring/control condition as required, then MNE to verify operation.",
+      "No"
+    ],
+    [
+      "V15-004",
+      "Villa 15",
+      "Bedroom 2 Floor Lamps",
+      "Defect",
+      "Bedroom 2 floor lamps are not flashing/responding as expected during load identification/testing. The actual device/load mapping is not yet confirmed.",
+      "Medium",
+      "Closed",
+      "Jeevan Panjwani",
+      "2026-10-29",
+      "2026-10-29",
+      "Bedroom 2 lamp circuit confirmed correctly mapped and working. Bulbs are dead; client to replace bulbs. No Lutron/control defect remains.",
+      "No"
+    ],
+    [
+      "V15-005",
+      "Villa 15",
+      "Bedroom 4 Closet \u2014 Extra Lamp Dimmers",
+      "Observation",
+      "Three additional lamp dimmers are installed in the Bedroom 4 closet beyond the controlled template/device schedule.",
+      "Low",
+      "Closed",
+      "Jeevan Panjwani",
+      "2026-10-29",
+      "2026-10-29",
+      "Documented for future service and asset reference. No corrective action required as part of Villa 15 commissioning.",
+      "No"
+    ],
+    [
+      "V15-006",
+      "Villa 15",
+      "Foyer & Living Lamp Dimmers \u2014 Labels",
+      "Observation",
+      "The Foyer and Living Room lamp dimmers are operational but both still require physical labels before final closeout.",
+      "Low",
+      "Open",
+      "Jeevan Panjwani",
+      "2026-10-29",
+      "",
+      "MNE to label the Foyer and Living Room lamp dimmers.",
+      "No"
+    ],
+    [
+      "V15-007",
+      "Villa 15",
+      "Foyer Bulbs",
+      "Client Request",
+      "Foyer bulbs are not working. Lutron control/dimmer is operational; failed bulbs require replacement by the client.",
+      "Low",
+      "Waiting",
+      "Client / Apes Hill",
+      "2026-10-29",
+      "",
+      "Client to replace the failed Foyer bulbs. No Lutron programming repair required for this item.",
       "No"
     ]
   ],

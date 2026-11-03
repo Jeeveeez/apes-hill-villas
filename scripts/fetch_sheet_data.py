@@ -11,17 +11,15 @@ GitHub Actions secrets in the real workflow:
     GOOGLE_SHEET_ID              -- the Sheet's id (the long string in its URL,
                                     between /d/ and /edit)
 
-NOTE ON CALIBRATION: the per-villa row ranges below (checklist, keypads,
-closeout, module outputs, lamp dimmers, module registry) are carried over
-from the one-off extraction already verified against this sheet, and match
-known-good row counts for every villa checked so far (23/26/8/48/11/12).
-The header metadata block (technician, processor model, etc.) and the
-Issues & Changes tab are read by SEARCHING for their label text rather than
-a fixed cell address, so a reordered column shouldn't break them -- but
-this script has not yet run against a live service account (that needs
-Step 2 of README.md, which only Jeevan can complete). Treat the first real
-run as a calibration pass: compare its output to data/villas_extract.json
-and data/villa_issues.json already in this repo, which are known-correct.
+Calibrated against the live sheet on 2026-11-03: row ranges, the header
+metadata block's label text (rows 1-14 of each villa tab), the checklist
+table's non-contiguous columns (A=item, C=status, D=evidence, F=date,
+H=issue -- B/E/G are a merged blank and a per-row technician column this
+pipeline doesn't use), and the notes cell (row 15, found by label text
+rather than a fixed row) were all verified cell-by-cell against Villa 2,
+4 and 6. Keypads, closeout, module outputs, lamp dimmers and the module
+registry are contiguous ranges and matched on the first real run with no
+changes needed.
 """
 import json
 import os
@@ -48,19 +46,31 @@ ROW_RANGES = {
     "modreg": (156, 167, "A:F"),
 }
 
-HEADER_LABELS = {
-    "overall_status": "Overall Status",
-    "base_template": "Base Template",
+# Each villa tab's metadata block (rows 1-14) pairs a label with its value
+# on the SAME row. Simple fields take the next non-empty cell after the
+# label; progress fields (a count plus a "/ N" denominator) take the next
+# TWO non-empty cells. Label text confirmed verbatim against the live sheet.
+SIMPLE_LABELS = {
+    "overall_status": "Overall status",
+    "base_template": "Base template",
     "technician": "Technician",
-    "date_worked": "Date Worked",
-    "processor_model": "Processor Model",
-    "processor_serial": "Processor Serial",
+    "date_worked": "Date worked",
+    "processor_model": "Processor model",
+    "processor_serial": "Processor Serial Number",
     "firmware": "Firmware",
-    "mac": "MAC",
-    "network": "Network",
-    "project_file": "Project File",
-    "factory_reset_date": "Factory Reset Date",
-    "backup_location": "Backup Location",
+    "mac": "Processor MAC Address",
+    "network": "Network IP / settings",
+    "project_file": "Project file",
+    "factory_reset_date": "Factory reset date",
+    "backup_location": "Final backup location",
+    "open_defects": "Open defects",
+}
+PROGRESS_LABELS = {
+    ("kp_act", "kp_act_den"): "Keypads activated",
+    ("kp_test", "kp_test_den"): "Keypads tested",
+    ("tasks_pass", "tasks_den"): "Tasks passed",
+    ("dim_mod", "dim_mod_den"): "Dimming modules activated",
+    ("sw_mod", "sw_mod_den"): "Switching modules activated",
 }
 
 
@@ -84,61 +94,79 @@ def pad(row, width):
 
 
 def parse_header_block(rows):
-    """rows: the top ~18 rows of a villa tab. Find each HEADER_LABELS entry
-    by searching for its label text anywhere in the row, taking the next
-    non-empty cell on that row as the value."""
-    out = {k: "" for k in HEADER_LABELS}
-    out["sheet_name"] = ""
-    out["header_a1"] = rows[0][0] if rows and rows[0] else ""
+    """rows: A1:H14 of a villa tab -- stops before the checklist table's own
+    header row (row 18), which also has cells literally labeled "Technician"
+    and "Issue ID" that would otherwise collide with these same searches.
+    Each label is matched by exact text (case-insensitive) anywhere in a
+    row; simple fields take the next non-empty cell on that row, progress
+    fields take the next two (the count, then its "/ N" denominator)."""
+    out = {k: "" for k in SIMPLE_LABELS}
+    for keys in PROGRESS_LABELS:
+        out[keys[0]] = ""
+        out[keys[1]] = ""
     for row in rows:
         for i, cell in enumerate(row):
             if not cell:
                 continue
-            for field, label in HEADER_LABELS.items():
-                if cell.strip().lower() == label.lower():
-                    value = next((c for c in row[i + 1:] if c), "")
-                    out[field] = value
+            label_text = cell.strip().lower()
+            for field, label in SIMPLE_LABELS.items():
+                if label_text == label.lower():
+                    # The adjacent cell only -- NOT the next non-empty cell
+                    # further along the row, which for a genuinely blank
+                    # value (e.g. an unrecorded technician) would otherwise
+                    # grab the next field's own label text from this same
+                    # row instead of correctly staying blank.
+                    out[field] = row[i + 1] if i + 1 < len(row) else ""
+            for (val_field, den_field), label in PROGRESS_LABELS.items():
+                if label_text == label.lower():
+                    out[val_field] = row[i + 1] if i + 1 < len(row) else ""
+                    out[den_field] = row[i + 2] if i + 2 < len(row) else ""
     return out
 
 
 def extract_table(service, sheet_id, tab, key):
     start, end, cols = ROW_RANGES[key]
+    first_col, last_col = cols.split(":")
     width = {"A:E": 5, "A:G": 7, "A:D": 4, "A:H": 8, "A:F": 6}[cols]
-    rows = read_range(service, sheet_id, tab, f"{cols}{start}:{cols[-1]}{end}")
+    rows = read_range(service, sheet_id, tab, f"{first_col}{start}:{last_col}{end}")
     return [pad(r, width) for r in rows]
 
 
+def extract_checklist(service, sheet_id, tab):
+    """The checklist table's columns aren't contiguous: A=item, B=(merged
+    blank), C=status, D=evidence, E=(merged blank), F=date, G=technician
+    (not needed here), H=issue id. Read the full width and pick out the
+    five columns render_checklist() expects: item, status, evidence, date,
+    issue."""
+    start, end, _ = ROW_RANGES["checklist"]
+    rows = read_range(service, sheet_id, tab, f"A{start}:H{end}")
+    out = []
+    for r in rows:
+        r = pad(r, 8)
+        out.append([r[0], r[2], r[3], r[5], r[7]])
+    return out
+
+
 def extract_villa(service, sheet_id, villa):
-    header_rows = read_range(service, sheet_id, villa, "A1:H18")
+    header_rows = read_range(service, sheet_id, villa, "A1:H14")
     header = parse_header_block(header_rows)
     header["sheet_name"] = villa
+    header["header_a1"] = header_rows[0][0] if header_rows and header_rows[0] else ""
 
-    kp_act_row = extract_table(service, sheet_id, villa, "keypads")
-    notes_rows = read_range(service, sheet_id, villa, "A170:A220")
-    notes = "\n".join(r[0] for r in notes_rows if r and r[0])
+    notes_rows = read_range(service, sheet_id, villa, "A14:A17")
+    header["notes"] = next(
+        (r[0] for r in notes_rows if r and r[0].startswith("COMMISSIONING NOTES")), ""
+    )
 
-    header.update({
-        "notes": notes,
-        "kp_act": sum(1 for r in kp_act_row if r[4] == "Pass"),
-        "kp_act_den": f"/ {len(kp_act_row)}",
-        "kp_test": sum(1 for r in kp_act_row if r[5] == "Pass"),
-        "kp_test_den": f"/ {len(kp_act_row)}",
-        "checklist": extract_table(service, sheet_id, villa, "checklist"),
-        "keypads": kp_act_row,
-        "closeout": extract_table(service, sheet_id, villa, "closeout"),
-        "mods_out": extract_table(service, sheet_id, villa, "mods_out"),
-        "lamps": extract_table(service, sheet_id, villa, "lamps"),
-        "modreg": extract_table(service, sheet_id, villa, "modreg"),
-    })
-    checklist = header["checklist"]
-    header["tasks_pass"] = sum(1 for r in checklist if r[1] == "Pass")
-    header["tasks_den"] = f"/ {len(checklist)}"
-    header["open_defects"] = sum(1 for r in header["mods_out"] if r[6] == "Fail")
-    modreg = header["modreg"]
-    header["dim_mod"] = sum(1 for r in modreg if "dim" in r[1].lower())
-    header["dim_mod_den"] = f"/ {header['dim_mod']}"
-    header["sw_mod"] = sum(1 for r in modreg if "switch" in r[1].lower() or "sw" in r[1].lower())
-    header["sw_mod_den"] = f"/ {header['sw_mod']}"
+    header["checklist"] = extract_checklist(service, sheet_id, villa)
+    header["keypads"] = extract_table(service, sheet_id, villa, "keypads")
+    header["closeout"] = extract_table(service, sheet_id, villa, "closeout")
+    header["mods_out"] = extract_table(service, sheet_id, villa, "mods_out")
+    header["lamps"] = extract_table(service, sheet_id, villa, "lamps")
+    header["modreg"] = extract_table(service, sheet_id, villa, "modreg")
+
+    for field in ("kp_act", "kp_test", "tasks_pass", "open_defects", "dim_mod", "sw_mod"):
+        header[field] = int(header[field]) if header[field] != "" else 0
     return header
 
 
