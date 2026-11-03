@@ -157,7 +157,7 @@ def extract_issues(service, sheet_id):
     return by_villa
 
 
-def main():
+def fetch():
     sheet_id = os.environ["GOOGLE_SHEET_ID"]
     service = get_service()
 
@@ -173,6 +173,18 @@ def main():
     json.dump(extract, open(DATA_DIR / "villas_extract.json", "w"), indent=2)
     json.dump(issues, open(DATA_DIR / "villa_issues.json", "w"), indent=2)
     print("wrote data/villas_extract.json and data/villa_issues.json")
+
+
+def main():
+    # A live-fetch failure (the Sheets API not yet enabled, a transient
+    # Google API error, a sheet layout this script hasn't been calibrated
+    # against yet) should never block regenerating and republishing the
+    # site from whatever is already committed in data/. Fail loudly in the
+    # logs, but exit 0 so the rest of the Update Site workflow still runs.
+    try:
+        fetch()
+    except Exception as exc:
+        print(f"::warning::Live Sheet fetch failed, rebuilding from the data already committed in data/: {exc}")
 
 
 if __name__ == "__main__":
