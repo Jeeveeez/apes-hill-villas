@@ -171,14 +171,14 @@ SUMMARY_TEXT = {
     "Villa 2": "Villa 2 is operationally complete &mdash; all 26 keypads are activated and 20 of 23 checklist items have passed. Granular per-device test evidence is still being backfilled from the Designer report; one item is waiting on the client's furniture to clear before final lamp-dimmer testing.",
     "Villa 4": "Villa 4 is practically complete &mdash; every keypad, module and lighting circuit has been tested and is working, including two field-wiring corrections applied and verified. One item remains: two plug-in lamp dimmers are missing from the unit.",
     "Villa 5": "Villa 5 is complete and working &mdash; all 26 keypads, modules and lighting circuits tested, including three field-wiring corrections applied and verified. Four plug-in lamp dimmers are missing from the unit and need replacement.",
-    "Villa 6": "Villa 6 is in progress &mdash; keypads and modules are active and most loads tested working, but one field condition (North Hall wired into the Foyer circuit) is still being finalized in the program before the revised file goes back to the processor.",
+    "Villa 6": "Villa 6 is complete &mdash; the North Hall field condition (physically looped with the Foyer circuit) is resolved, and the revised program has been transferred and verified. All 26 keypads and both module panels are active; per-device test evidence for several loads and lamp dimmers is still being backfilled from the Designer report.",
     "Villa 7": "Villa 7 is practically complete &mdash; all 26 keypads and every programmed load have been tested and are working. One item remains: three bedroom lamp dimmers are missing from the unit.",
 }
 OUTSTANDING = {
     "Villa 2": [("b-wait", "Client action", "Plug-in lamp dimmers aren&rsquo;t accessible yet &mdash; furniture is already in place over them.")],
     "Villa 4": [("b-pend", "Apes Hill follow-up", "Two lamp dimmers are missing (LD-FOYER, LD-LIVING) &mdash; confirm replacement supply.")],
     "Villa 5": [("b-pend", "Apes Hill follow-up", "Four lamp dimmers are missing (LD-FOYER, LD-LIVING, LD-01-L, LD-04-L) &mdash; confirm replacement supply.")],
-    "Villa 6": [("b-pend", "Program pending transfer", "North Hall removed from the program as an independent load &mdash; revised file still needs transferring to the processor and verifying.")],
+    "Villa 6": [],
     "Villa 7": [("b-pend", "Apes Hill follow-up", "Three bedroom lamp dimmers are missing (LD-03-R, LD-03-L, LD-04-L) &mdash; confirm replacement supply.")],
 }
 

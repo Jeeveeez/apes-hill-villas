@@ -97,10 +97,10 @@ h1.villa-title{font-family:var(--f-display); font-size:44px; font-weight:300; le
 .status-pill{
   display:inline-flex; align-items:center; gap:7px; font-family:var(--f-display);
   font-size:15px; letter-spacing:.04em; text-transform:uppercase; font-weight:600;
-  padding:7px 14px; border-radius:999px; background:var(--pend-bg); color:var(--pend);
-  border:1px solid color-mix(in srgb, var(--pend) 35%, transparent);
+  padding:7px 14px; border-radius:999px; background:var(--pass-bg); color:var(--pass);
+  border:1px solid color-mix(in srgb, var(--pass) 35%, transparent);
 }
-.status-pill .dot{width:8px; height:8px; border-radius:50%; background:var(--pend);}
+.status-pill .dot{width:8px; height:8px; border-radius:50%; background:var(--pass);}
 
 .title-block{
   display:grid; grid-template-columns:repeat(4,1fr); gap:0;
@@ -272,10 +272,10 @@ footer a{color:var(--muted); text-decoration:underline;}
         <div class="eyebrow">Apes Hill Hilltop Villas &middot; Parcel V &middot; St. James, Barbados</div>
         <h1 class="villa-title">Villa 6</h1>
       </div>
-      <span class="status-pill"><span class="dot"></span>In Progress</span>
+      <span class="status-pill"><span class="dot"></span>Complete</span>
     </div>
 
-    <p class="summary-text">Villa 6 is in progress &mdash; keypads and modules are active and most loads tested working, but one field condition (North Hall wired into the Foyer circuit) is still being finalized in the program before the revised file goes back to the processor.</p>
+    <p class="summary-text">Villa 6 is complete &mdash; the North Hall field condition (physically looped with the Foyer circuit) is resolved, and the revised program has been transferred and verified. All 26 keypads and both module panels are active; per-device test evidence for several loads and lamp dimmers is still being backfilled from the Designer report.</p>
     <p class="summary-byline">Worked by Jeevan Panjwani · 10/29/2026</p>
 
     <div class="kpi-row">
@@ -283,10 +283,10 @@ footer a{color:var(--muted); text-decoration:underline;}
       <div class="kpi"><div class="kpi-label">Modules active</div><div class="kpi-value">12<small>/12</small></div></div>
       <div class="kpi warn"><div class="kpi-label">Checklist passed</div><div class="kpi-value">14<small>/23</small></div></div>
       <div class="kpi"><div class="kpi-label">Open defects</div><div class="kpi-value">0</div></div>
-      <div class="kpi warn"><div class="kpi-label">Open issues</div><div class="kpi-value">1<small>/4</small></div></div>
+      <div class="kpi "><div class="kpi-label">Open issues</div><div class="kpi-value">0<small>/4</small></div></div>
     </div>
 
-    <div class="outstanding-list"><div class="outstanding-item"><span class="badge b-pend">Program pending transfer</span><div>North Hall removed from the program as an independent load &mdash; revised file still needs transferring to the processor and verifying.</div></div></div>
+    
 
     <p class="jump-link">Full technical record &mdash; checklist, keypad register, circuit-by-circuit test results &mdash; starts below. <a href="#notes">Jump to it &darr;</a></p>
   </section>
@@ -325,6 +325,7 @@ footer a{color:var(--muted); text-decoration:underline;}
 <li><span class="note-mark mono">08</span><span>Oct 29: Revised Villa 6 program transferred and changes tested. Bedroom 3 Bathroom/Closet mapping and Bathroom 3/4 fan mapping corrected and verified. North Hall independent load removed from program because it is physically looped with Foyer. The previously unidentified spare conductor was confirmed as Load 35 for the Kitchen Exhaust Fan and landed on the correct Adaptive 2 / 2-2 module output. Villa 6 is practically complete.</span></li>
 <li><span class="note-mark mono">09</span><span>Oct 29 correction: North Hall was identified for removal from the Villa 6 program, but that final edit/re-transfer has NOT yet been completed. Return to Villa 6, remove independent North Hall / output 1-3 from the program, transfer the revised file, and verify Foyer/North Hall behavior.</span></li>
 <li><span class="note-mark mono">10</span><span>Oct 29: North Hall independent load/output 1-3 has now been removed from the Villa 6 program. Revised transfer back to the processor is still pending confirmation.</span></li>
+<li><span class="note-mark mono">11</span><span>Nov 3: Final revised program loaded to the processor with the independent North Hall load/output 1-3 removed from programming. Villa 6 marked Complete.</span></li>
       </ol>
     </div>
   </section>
@@ -1277,20 +1278,20 @@ footer a{color:var(--muted); text-decoration:underline;}
     <div class="section-head">
       <span class="section-num">Log</span>
       <h2 class="section-title">Issues &amp; Changes &mdash; Villa 6</h2>
-      <span class="section-sub">3 closed · 1 open</span>
+      <span class="section-sub">4 closed</span>
     </div>
     <div class="issues-grid">
-      <article class="issue-card" id="iss-V6-001" data-search="V6-001 North Hall / Foyer — Output 1-3 Programming Change Panel inspection confirmed North Hall has no dedicated return. The North Hall lighting circuit is physically looped with the Foyer circuit, so it cannot operate as an independent load. Open North Hall independent load/output 1-3 removed from the Villa 6 program. Final revised transfer to the processor and verification still pending.">
+      <article class="issue-card" id="iss-V6-001" data-search="V6-001 North Hall / Foyer — Output 1-3 Programming Change Panel inspection confirmed North Hall has no dedicated return. The North Hall lighting circuit is physically looped with the Foyer circuit, so it cannot operate as an independent load. Closed North Hall independent load/output 1-3 removed from the Villa 6 program. Final revised transfer to the processor and verification still pending.">
           <header class="issue-head">
             <span class="mono issue-id">V6-001</span>
             <span class="pri-dot pri-med" title="Medium priority"></span>
             <span class="issue-area">North Hall / Foyer — Output 1-3</span>
-            <span class="badge b-pend" data-search="Open">Open</span>
+            <span class="badge b-pass" data-search="Closed">Closed</span>
           </header>
           <p class="issue-type">Programming Change</p>
           <p class="issue-desc">Panel inspection confirmed North Hall has no dedicated return. The North Hall lighting circuit is physically looped with the Foyer circuit, so it cannot operate as an independent load.</p>
           <p class="issue-res"><span class="label-sm">Resolution</span> North Hall independent load/output 1-3 removed from the Villa 6 program. Final revised transfer to the processor and verification still pending.</p>
-          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29</p>
+          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29 &middot; Closed 2026-11-03</p>
         </article>
 <article class="issue-card" id="iss-V6-002" data-search="V6-002 Kitchen Exhaust Fan — Load 35 / Output 2-2 Defect Kitchen Exhaust Fan / Load 35 does not appear to operate. No load/conductor marked 35 is visible in the panel. One spare cable is present and may be the fan feed, but this has not been confirmed. Closed Previously unidentified spare conductor confirmed as Load 35 for the Kitchen Exhaust Fan, landed on Adaptive 2 / 2-2, and verified after correction.">
           <header class="issue-head">

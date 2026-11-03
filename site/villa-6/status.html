@@ -60,11 +60,11 @@ h1.villa-title{
 .status-pill{
   display:flex; align-items:center; justify-content:center; gap:8px; font-family:var(--f-display);
   font-size:15px; letter-spacing:.04em; text-transform:uppercase; font-weight:600;
-  padding:8px 18px; border-radius:999px; background:var(--pend-bg); color:var(--pend);
-  border:1px solid color-mix(in srgb, var(--pend) 35%, transparent);
+  padding:8px 18px; border-radius:999px; background:var(--pass-bg); color:var(--pass);
+  border:1px solid color-mix(in srgb, var(--pass) 35%, transparent);
   width:fit-content; margin:20px auto 0;
 }
-.status-pill .dot{width:8px; height:8px; border-radius:50%; background:var(--pend);}
+.status-pill .dot{width:8px; height:8px; border-radius:50%; background:var(--pass);}
 
 .summary-text{font-size:17px; line-height:1.7; text-align:center; margin:28px auto 0; max-width:50ch; color:var(--ink); font-weight:300;}
 .summary-text strong{font-weight:600;}
@@ -124,9 +124,9 @@ h1.villa-title{
   <div class="top-nav"><a class="btn" href="../index.html">&larr; All Villas</a></div>
   <div class="eyebrow">Apes Hill Hilltop Villas &middot; Parcel V &middot; St. James, Barbados</div>
   <h1 class="villa-title">Villa 6</h1>
-  <div class="status-pill"><span class="dot"></span>In Progress</div>
+  <div class="status-pill"><span class="dot"></span>Complete</div>
 
-  <p class="summary-text">Villa 6 is in progress &mdash; keypads and modules are active and most loads tested working, but one field condition (North Hall wired into the Foyer circuit) is still being finalized in the program before the revised file goes back to the processor.</p>
+  <p class="summary-text">Villa 6 is complete &mdash; the North Hall field condition (physically looped with the Foyer circuit) is resolved, and the revised program has been transferred and verified. All 26 keypads and both module panels are active; per-device test evidence for several loads and lamp dimmers is still being backfilled from the Designer report.</p>
   <p class="byline">Worked by Jeevan Panjwani · 10/29/2026</p>
 
   <div class="kpi-row">
@@ -136,7 +136,7 @@ h1.villa-title{
     <div class="kpi"><div class="kpi-label">System faults</div><div class="kpi-value">0</div></div>
   </div>
 
-  <div class="outstanding"><div class="outstanding-head">Before final sign-off</div><div class="outstanding-list"><div class="outstanding-item"><span class="badge b-pend">Program pending transfer</span><div>North Hall removed from the program as an independent load &mdash; revised file still needs transferring to the processor and verifying.</div></div></div></div>
+  <div class="none-outstanding">Nothing outstanding right now.</div>
 
   <div class="links">
     <a class="btn btn-primary" href="technical-record.html">View Technical Record &rarr;</a>
