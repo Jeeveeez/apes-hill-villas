@@ -282,7 +282,7 @@ __TABLE_ROWS__
       r.addEventListener('click', function(ev){
         if (ev.target.closest('a')) return;
         var a = r.querySelector('.villa-id a');
-        if (a) window.open(a.href, '_blank');
+        if (a) window.location.href = a.href;
       });
     }
   });
