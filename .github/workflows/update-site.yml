@@ -1,0 +1,67 @@
+name: Update Site
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      HAS_SHEET_SECRET: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON != '' }}
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch latest data from the Google Sheet
+        if: ${{ env.HAS_SHEET_SECRET == 'true' }}
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+        run: python scripts/fetch_sheet_data.py
+
+      - name: Skip fetch (no Sheet credentials yet)
+        if: ${{ env.HAS_SHEET_SECRET != 'true' }}
+        run: echo "GOOGLE_SERVICE_ACCOUNT_JSON / GOOGLE_SHEET_ID not set yet - rebuilding from the data already committed in data/."
+
+      - name: Regenerate villa pages
+        run: python scripts/generate_villas.py
+
+      - name: Regenerate fleet dashboard
+        run: python scripts/generate_fleet.py
+
+      - name: Commit refreshed data (if it changed)
+        run: |
+          git config user.name "apes-hill-villas-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "Refresh data from Google Sheet"
+          git push || echo "nothing to push"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
