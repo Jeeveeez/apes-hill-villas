@@ -334,7 +334,7 @@ footer{padding-block:30px 10px; font-size:12.5px; color:var(--muted); border-top
           <div class="legend-row"><span class="legend-sw" style="background:var(--nr)"></span>Not in output table</div>
           <div class="legend-row"><span class="legend-sw round est"></span>Position estimated</div>
         </div>
-        <div class="legend-note">L20 &amp; L31 are drawn but not in Villa 3&rsquo;s Section 4 output table &mdash; a template-wide gap, not a Villa 3-specific issue.</div>
+        <div class="legend-note">L20 &amp; L31 are drawn but not in Villa 3&rsquo;s Section 4 output table &mdash; a template-wide gap, not a Villa-specific issue.</div>
       </div>
     </div>
 
@@ -422,7 +422,7 @@ footer{padding-block:30px 10px; font-size:12.5px; color:var(--muted); border-top
         html += '<div class="detail-section"><div class="detail-note">'+d.fixture_note+'</div></div>';
       }
       if (d.entries.length === 0 && !d.fixture){
-        html += '<div class="detail-section"><div class="detail-note">This circuit is drawn on the sheet but has no row in Villa 3&rsquo;s Section 4 output-verification table.</div></div>';
+        html += '<div class="detail-section"><div class="detail-note">This circuit is drawn on the sheet but has no row in this villa&rsquo;s Section 4 output-verification table.</div></div>';
       } else {
         d.entries.forEach(function(e){
           html += '<div class="detail-section">';

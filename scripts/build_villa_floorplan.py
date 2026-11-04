@@ -1,26 +1,48 @@
 #!/usr/bin/env python3
-"""Builds site/villa-3/floor-plan.html -- the second villa to get the full
-Designer-report treatment (engravings + an interactive floor plan), after
-Villa 15.
+"""Builds site/villa-{N}/floor-plan.html for any villa that has a processed
+Lutron Designer Report Package -- generalized from the Villa 3 build.
 
-The physical floor plan, keypad numbering (KP1..KP25, KP-GARAGE), load
-numbering (L01..L51) and keypad engraving layout are all confirmed
-IDENTICAL across villas (same construction template) -- verified by
-diffing Villa 3's Report Package engraving pages and Load Schedule
-against Villa 15's. So the pin GEOMETRY (data/floorplan_pins.json), the
-engraving button groups, and the load schedule's zone/name/wattage/panel
-assignment are all reused verbatim from Villa 15's build; only the
-per-device STATUS (pass/pending) is Villa 3's own, pulled from its
-already-fetched data/villas_extract.json.
+Usage:
+    python3 scripts/build_villa_floorplan.py <villa_number> <path/to/Report Package.pdf>
 
-Not part of the regular generate_villas.py/generate_fleet.py pipeline --
-like Villa 15, this is a one-off build, run again by hand if Villa 3's
-keypad/load test results change materially enough to be worth a refresh.
+Example:
+    python3 scripts/build_villa_floorplan.py 4 "/Users/jeevanpanjwani/Downloads/Villa 4 Report Package.pdf"
+
+What's reused vs. what's read fresh from the PDF
+-------------------------------------------------
+Confirmed (by diffing Villa 15 against Villa 3) that every villa shares the
+same construction template: identical floor plan, identical keypad/load
+numbering (KP1..KP25, KP-GARAGE, L01..L51), identical keypad engraving
+button layout, identical load-schedule zone/name/wattage/panel assignment.
+So those are REUSED AS FIXED DATA below (ENGRAVING_GROUPS, LOAD_SCHEDULE,
+data/floorplan_pins.json) -- there is no need to re-derive the physical
+layout for every new villa, and doing so would just burn tokens re-proving
+something already established twice.
+
+What IS read fresh from each villa's own PDF:
+  - its 8 keypad engraving crops (same labels, but each villa has its own
+    separately-rendered faceplate graphic) -- found by scanning the PDF's
+    own Table of Contents for where its Engraving section actually starts
+    and ends (page numbers drift villa to villa depending on BOM/notes
+    length), then matching each page's location header text against the
+    known keypad groups, rather than assuming a fixed page number.
+What's read fresh from the tracker (data/villas_extract.json, already kept
+current by fetch_sheet_data.py):
+  - that villa's own keypad/load pass-pending status.
+
+If a future villa's physical layout genuinely differs (the Apes Hill notes
+would flag this, the way Villa 6's North Hall anomaly was flagged) --
+ENGRAVING_GROUPS / LOAD_SCHEDULE below would need revisiting. Until then,
+treat this script as a cheap, mostly-mechanical build: run it, skim the
+output once, ship it.
 """
 import html as H
 import json
 import re
+import sys
 from pathlib import Path
+
+import fitz
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SITE_DIR = REPO_ROOT / "site"
@@ -33,8 +55,6 @@ def esc(s):
 
 PINS = json.load(open(DATA_DIR / "floorplan_pins.json"))
 
-# ---- Engraving groups: confirmed byte-identical to Villa 15 (same labels,
-# same keypad-id groupings) by reading Villa 3's own Engraving section.
 BOM_DESC = {
     'HQWD-W4BS-WH': 'HWQS Designer Wired seeTouch 4 Button Keypad',
     'HQWD-W5B-WH': 'HWQS Designer Wired seeTouch 5 Button Keypad',
@@ -97,9 +117,6 @@ def engraving_image_for(kp_id):
     }
 
 
-# ---- Load schedule: zone/name/type/wattage/panel assignment, confirmed
-# identical across villas (same physical design); reused verbatim from
-# Villa 15. Only each circuit's PASS/PENDING status is Villa 3's own.
 LOAD_SCHEDULE = {
     'L01': {'zone': 'Bedroom 4', 'name': 'Downlights', 'type': 'LED Reverse Phase', 'watt': 153, 'assigned': 'Panel 001 · Adaptive(8) · Output 1'},
     'L02': {'zone': 'Bedroom 4', 'name': 'Fan', 'type': 'Fan Switched', 'watt': 100, 'assigned': 'Panel 002 · Switch(2) · Output 4'},
@@ -152,38 +169,115 @@ LOAD_SCHEDULE = {
     'L50': {'zone': 'Patio', 'name': 'Pool', 'type': 'Inc/Halogen Switched', 'watt': 20, 'assigned': 'Panel 001 · Adaptive(3) · Output 3', 'feed': 'PSP 18'},
     'L51': {'zone': 'Bathroom 1', 'name': 'Fan', 'type': 'Fan Switched', 'watt': 100, 'assigned': 'Panel 002 · Switch(4) · Output 1'},
 }
-LOAD_SCHEDULE_NOTE = {
-    'L31': "L31 does not appear anywhere in the Lutron Designer load schedule for Villa 3 — it isn’t configured as a load in the system, not just unrecorded in the tracker.",
-}
 
-# ---- Villa 3's own device status, from the tracker (already fetched into
-# data/villas_extract.json by fetch_sheet_data.py / generate_villas.py).
-extract = json.load(open(DATA_DIR / "villas_extract.json"))
-v3 = extract["Villa 3"]
 
-KP = {}
-for dev, loc, model, serial, act, test, find in v3["keypads"]:
-    # Villa 3's tracker labels a 2-gang wallplate's two devices as
-    # "KP14 / Gang 1" and "KP14 / Gang 2" rather than two plain ids --
-    # group them under the shared pin id "KP14".
-    pin_id = dev.split(" / Gang")[0].strip()
-    KP.setdefault(pin_id, {"gangs": []})["gangs"].append({
-        "device": dev, "location": loc, "model": model, "serial": serial,
-        "activated": act, "tested": test, "findings": find,
-    })
+# ---- Engraving crop extraction: dynamic, not page-number-hardcoded -----
 
-L = {lid: {"entries": []} for lid in LOAD_SCHEDULE}
-for panel, module, model, outp, load_desc, wmatch, ftest, notes in v3["mods_out"]:
-    ids_here = []
-    for m in re.finditer(r'L(\d{2})(?:/L?(\d{2}))?', load_desc):
-        ids_here.append('L' + m.group(1))
-        if m.group(2):
-            ids_here.append('L' + m.group(2))
-    for lid in ids_here:
-        L.setdefault(lid, {"entries": []})["entries"].append({
-            "panel": panel, "module": module, "output": outp, "load": load_desc,
-            "wiring_match": wmatch, "func_test": ftest, "notes": notes,
+def find_engraving_bounds(doc):
+    """Reads the PDF's own Table of Contents (page 2) for where its
+    Engraving section starts and ends -- this drifts villa to villa with
+    BOM/notes length, so never assume a fixed page number."""
+    toc_text = doc[1].get_text()
+    start_m = re.search(r'Engraving\s*\n\s*(\d+)', toc_text)
+    end_m = re.search(r'Programming Report\s*\n\s*(\d+)', toc_text)
+    if not start_m or not end_m:
+        raise RuntimeError(
+            "Could not find the Engraving/Programming Report page numbers "
+            "in this PDF's Table of Contents (page 2) -- check it matches "
+            "the usual Lutron Designer report format."
+        )
+    return int(start_m.group(1)), int(end_m.group(1))
+
+
+def crop_content_region(page):
+    """The same dynamic header-box detection used for Villa 15/3: finds the
+    3 equal-width info boxes near the top, crops everything drawn below
+    them. Returns None if the page has no real drawing (a text-only
+    continuation/location-list page)."""
+    drawings = page.get_drawings()
+    if not drawings:
+        return None
+    header_boxes = [d['rect'] for d in drawings if d['rect'].y0 < 200 and (d['rect'].x1 - d['rect'].x0) > 180 and 20 < (d['rect'].y1 - d['rect'].y0) < 60]
+    header_bottom = max((b.y1 for b in header_boxes), default=0)
+    content_rects = [d['rect'] for d in drawings if d['rect'].y0 > header_bottom]
+    if not content_rects:
+        return None
+    y0 = min(r.y0 for r in content_rects) - 4
+    y1 = max(r.y1 for r in content_rects) + 4
+    x0 = min(r.x0 for r in content_rects) - 4
+    x1 = max(r.x1 for r in content_rects) + 4
+    return fitz.Rect(x0, max(header_bottom + 1, y0), x1, y1)
+
+
+def extract_engravings(doc, out_dir):
+    """Scans the PDF's own Engraving section and saves one crop per keypad
+    group as it's found.
+
+    A group with 1-2 locations fits its location header ("Foyer > KP10")
+    and its faceplate drawing on the SAME page. A group with more
+    locations (e.g. 5 bathroom keypads sharing one engraving) needs a
+    full page just to list them, so the drawing spills onto the NEXT
+    page, which carries "Wallplate:"/"Faceplate Engraving" text but no
+    location line of its own. So: track the most recently seen KP id
+    across pages, and only treat a page as a real image (not a location
+    list) when its text contains "Faceplate Engraving" -- a list-only
+    page never has that phrase."""
+    start_page, end_page = find_engraving_bounds(doc)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    captured = set()
+    kp_pattern = re.compile(r'KP-GARAGE|KP\d+')
+    last_kp_id = None
+    for pno in range(start_page - 1, end_page - 1):
+        page = doc[pno]
+        text = page.get_text()
+        m = kp_pattern.search(text)
+        if m:
+            last_kp_id = m.group(0)
+        if "Faceplate Engraving" not in text or not last_kp_id:
+            continue  # location-list page, no drawing here yet
+        grp = KP_TO_GROUP.get(last_kp_id)
+        if not grp or grp['key'] in captured:
+            continue
+        clip = crop_content_region(page)
+        if clip is None:
+            continue
+        pix = page.get_pixmap(matrix=fitz.Matrix(4, 4), clip=clip)
+        pix.save(out_dir / f"eng_{grp['key']}.png")
+        captured.add(grp['key'])
+    return captured
+
+
+# ---- Villa-specific status, from the tracker -----
+
+def build_kp_l_dicts(villa_key):
+    extract_data = json.load(open(DATA_DIR / "villas_extract.json"))
+    v = extract_data[villa_key]
+
+    KP = {}
+    for dev, loc, model, serial, act, test, find in v["keypads"]:
+        # Some villas label a 2-gang wallplate's two devices as
+        # "KP14 / Gang 1" / "KP14 / Gang 2" rather than plain ids --
+        # group them under the shared pin id.
+        pin_id = dev.split(" / Gang")[0].strip()
+        KP.setdefault(pin_id, {"gangs": []})["gangs"].append({
+            "device": dev, "location": loc, "model": model, "serial": serial,
+            "activated": act, "tested": test, "findings": find,
         })
+
+    L = {lid: {"entries": []} for lid in LOAD_SCHEDULE}
+    for panel, module, model, outp, load_desc, wmatch, ftest, notes in v["mods_out"]:
+        ids_here = []
+        for m in re.finditer(r'L(\d{2})(?:/L?(\d{2}))?', load_desc):
+            ids_here.append('L' + m.group(1))
+            if m.group(2):
+                ids_here.append('L' + m.group(2))
+        for lid in ids_here:
+            L.setdefault(lid, {"entries": []})["entries"].append({
+                "panel": panel, "module": module, "output": outp, "load": load_desc,
+                "wiring_match": wmatch, "func_test": ftest, "notes": notes,
+            })
+    garage_row = next((r for r in v["mods_out"] if r[4].startswith("Garage")), None)
+    return KP, L, garage_row
 
 
 def kp_status(entry):
@@ -204,72 +298,7 @@ def l_status(entry):
     return "pend"
 
 
-pin_buttons = []
-for p in PINS["kp"] + [dict(x, kind="l") for x in PINS["l"]]:
-    pid = p["id"]
-    kind = p.get("kind", "kp" if pid.startswith("KP") else "l")
-    x, y = p["x"], p["y"]
-    st = kp_status(KP[pid]) if kind == "kp" else l_status(L.get(pid, {"entries": []}))
-    extra = " pin-est" if p.get("estimated") else ""
-    shape = "pin-kp" if kind == "kp" else "pin-l"
-    inner = esc(pid.replace("KP", "")) if kind == "kp" else ""
-    pin_buttons.append(
-        f'<button type="button" class="pin {shape} pin-{st}{extra}" '
-        f'style="left:{x}%; top:{y}%" data-kind="{kind}" data-id="{esc(pid)}" '
-        f'data-tip="{esc(pid)}" aria-label="{esc(pid)}">{inner}</button>'
-    )
-
-detail = {}
-for pid, entry in KP.items():
-    for g in entry["gangs"]:
-        g["model_desc"] = BOM_DESC.get(g["model"])
-        g["engraving"] = engraving_for_gang(pid, g["model"])
-    detail[pid] = {
-        "kind": "kp", "id": pid, "status": kp_status(entry),
-        "gangs": entry["gangs"],
-        "engraving_image": engraving_image_for(pid),
-    }
-for pid, entry in L.items():
-    fixture = LOAD_SCHEDULE.get(pid)
-    detail[pid] = {
-        "kind": "l", "id": pid, "status": l_status(entry),
-        "fixture": fixture,
-        "fixture_note": LOAD_SCHEDULE_NOTE.get(pid),
-        "entries": entry["entries"],
-    }
-
-# ---- Garage & Technical Room cards (not on the main floor plan -- its own
-# inset drawing on the electrical sheet, same as Villa 15).
-garage_kp_html = ""
-if "KP-GARAGE" in KP:
-    g = KP["KP-GARAGE"]["gangs"][0]
-    eg = engraving_for_gang("KP-GARAGE", g["model"])
-    eg_note = f" &middot; Engraved &ldquo;{esc('/'.join(eg['labels']))}&rdquo;" if eg else ""
-    garage_kp_html = f'''<div class="supp-row">
-      <div class="supp-id mono">KP-GARAGE</div>
-      <div>
-        <div>{esc(g['location'])}</div>
-        <div class="cell-note">{esc(g['model'])} &middot; {esc(g['serial'])}{eg_note}</div>
-      </div>
-      <span class="badge b-{'pass' if g['activated']=='Pass' and g['tested']=='Pass' else 'pend'}">{esc(g['activated'])}</span>
-    </div>'''
-
-garage_row = next((r for r in v3["mods_out"] if r[4].startswith("Garage")), None)
-garage_l_html = ""
-if garage_row:
-    panel, module, model, out, load_desc, wmatch, ftest, notes = garage_row
-    badge_cls = "pass" if ftest == "Pass" else ("fail" if ftest == "Fail" else "nr")
-    row_cls = " supp-row-fail" if badge_cls == "fail" else ""
-    garage_l_html = f'''<div class="supp-row{row_cls}">
-  <div class="supp-id mono">{esc(out)}</div>
-  <div>
-    <div>{esc(load_desc)}</div>
-    <div class="cell-note">{esc(notes)}</div>
-  </div>
-  <span class="badge b-{badge_cls}">{esc(ftest)}</span>
-</div>'''
-
-TEMPLATE = r"""<title>Villa 3 Floor Plan</title>
+TEMPLATE = r"""<title>Villa __VNUM__ Floor Plan</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -462,7 +491,7 @@ footer{padding-block:30px 10px; font-size:12.5px; color:var(--muted); border-top
 
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="topbar-brand"><img src="../assets/logo.png" alt="MNE Innovations"><div class="topbar-title">VILLA <b>3</b> &middot; Floor Plan</div></div>
+    <div class="topbar-brand"><img src="../assets/logo.png" alt="MNE Innovations"><div class="topbar-title">VILLA <b>__VNUM__</b> &middot; Floor Plan</div></div>
     <div class="topbar-nav-buttons">
       <a class="btn" href="../index.html">&larr; All Villas</a>
       <a class="btn" href="status.html">Status</a>
@@ -523,7 +552,7 @@ footer{padding-block:30px 10px; font-size:12.5px; color:var(--muted); border-top
           <div class="legend-row"><span class="legend-sw" style="background:var(--nr)"></span>Not in output table</div>
           <div class="legend-row"><span class="legend-sw round est"></span>Position estimated</div>
         </div>
-        <div class="legend-note">L20 &amp; L31 are drawn but not in Villa 3&rsquo;s Section 4 output table &mdash; a template-wide gap, not a Villa 3-specific issue.</div>
+        <div class="legend-note">L20 &amp; L31 are drawn but not in Villa __VNUM__&rsquo;s Section 4 output table &mdash; a template-wide gap, not a Villa-specific issue.</div>
       </div>
     </div>
 
@@ -546,7 +575,7 @@ footer{padding-block:30px 10px; font-size:12.5px; color:var(--muted); border-top
 
   <footer>
     Marker positions extracted from the vector text layer of A-E-2.01 rev. 11, reused from Villa 15 (identical floor plan).
-    Device data: Apes Hill Hilltop Villas Master Commissioning Tracker, "Villa 3" tab, Section 2 &amp; Section 4.
+    Device data: Apes Hill Hilltop Villas Master Commissioning Tracker, "Villa __VNUM__" tab, Section 2 &amp; Section 4.
   </footer>
 </div>
 
@@ -597,7 +626,7 @@ footer{padding-block:30px 10px; font-size:12.5px; color:var(--muted); border-top
         html += '<div class="detail-section"><div class="detail-note">'+d.fixture_note+'</div></div>';
       }
       if (d.entries.length === 0 && !d.fixture){
-        html += '<div class="detail-section"><div class="detail-note">This circuit is drawn on the sheet but has no row in Villa 3&rsquo;s Section 4 output-verification table.</div></div>';
+        html += '<div class="detail-section"><div class="detail-note">This circuit is drawn on the sheet but has no row in this villa&rsquo;s Section 4 output-verification table.</div></div>';
       } else {
         d.entries.forEach(function(e){
           html += '<div class="detail-section">';
@@ -701,12 +730,6 @@ footer{padding-block:30px 10px; font-size:12.5px; color:var(--muted); border-top
 </script>
 """
 
-out = TEMPLATE
-out = out.replace("__PINS__", "\n        ".join(pin_buttons))
-out = out.replace("__GARAGE_KP__", garage_kp_html)
-out = out.replace("__GARAGE_L__", garage_l_html)
-out = out.replace("__DETAIL_JSON__", json.dumps(detail))
-
 
 def wrap_page(html_fragment):
     idx = html_fragment.index("</style>") + len("</style>")
@@ -723,8 +746,111 @@ def wrap_page(html_fragment):
     )
 
 
-out_dir = SITE_DIR / "villa-3"
-out_dir.mkdir(parents=True, exist_ok=True)
-fname = out_dir / "floor-plan.html"
-fname.write_text(wrap_page(out), encoding="utf-8")
-print("wrote", fname)
+def main():
+    if len(sys.argv) != 3:
+        print(__doc__)
+        sys.exit(1)
+    villa_num = sys.argv[1]
+    pdf_path = Path(sys.argv[2])
+    villa_key = f"Villa {villa_num}"
+
+    out_dir = SITE_DIR / f"villa-{villa_num}"
+    eng_dir = out_dir / "assets" / "engravings"
+
+    doc = fitz.open(pdf_path)
+    captured = extract_engravings(doc, eng_dir)
+    expected = {g["key"] for g in ENGRAVING_GROUPS}
+    missing = expected - captured
+    if missing:
+        print(f"::warning:: Could not find an engraving image for group(s) {sorted(missing)} "
+              f"-- check {pdf_path.name}'s Engraving section by hand for these groups.")
+    print(f"Captured {len(captured)}/{len(expected)} engraving groups: {sorted(captured)}")
+
+    KP, L, garage_row = build_kp_l_dicts(villa_key)
+
+    pin_buttons = []
+    for p in PINS["kp"] + [dict(x, kind="l") for x in PINS["l"]]:
+        pid = p["id"]
+        kind = p.get("kind", "kp" if pid.startswith("KP") else "l")
+        x, y = p["x"], p["y"]
+        st = kp_status(KP[pid]) if kind == "kp" else l_status(L.get(pid, {"entries": []}))
+        extra = " pin-est" if p.get("estimated") else ""
+        shape = "pin-kp" if kind == "kp" else "pin-l"
+        inner = esc(pid.replace("KP", "")) if kind == "kp" else ""
+        pin_buttons.append(
+            f'<button type="button" class="pin {shape} pin-{st}{extra}" '
+            f'style="left:{x}%; top:{y}%" data-kind="{kind}" data-id="{esc(pid)}" '
+            f'data-tip="{esc(pid)}" aria-label="{esc(pid)}">{inner}</button>'
+        )
+
+    detail = {}
+    for pid, entry in KP.items():
+        for g in entry["gangs"]:
+            g["model_desc"] = BOM_DESC.get(g["model"])
+            g["engraving"] = engraving_for_gang(pid, g["model"])
+        detail[pid] = {
+            "kind": "kp", "id": pid, "status": kp_status(entry),
+            "gangs": entry["gangs"],
+            "engraving_image": engraving_image_for(pid),
+        }
+    for pid, entry in L.items():
+        fixture = LOAD_SCHEDULE.get(pid)
+        note = (
+            f"L31 does not appear anywhere in the Lutron Designer load schedule for "
+            f"Villa {villa_num} — it isn’t configured as a load in the system, "
+            f"not just unrecorded in the tracker."
+        ) if pid == "L31" and not entry["entries"] else None
+        detail[pid] = {
+            "kind": "l", "id": pid, "status": l_status(entry),
+            "fixture": fixture, "fixture_note": note,
+            "entries": entry["entries"],
+        }
+
+    garage_kp_html = ""
+    if "KP-GARAGE" in KP:
+        g = KP["KP-GARAGE"]["gangs"][0]
+        eg = engraving_for_gang("KP-GARAGE", g["model"])
+        eg_note = f" &middot; Engraved &ldquo;{esc('/'.join(eg['labels']))}&rdquo;" if eg else ""
+        garage_kp_html = f'''<div class="supp-row">
+      <div class="supp-id mono">KP-GARAGE</div>
+      <div>
+        <div>{esc(g['location'])}</div>
+        <div class="cell-note">{esc(g['model'])} &middot; {esc(g['serial'])}{eg_note}</div>
+      </div>
+      <span class="badge b-{'pass' if g['activated']=='Pass' and g['tested']=='Pass' else 'pend'}">{esc(g['activated'])}</span>
+    </div>'''
+
+    garage_l_html = ""
+    if garage_row:
+        panel, module, model, out, load_desc, wmatch, ftest, notes = garage_row
+        badge_cls = "pass" if ftest == "Pass" else ("fail" if ftest == "Fail" else "nr")
+        row_cls = " supp-row-fail" if badge_cls == "fail" else ""
+        garage_l_html = f'''<div class="supp-row{row_cls}">
+  <div class="supp-id mono">{esc(out)}</div>
+  <div>
+    <div>{esc(load_desc)}</div>
+    <div class="cell-note">{esc(notes)}</div>
+  </div>
+  <span class="badge b-{badge_cls}">{esc(ftest)}</span>
+</div>'''
+
+    out = TEMPLATE
+    out = out.replace("__VNUM__", villa_num)
+    out = out.replace("__PINS__", "\n        ".join(pin_buttons))
+    out = out.replace("__GARAGE_KP__", garage_kp_html)
+    out = out.replace("__GARAGE_L__", garage_l_html)
+    out = out.replace("__DETAIL_JSON__", json.dumps(detail))
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    fname = out_dir / "floor-plan.html"
+    fname.write_text(wrap_page(out), encoding="utf-8")
+    print("wrote", fname)
+    print(
+        f"Now add a Floor Plan nav link to site/villa-{villa_num}/status.html and "
+        f"technical-record.html (see README.md), mark report_package 'done' for this "
+        f"villa in generate_villas.py's REPORT_PACKAGE_PROCESSED set, and regenerate."
+    )
+
+
+if __name__ == "__main__":
+    main()
