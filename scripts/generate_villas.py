@@ -446,7 +446,7 @@ footer a{color:var(--muted); text-decoration:underline;}
   <section class="hero">
     <div class="hero-top">
       <div>
-        <div class="eyebrow">Apes Hill Hilltop Villas &middot; Parcel V &middot; St. James, Barbados</div>
+        <div class="eyebrow">Apes Hill Hilltop Villas &middot; St. James, Barbados</div>
         <h1 class="villa-title">Villa __VNUM__</h1>
       </div>
       <span class="status-pill"><span class="dot"></span>__STATUS_TEXT__</span>
@@ -791,7 +791,7 @@ h1.villa-title{
 <div class="wrap">
   <div class="brand"><img src="../assets/logo.png" alt="MNE Innovations"></div>
   <div class="top-nav"><a class="btn" href="../index.html">&larr; All Villas</a></div>
-  <div class="eyebrow">Apes Hill Hilltop Villas &middot; Parcel V &middot; St. James, Barbados</div>
+  <div class="eyebrow">Apes Hill Hilltop Villas &middot; St. James, Barbados</div>
   <h1 class="villa-title">Villa __VNUM__</h1>
   <div class="status-pill"><span class="dot"></span>__STATUS_TEXT__</div>
 

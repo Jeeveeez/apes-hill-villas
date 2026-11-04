@@ -205,7 +205,7 @@ footer a{color:var(--muted); text-decoration:underline;}
 
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="topbar-brand"><img src="assets/logo.png" alt="MNE Innovations"><div class="topbar-title">Apes Hill Villas &middot; Fleet</div></div>
+    <div class="topbar-brand"><img src="assets/logo.png" alt="MNE Innovations"><div class="topbar-title">Apes Hill Hilltop Villas</div></div>
     <div class="search-box">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
       <input id="filter" type="search" placeholder="Find a villa&hellip;" aria-label="Filter villas">
@@ -215,7 +215,7 @@ footer a{color:var(--muted); text-decoration:underline;}
 
 <div class="wrap">
   <section class="hero">
-    <div class="eyebrow">Apes Hill Hilltop Villas &middot; Parcel V &middot; St. James, Barbados</div>
+    <div class="eyebrow">Apes Hill Hilltop Villas &middot; St. James, Barbados</div>
     <h1 class="page-title">HomeWorks Takeover &mdash; Fleet Status</h1>
     <p class="hero-sub">Live commissioning status across all 14 villas. Click a villa to open its pages; the Report Package column tracks which villas have had a Lutron Designer report processed for engravings and fixture data &mdash; the rest are running on tracker data alone until their report arrives.</p>
 
