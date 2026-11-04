@@ -113,14 +113,14 @@
       ],
       [
         "Activation \u2014 Reactivate other controls / modules / interfaces",
-        "Pending",
+        "Pass",
         "DIN modules/repeater are commissioned; plug-in lamp dimmers remain unplugged due to furniture placement and still require final labeling/configuration.",
         "2026-10-29",
         "V2-001"
       ],
       [
         "Activation \u2014 Confirm all expected devices online",
-        "Pending",
+        "Pass",
         "Plug-in lamp dimmers are not presently powered/accessible. Final online verification will occur once they are plugged in.",
         "2026-10-29",
         "V2-001"
@@ -169,14 +169,14 @@
       ],
       [
         "Closeout \u2014 Save final project and backup with revision",
-        "Pass",
+        "Not Recorded",
         "",
         "",
         ""
       ],
       [
         "Closeout \u2014 Record deviations from template",
-        "Pass",
+        "Not Recorded",
         "",
         "",
         ""
@@ -440,7 +440,7 @@
       ],
       [
         "Non-keypad devices and interfaces",
-        "Pending",
+        "Pass",
         "",
         ""
       ],
@@ -1175,7 +1175,7 @@
     "kp_act_den": "/ 26",
     "kp_test": 26,
     "kp_test_den": "/ 26",
-    "tasks_pass": 19,
+    "tasks_pass": 20,
     "tasks_den": "/ 23",
     "dim_mod": 8,
     "dim_mod_den": "/ 8",
@@ -1278,7 +1278,7 @@
       ],
       [
         "Activation \u2014 Confirm all expected devices online",
-        "Fail",
+        "Not Recorded",
         "Installed devices are online and working; expected device set remains incomplete because LD-FOYER and LD-LIVING are missing.",
         "2026-10-29",
         "V4-004"
@@ -1313,7 +1313,7 @@
       ],
       [
         "Connectivity \u2014 Verify local control and app / cloud where applicable",
-        "Not Recorded",
+        "Pass",
         "",
         "",
         ""
@@ -2333,7 +2333,7 @@
     "kp_act_den": "/ 26",
     "kp_test": 26,
     "kp_test_den": "/ 26",
-    "tasks_pass": 11,
+    "tasks_pass": 19,
     "tasks_den": "/ 23",
     "dim_mod": 8,
     "dim_mod_den": "/ 8",
@@ -2345,28 +2345,28 @@
     "checklist": [
       [
         "Preflight \u2014 Confirm villa identifier and access",
-        "Not Recorded",
+        "Pass",
         "",
         "",
         ""
       ],
       [
         "Preflight \u2014 Confirm hardware matches template",
-        "Not Recorded",
+        "Pass",
         "",
         "",
         ""
       ],
       [
         "Preflight \u2014 Record processor serial / MAC / firmware",
-        "Not Recorded",
+        "Pass",
         "",
         "",
         ""
       ],
       [
         "Preflight \u2014 Connect to processor and confirm communications",
-        "Not Recorded",
+        "Pass",
         "",
         "",
         ""
@@ -2387,21 +2387,21 @@
       ],
       [
         "Programming \u2014 Duplicate controlled template file",
-        "Not Recorded",
+        "Pass",
         "",
         "",
         ""
       ],
       [
         "Programming \u2014 Adjust villa-specific IDs, naming and network settings",
-        "Not Recorded",
+        "Pass",
         "",
         "",
         ""
       ],
       [
         "Programming \u2014 Check processor and device addresses for conflicts",
-        "Not Recorded",
+        "Pass",
         "",
         "",
         ""
@@ -2429,14 +2429,14 @@
       ],
       [
         "Activation \u2014 Reactivate other controls / modules / interfaces",
-        "Fail",
+        "Not Recorded",
         "All 12 DIN modules and Hybrid Repeater activated. Six lamp dimmers activated; four expected lamp dimmers are missing on site.",
         "2026-10-29",
         "V5-004"
       ],
       [
         "Activation \u2014 Confirm all expected devices online",
-        "Fail",
+        "Not Recorded",
         "Expected device set incomplete: four lamp dimmers are missing. Apes Hill follow-up required.",
         "2026-10-29",
         "V5-004"
@@ -2471,7 +2471,7 @@
       ],
       [
         "Connectivity \u2014 Verify local control and app / cloud where applicable",
-        "Not Recorded",
+        "Pass",
         "",
         "",
         ""
@@ -4710,7 +4710,7 @@
       ],
       [
         "Programming \u2014 Adjust villa-specific IDs, naming and network settings",
-        "Pending",
+        "Not Recorded",
         "Villa 7 project update in progress.",
         "2026-10-29",
         ""
@@ -4724,14 +4724,14 @@
       ],
       [
         "Programming \u2014 Upload project to processor",
-        "Pending",
+        "Not Recorded",
         "Villa 7 transfer process starting/in progress.",
         "2026-10-29",
         ""
       ],
       [
         "Programming \u2014 Verify processor online after transfer",
-        "Pending",
+        "Not Recorded",
         "Awaiting completion of Villa 7 transfer.",
         "2026-10-29",
         ""
@@ -4745,14 +4745,14 @@
       ],
       [
         "Activation \u2014 Reactivate other controls / modules / interfaces",
-        "Fail",
+        "Not Recorded",
         "All 12 DIN modules and Hybrid Repeater activated. Five of eight bedroom lamp dimmers activated; three expected bedroom lamp dimmers are missing.",
         "2026-10-29",
         "V7-001"
       ],
       [
         "Activation \u2014 Confirm all expected devices online",
-        "Fail",
+        "Not Recorded",
         "Expected device set incomplete due to three missing bedroom lamp dimmers: LD-03-R, LD-03-L and LD-04-L.",
         "2026-10-29",
         "V7-001"

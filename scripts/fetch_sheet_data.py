@@ -132,6 +132,16 @@ def extract_table(service, sheet_id, tab, key):
     return [pad(r, width) for r in rows]
 
 
+# The checklist's "Status" column was a dropdown (Pass / Pending / Not
+# Recorded) when this pipeline was calibrated; it's since become a plain
+# checkbox, so the Sheets API now returns "TRUE"/"FALSE" there instead.
+# Map those back to the vocabulary render_checklist()'s badge() already
+# knows how to color -- ticked maps to Pass, unticked to Not Recorded
+# (a checkbox can't distinguish "in progress" from "not looked at yet",
+# so there's no equivalent for the old "Pending" state).
+CHECKLIST_STATUS_MAP = {"TRUE": "Pass", "FALSE": "Not Recorded"}
+
+
 def extract_checklist(service, sheet_id, tab):
     """The checklist table's columns aren't contiguous: A=item, B=(merged
     blank), C=status, D=evidence, E=(merged blank), F=date, G=technician
@@ -143,7 +153,8 @@ def extract_checklist(service, sheet_id, tab):
     out = []
     for r in rows:
         r = pad(r, 8)
-        out.append([r[0], r[2], r[3], r[5], r[7]])
+        status = CHECKLIST_STATUS_MAP.get(r[2], r[2])
+        out.append([r[0], status, r[3], r[5], r[7]])
     return out
 
 
