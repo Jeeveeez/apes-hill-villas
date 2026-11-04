@@ -43,7 +43,6 @@ a{color:var(--accent);}
 h1,h2,h3{text-wrap:balance; margin:0;}
 .wrap{max-width:1040px; margin:0 auto; padding-block:0 48px;}
 
-/* ---- sticky top bar ---- */
 .topbar{
   position:sticky; top:env(safe-area-inset-top,0px); z-index:15;
   background:var(--surface); border-bottom:1px solid var(--line);
@@ -88,7 +87,6 @@ h1,h2,h3{text-wrap:balance; margin:0;}
 }
 .search-box input::placeholder{color:var(--muted);}
 
-/* ---- header / title block ---- */
 .hero{padding-block:28px 20px; display:flex; flex-direction:column; gap:16px;}
 .hero-top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;}
 .eyebrow{
@@ -119,7 +117,6 @@ h1.villa-title{font-family:var(--f-display); font-size:44px; font-weight:300; le
 }
 .dataflag b{color:var(--ink);}
 
-/* ---- KPI row ---- */
 .kpi-row{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; padding-block:4px 8px;}
 .kpi{
   background:var(--surface); border:1px solid var(--line); border-radius:10px;
@@ -130,11 +127,10 @@ h1.villa-title{font-family:var(--f-display); font-size:44px; font-weight:300; le
 .kpi-value{font-family:var(--f-mono); font-size:27px; font-weight:500; font-variant-numeric:tabular-nums;}
 .kpi-value small{font-size:15px; color:var(--muted); font-weight:400;}
 
-/* ---- at-a-glance summary ---- */
 .summary-text{font-size:15.5px; line-height:1.65; max-width:70ch;}
 .summary-byline{font-size:13px; color:var(--muted); margin-top:-6px;}
 .outstanding-list{display:flex; flex-direction:column; gap:10px; margin-top:4px;}
-.outstanding-item{display:grid; grid-template-columns:150px 1fr; gap:12px; align-items:baseline; font-size:13.5px;}
+.outstanding-item{display:grid; grid-template-columns:170px 1fr; gap:12px; align-items:baseline; font-size:13.5px;}
 .outstanding-item .badge{justify-self:start;}
 .jump-link{font-size:13px; color:var(--muted);}
 .jump-link a{color:var(--accent-ink); font-weight:500;}
@@ -146,16 +142,12 @@ h1.villa-title{font-family:var(--f-display); font-size:44px; font-weight:300; le
 .tech-divider::before, .tech-divider::after{content:""; flex:1 1 auto; height:1px; background:var(--line);}
 .tech-sub{font-size:13px; color:var(--muted); margin:8px 0 18px; max-width:70ch;}
 
-/* ---- notes timeline ---- */
 .notes-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
 .notes-list li{display:flex; gap:12px; font-size:14px; line-height:1.55;}
 .note-mark{
   flex:none; color:var(--accent); font-size:12px; padding-top:2px; opacity:.85;
 }
-.note-closeout{border-top:1px dashed var(--line); padding-top:12px; margin-top:2px;}
-.note-closeout b{color:var(--accent-ink); font-family:var(--f-display); letter-spacing:.03em;}
 
-/* ---- sections ---- */
 .section{padding-block:30px 8px; scroll-margin-top:66px;}
 .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:14px; flex-wrap:wrap;}
 .section-num{
@@ -210,7 +202,6 @@ tbody tr:hover td{background:var(--surface-2);}
 .b-wait{background:var(--wait-bg); color:var(--wait);}
 .b-nr{background:var(--nr-bg); color:var(--nr);}
 
-/* ---- issues ---- */
 .issues-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
 .issue-card{
   background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px 18px;
@@ -228,6 +219,7 @@ tbody tr:hover td{background:var(--surface-2);}
 .issue-res{font-size:13px; margin:0; color:var(--muted); line-height:1.5;}
 .label-sm{font-family:var(--f-display); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); margin-right:4px;}
 .issue-meta{font-size:11.5px; color:var(--muted); margin:2px 0 0;}
+.no-issues{color:var(--muted); font-size:13.5px; padding:16px;}
 
 footer{padding-block:30px 10px; font-size:12.5px; color:var(--muted); border-top:1px solid var(--line); margin-top:24px;}
 footer a{color:var(--muted); text-decoration:underline;}
@@ -250,7 +242,7 @@ footer a{color:var(--muted); text-decoration:underline;}
 
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="topbar-brand"><img src="../assets/logo.png" alt="MNE Innovations"><div class="topbar-title">VILLA <b>15</b> · HomeWorks</div></div>
+    <div class="topbar-brand"><img src="../assets/logo.png" alt="MNE Innovations"><div class="topbar-title">VILLA <b>15</b> &middot; HomeWorks</div></div>
     <div class="topbar-nav-buttons">
       <a class="btn btn-sm" href="../index.html">&larr; All Villas</a>
       <a class="btn btn-sm btn-primary" href="status.html">Status View</a>
@@ -268,7 +260,7 @@ footer a{color:var(--muted); text-decoration:underline;}
     </nav>
     <div class="search-box">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input id="filter" type="search" placeholder="Find a keypad, circuit, serial…" aria-label="Filter dashboard">
+      <input id="filter" type="search" placeholder="Find a keypad, circuit, serial&hellip;" aria-label="Filter dashboard">
     </div>
   </div>
 </div>
@@ -278,14 +270,14 @@ footer a{color:var(--muted); text-decoration:underline;}
   <section class="hero">
     <div class="hero-top">
       <div>
-        <div class="eyebrow">Apes Hill Hilltop Villas · St. James, Barbados</div>
+        <div class="eyebrow">Apes Hill Hilltop Villas &middot; St. James, Barbados</div>
         <h1 class="villa-title">Villa 15</h1>
       </div>
-      <span class="status-pill"><span class="dot"></span>Complete — 100%</span>
+      <span class="status-pill"><span class="dot"></span>Complete</span>
     </div>
 
-    <p class="summary-text">Villa 15 is <strong>fully commissioned</strong> — every keypad, light and fan circuit is programmed, activated and tested working. Three small items remain before final sign-off, and a few paperwork records are still open; none of them affect how the villa operates today.</p>
-    <p class="summary-byline">Commissioned by Jeevan Panjwani · completed 2026-10-29</p>
+    <p class="summary-text">Villa 15 is fully commissioned &mdash; every keypad, light and fan circuit is programmed, activated and tested working. Three small items remain before final sign-off, and a few paperwork records are still open; none of them affect how the villa operates today.</p>
+    <p class="summary-byline">Worked by Jeevan Panjwani · 10/29/2026</p>
 
     <div class="kpi-row">
       <div class="kpi"><div class="kpi-label">Keypads</div><div class="kpi-value">26<small>/26</small></div></div>
@@ -295,13 +287,11 @@ footer a{color:var(--muted); text-decoration:underline;}
       <div class="kpi warn"><div class="kpi-label">Open issues</div><div class="kpi-value">3<small>/7</small></div></div>
     </div>
 
-    <div class="outstanding-list">
-      <div class="outstanding-item"><span class="badge b-pend">Electrician scheduled</span><div>Garage lights don&rsquo;t switch off — attending Oct 30 to fix.</div></div>
-      <div class="outstanding-item"><span class="badge b-pend">Needs labeling</span><div>Foyer and Living Room dimmer switches still need their name labels.</div></div>
-      <div class="outstanding-item"><span class="badge b-wait">Client action</span><div>Foyer bulbs are dead — replace at your convenience, not a system fault.</div></div>
-    </div>
+    <div class="outstanding-list"><div class="outstanding-item"><span class="badge b-pend">Electrician scheduled</span><div>Garage lights don&rsquo;t switch off &mdash; attending Oct 30 to fix.</div></div>
+<div class="outstanding-item"><span class="badge b-pend">Needs labeling</span><div>Foyer and Living Room dimmer switches still need their name labels.</div></div>
+<div class="outstanding-item"><span class="badge b-wait">Client action</span><div>Foyer bulbs are dead &mdash; replace at your convenience, not a system fault.</div></div></div>
 
-    <p class="jump-link">Full technical record — checklist, keypad register, circuit-by-circuit test results — starts below. <a href="#notes">Jump to it ↓</a></p>
+    <p class="jump-link">Full technical record &mdash; checklist, keypad register, circuit-by-circuit test results &mdash; starts below. <a href="#notes">Jump to it &darr;</a></p>
   </section>
 
   <div class="tech-divider-wrap">
@@ -310,37 +300,32 @@ footer a{color:var(--muted); text-decoration:underline;}
   </div>
 
   <div class="title-block">
-    <div class="tb-cell"><div class="tb-label">Base template</div><div class="tb-value">Apes Hill Hill Top Villas – Template</div></div>
+    <div class="tb-cell"><div class="tb-label">Base template</div><div class="tb-value">Apes Hill Hill Top Villas - Template</div></div>
     <div class="tb-cell"><div class="tb-label">Technician</div><div class="tb-value">Jeevan Panjwani</div></div>
-    <div class="tb-cell"><div class="tb-label">Date worked</div><div class="tb-value">2026-10-29</div></div>
-    <div class="tb-cell"><div class="tb-label">Project file</div><div class="tb-value">Villa #15</div></div>
+    <div class="tb-cell"><div class="tb-label">Date worked</div><div class="tb-value">10/29/2026</div></div>
+    <div class="tb-cell"><div class="tb-label">Project file</div><div class="tb-value">Apes Hill Hill Top Villas - Villa #15</div></div>
     <div class="tb-cell"><div class="tb-label">Processor model</div><div class="tb-value">HQP7-2</div></div>
     <div class="tb-cell"><div class="tb-label">Processor serial</div><div class="tb-value">085EF2F3</div></div>
     <div class="tb-cell"><div class="tb-label">MAC address</div><div class="tb-value">b8:3d:f6:23:d1:70</div></div>
     <div class="tb-cell"><div class="tb-label">Firmware</div><div class="tb-value">—</div></div>
   </div>
 
-  <div class="dataflag" style="margin-top:14px;">
-    <span>⚠︎</span>
-    <div><b>Source note:</b> this tab's header cell reads "VILLA 14" in the master workbook — inherited when the Villa 15 tab was duplicated from Villa 14. The tab name, project file ("Villa #15"), processor serial and every record below confirm this is Villa 15; the header text itself is a copy artifact shared with the Villa 16 tab and worth a one-line fix at the source.</div>
-  </div>
-
   <section class="section" id="notes">
     <div class="section-head">
       <span class="section-num">Log</span>
       <h2 class="section-title">Commissioning Notes</h2>
-      <span class="section-sub">2026-10-29</span>
+      <span class="section-sub">10/29/2026</span>
     </div>
     <div class="card card-pad">
       <ol class="notes-list">
-        <li><span class="note-mark mono">01</span><span>Villa 15 commissioning started. All devices activated, including all 26 keypads, all 8 adaptive dimming modules, all 4 switching modules, Hybrid Repeater, and all 10 lamp dimmers including Foyer and Living.</span></li>
-<li><span class="note-mark mono">02</span><span>KP16 two-gang keypad positions are physically flipped relative to the controlled template. Villa 15 programming was adjusted to match the actual keypad positions.</span></li>
-<li><span class="note-mark mono">03</span><span>South Hall is physically linked with the Living Room downlights. Independent South Hall programming requires correction; load testing is in progress.</span></li>
-<li><span class="note-mark mono">04</span><span>During load identification/testing, Garage Downlights are not flashing on the expected programmed output, suggesting a possible output/wiring mismatch. Bedroom 2 floor lamps are also not flashing as expected. Both are under investigation before changing programming.</span></li>
-<li><span class="note-mark mono">05</span><span>Bedroom 2 lamp circuit confirmed correctly mapped and working; the lamps did not illuminate because the bulbs are dead. Client to replace the Bedroom 2 bulbs.</span></li>
-<li><span class="note-mark mono">06</span><span>Three additional lamp dimmers were found in the Bedroom 4 closet beyond the controlled template/device schedule. Record as an installation variation for future service reference.</span></li>
-<li><span class="note-mark mono">07</span><span>Final testing complete. Villa 15 tested and working; all commissioning/programming issues resolved. Villa 15 declared 100% complete.</span></li>
-<li class="note-closeout"><span class="note-mark mono">08</span><span>Villa 15 commissioning/programming is complete, but three closeout items remain. <b>INTERNAL:</b> Garage lights are not switching off at all; electrician is scheduled to attend Oct 30 to investigate. <b>INTERNAL:</b> Foyer and Living lamp dimmers both require labels. <b>CLIENT:</b> Foyer bulbs are not working and need to be replaced by the client.</span></li>
+        <li><span class="note-mark mono">01</span><span>Oct 29: Villa 15 commissioning started. All devices activated, including all 26 keypads, all 8 adaptive dimming modules, all 4 switching modules, Hybrid Repeater, and all 10 lamp dimmers including Foyer and Living.</span></li>
+<li><span class="note-mark mono">02</span><span>Oct 29: KP16 two-gang keypad positions are physically flipped relative to the controlled template. Villa 15 programming was adjusted to match the actual keypad positions.</span></li>
+<li><span class="note-mark mono">03</span><span>Oct 29: South Hall is physically linked with the Living Room downlights. Independent South Hall programming requires correction; load testing is in progress.</span></li>
+<li><span class="note-mark mono">04</span><span>Oct 29: During load identification/testing, Garage Downlights are not flashing on the expected programmed output, suggesting a possible output/wiring mismatch. Bedroom 2 floor lamps are also not flashing as expected. Both are under investigation before changing programming.</span></li>
+<li><span class="note-mark mono">05</span><span>Oct 29: Bedroom 2 lamp circuit confirmed correctly mapped and working; the lamps did not illuminate because the bulbs are dead. Client to replace the Bedroom 2 bulbs.</span></li>
+<li><span class="note-mark mono">06</span><span>Oct 29: Three additional lamp dimmers were found in the Bedroom 4 closet beyond the controlled template/device schedule. Record as an installation variation for future service reference.</span></li>
+<li><span class="note-mark mono">07</span><span>Oct 29: Final testing complete. Villa 15 tested and working; all commissioning/programming issues resolved. Villa 15 declared 100% complete.</span></li>
+<li><span class="note-mark mono">08</span><span>Oct 29 closeout correction: Villa 15 commissioning/programming is complete, but three closeout items remain. INTERNAL: Garage lights are not switching off at all; electrician is scheduled to attend Oct 30 to investigate. INTERNAL: Foyer and Living lamp dimmers both require labels. CLIENT: Foyer bulbs are not working and need to be replaced by the client.</span></li>
       </ol>
     </div>
   </section>
@@ -349,7 +334,7 @@ footer a{color:var(--muted); text-decoration:underline;}
     <div class="section-head">
       <span class="section-num">01</span>
       <h2 class="section-title">Programming &amp; Commissioning Checklist</h2>
-      <span class="section-sub">19 pass · 2 pending · 2 not recorded</span>
+      <span class="section-sub">19 pass · 0 pending · 4 not recorded</span>
     </div>
     <div class="card table-scroll">
       <table>
@@ -366,9 +351,9 @@ footer a{color:var(--muted); text-decoration:underline;}
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
           <td class="col-date mono"></td>
         </tr>
-<tr data-search="Preflight Record processor serial / MAC / firmware Pending">
+<tr data-search="Preflight Record processor serial / MAC / firmware Not Recorded">
           <td class="col-item">Record processor serial / MAC / firmware</td>
-          <td class="col-status"><span class="badge b-pend" data-search="Pending">Pending</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
           <td class="col-date mono"></td>
         </tr>
 <tr data-search="Preflight Connect to processor and confirm communications Pass">
@@ -457,9 +442,9 @@ footer a{color:var(--muted); text-decoration:underline;}
           <td class="col-date mono"></td>
         </tr>
 <tr class="phase-row"><td colspan="3" data-search="Closeout"><span class="phase-tag">Closeout</span></td></tr>
-<tr data-search="Closeout Resolve / log outstanding defects Pending Remaining closeout: V15-003 garage lights, V15-006 dimmer labels, V15-007 client Foyer bulbs. V15-003 / V15-006 / V15-007">
+<tr data-search="Closeout Resolve / log outstanding defects Not Recorded Remaining closeout: V15-003 garage lights, V15-006 dimmer labels, V15-007 client Foyer bulbs. V15-003 / V15-006 / V15-007">
           <td class="col-item">Resolve / log outstanding defects<div class="cell-note">Remaining closeout: V15-003 garage lights, V15-006 dimmer labels, V15-007 client Foyer bulbs.</div><div class="issue-chips"><a class="chip" href="#iss-V15-003">V15-003</a><a class="chip" href="#iss-V15-006">V15-006</a><a class="chip" href="#iss-V15-007">V15-007</a></div></td>
-          <td class="col-status"><span class="badge b-pend" data-search="Pending">Pending</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
           <td class="col-date mono">2026-10-29</td>
         </tr>
 <tr data-search="Closeout Save final project and backup with revision Not Recorded">
@@ -486,7 +471,7 @@ footer a{color:var(--muted); text-decoration:underline;}
     <div class="section-head">
       <span class="section-num">02</span>
       <h2 class="section-title">Keypads</h2>
-      <span class="section-sub">26 devices · 24 physical locations</span>
+      <span class="section-sub">26 devices &middot; 24 physical locations</span>
     </div>
     <div class="card table-scroll">
       <table>
@@ -764,13 +749,13 @@ footer a{color:var(--muted); text-decoration:underline;}
     <div class="section-head">
       <span class="section-num">04</span>
       <h2 class="section-title">Dimming &amp; Switching Module Output Verification</h2>
-      <span class="section-sub">Panel 001 (Adaptive 1–8) · Panel 002 (Switch 1–4) · 48 outputs</span>
+      <span class="section-sub">Panel 001 (Adaptive 1&ndash;8) &middot; Panel 002 (Switch 1&ndash;4) &middot; 48 outputs</span>
     </div>
     <div class="card table-scroll">
       <table>
         <thead><tr><th>Output</th><th>Programmed load</th><th>Wiring match</th><th>Function test</th></tr></thead>
         <tbody>
-          <tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 1 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 · Adaptive 1</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+          <tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 1 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 1</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
 <tr data-search="Panel 001 Adaptive 1 1-1 Entrance — L19 Downlights Reference: Villa 2 wiring report pp. 12–16">
           <td class="mono col-out">1-1</td>
           <td>Entrance — L19 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
@@ -795,7 +780,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 2 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 · Adaptive 2</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 2 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 2</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
 <tr data-search="Panel 001 Adaptive 2 2-1 Living — L34 Pendant Reference: Villa 2 wiring report pp. 12–16">
           <td class="mono col-out">2-1</td>
           <td>Living — L34 Pendant<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
@@ -820,7 +805,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 3 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 · Adaptive 3</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 3 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 3</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
 <tr data-search="Panel 001 Adaptive 3 3-1 Patio — L24 Downlights Reference: Villa 2 wiring report pp. 12–16">
           <td class="mono col-out">3-1</td>
           <td>Patio — L24 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
@@ -845,7 +830,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
           <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
         </tr>
-<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 4 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 · Adaptive 4</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 4 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 4</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
 <tr data-search="Panel 001 Adaptive 4 4-1 Bedroom 1 — L08 Downlights Reference: Villa 2 wiring report pp. 12–16">
           <td class="mono col-out">4-1</td>
           <td>Bedroom 1 — L08 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
@@ -870,7 +855,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <td class="col-status"><span class="badge b-pend" data-search="Review">Review</span></td>
           <td class="col-status"><span class="badge b-fail" data-search="Fail">Fail</span></td>
         </tr>
-<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 5 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 · Adaptive 5</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 5 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 5</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
 <tr data-search="Panel 001 Adaptive 5 5-1 Bedroom 1 — L49 Lamps Reference: Villa 2 wiring report pp. 12–16">
           <td class="mono col-out">5-1</td>
           <td>Bedroom 1 — L49 Lamps<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
@@ -895,7 +880,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 6 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 · Adaptive 6</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 6 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 6</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
 <tr data-search="Panel 001 Adaptive 6 6-1 Bedroom 2 — L42 Downlights Reference: Villa 2 wiring report pp. 12–16">
           <td class="mono col-out">6-1</td>
           <td>Bedroom 2 — L42 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
@@ -920,7 +905,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
           <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
         </tr>
-<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 7 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 · Adaptive 7</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 7 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 7</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
 <tr data-search="Panel 001 Adaptive 7 7-1 Bedroom 3 — L14 Downlights Reference: Villa 2 wiring report pp. 12–16">
           <td class="mono col-out">7-1</td>
           <td>Bedroom 3 — L14 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
@@ -945,7 +930,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
           <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
         </tr>
-<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 8 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 · Adaptive 8</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 8 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 8</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
 <tr data-search="Panel 001 Adaptive 8 8-1 Bedroom 4 — L01 Downlights Reference: Villa 2 wiring report pp. 12–16">
           <td class="mono col-out">8-1</td>
           <td>Bedroom 4 — L01 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
@@ -970,7 +955,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
           <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
         </tr>
-<tr class="module-row"><td colspan="5" data-search="Panel 002 Switch 1 LQSE-4S8-120-D"><span class="phase-tag">Panel 002 · Switch 1</span><span class="model-tag mono">LQSE-4S8-120-D</span></td></tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 002 Switch 1 LQSE-4S8-120-D"><span class="phase-tag">Panel 002 &middot; Switch 1</span><span class="model-tag mono">LQSE-4S8-120-D</span></td></tr>
 <tr data-search="Panel 002 Switch 1 1-1 Living — L32/33 Fans Reference: Villa 2 wiring report pp. 12–16">
           <td class="mono col-out">1-1</td>
           <td>Living — L32/33 Fans<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
@@ -995,7 +980,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr class="module-row"><td colspan="5" data-search="Panel 002 Switch 2 LQSE-4S8-120-D"><span class="phase-tag">Panel 002 · Switch 2</span><span class="model-tag mono">LQSE-4S8-120-D</span></td></tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 002 Switch 2 LQSE-4S8-120-D"><span class="phase-tag">Panel 002 &middot; Switch 2</span><span class="model-tag mono">LQSE-4S8-120-D</span></td></tr>
 <tr data-search="Panel 002 Switch 2 2-1 Bedroom 1 — L16 Fan Reference: Villa 2 wiring report pp. 12–16">
           <td class="mono col-out">2-1</td>
           <td>Bedroom 1 — L16 Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
@@ -1020,7 +1005,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr class="module-row"><td colspan="5" data-search="Panel 002 Switch 3 LQSE-4S8-120-D"><span class="phase-tag">Panel 002 · Switch 3</span><span class="model-tag mono">LQSE-4S8-120-D</span></td></tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 002 Switch 3 LQSE-4S8-120-D"><span class="phase-tag">Panel 002 &middot; Switch 3</span><span class="model-tag mono">LQSE-4S8-120-D</span></td></tr>
 <tr data-search="Panel 002 Switch 3 3-1 WC — L23 Extractor Fan Reference: Villa 2 wiring report pp. 12–16">
           <td class="mono col-out">3-1</td>
           <td>WC — L23 Extractor Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
@@ -1045,7 +1030,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
           <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
         </tr>
-<tr class="module-row"><td colspan="5" data-search="Panel 002 Switch 4 LQSE-4S8-120-D"><span class="phase-tag">Panel 002 · Switch 4</span><span class="model-tag mono">LQSE-4S8-120-D</span></td></tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 002 Switch 4 LQSE-4S8-120-D"><span class="phase-tag">Panel 002 &middot; Switch 4</span><span class="model-tag mono">LQSE-4S8-120-D</span></td></tr>
 <tr data-search="Panel 002 Switch 4 4-1 Bathroom 1 — L50/51 Fan Reference: Villa 2 wiring report pp. 12–16">
           <td class="mono col-out">4-1</td>
           <td>Bathroom 1 — L50/51 Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
@@ -1079,7 +1064,7 @@ footer a{color:var(--muted); text-decoration:underline;}
     <div class="section-head">
       <span class="section-num">05</span>
       <h2 class="section-title">Lamp Dimmers &amp; Hybrid Repeater</h2>
-      <span class="section-sub">Plug-in dimmers · RF repeater</span>
+      <span class="section-sub">Plug-in dimmers &middot; RF repeater</span>
     </div>
     <div class="card table-scroll">
       <table>
@@ -1292,7 +1277,7 @@ footer a{color:var(--muted); text-decoration:underline;}
   <section class="section" id="issues">
     <div class="section-head">
       <span class="section-num">Log</span>
-      <h2 class="section-title">Issues &amp; Changes — Villa 15</h2>
+      <h2 class="section-title">Issues &amp; Changes &mdash; Villa 15</h2>
       <span class="section-sub">4 closed · 2 open · 1 waiting on client</span>
     </div>
     <div class="issues-grid">
@@ -1306,7 +1291,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <p class="issue-type">Programming Change</p>
           <p class="issue-desc">The two physical keypads at KP16 are installed in opposite gang positions relative to the controlled template. Programming was adjusted in Villa 15 to match the actual keypad positions.</p>
           <p class="issue-res"><span class="label-sm">Resolution</span> Villa 15 program updated to match the reversed KP16 keypad positions. Retain as a villa-specific deviation.</p>
-          <p class="issue-meta mono">Jeevan Panjwani · Opened 2026-10-29 · Closed 2026-10-29</p>
+          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29 &middot; Closed 2026-10-29</p>
         </article>
 <article class="issue-card" id="iss-V15-002" data-search="V15-002 South Hall / Living Room Downlights — Outputs 2-3 &amp; 2-4 Programming Change South Hall lighting is linked with the Living Room downlights in Villa 15 and cannot be independently controlled as currently programmed. Closed Programming adjusted to accommodate the actual South Hall/Living Room field condition. Final system test passed.">
           <header class="issue-head">
@@ -1318,7 +1303,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <p class="issue-type">Programming Change</p>
           <p class="issue-desc">South Hall lighting is linked with the Living Room downlights in Villa 15 and cannot be independently controlled as currently programmed.</p>
           <p class="issue-res"><span class="label-sm">Resolution</span> Programming adjusted to accommodate the actual South Hall/Living Room field condition. Final system test passed.</p>
-          <p class="issue-meta mono">Jeevan Panjwani · Opened 2026-10-29 · Closed 2026-10-29</p>
+          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29 &middot; Closed 2026-10-29</p>
         </article>
 <article class="issue-card" id="iss-V15-003" data-search="V15-003 Garage Downlights — Output 4-4 Defect Garage lights do not switch off at all. Earlier closeout assessment was premature; functional issue remains and requires electrician investigation. Open Electrician to attend Villa 15 on Oct 30 to investigate why garage lights remain on continuously, correct the field wiring/control condition as required, then MNE to verify operation.">
           <header class="issue-head">
@@ -1330,7 +1315,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <p class="issue-type">Defect</p>
           <p class="issue-desc">Garage lights do not switch off at all. Earlier closeout assessment was premature; functional issue remains and requires electrician investigation.</p>
           <p class="issue-res"><span class="label-sm">Resolution</span> Electrician to attend Villa 15 on Oct 30 to investigate why garage lights remain on continuously, correct the field wiring/control condition as required, then MNE to verify operation.</p>
-          <p class="issue-meta mono">Jeevan Panjwani · Opened 2026-10-29</p>
+          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29</p>
         </article>
 <article class="issue-card" id="iss-V15-004" data-search="V15-004 Bedroom 2 Floor Lamps Defect Bedroom 2 floor lamps are not flashing/responding as expected during load identification/testing. The actual device/load mapping is not yet confirmed. Closed Bedroom 2 lamp circuit confirmed correctly mapped and working. Bulbs are dead; client to replace bulbs. No Lutron/control defect remains.">
           <header class="issue-head">
@@ -1342,7 +1327,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <p class="issue-type">Defect</p>
           <p class="issue-desc">Bedroom 2 floor lamps are not flashing/responding as expected during load identification/testing. The actual device/load mapping is not yet confirmed.</p>
           <p class="issue-res"><span class="label-sm">Resolution</span> Bedroom 2 lamp circuit confirmed correctly mapped and working. Bulbs are dead; client to replace bulbs. No Lutron/control defect remains.</p>
-          <p class="issue-meta mono">Jeevan Panjwani · Opened 2026-10-29 · Closed 2026-10-29</p>
+          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29 &middot; Closed 2026-10-29</p>
         </article>
 <article class="issue-card" id="iss-V15-005" data-search="V15-005 Bedroom 4 Closet — Extra Lamp Dimmers Observation Three additional lamp dimmers are installed in the Bedroom 4 closet beyond the controlled template/device schedule. Closed Documented for future service and asset reference. No corrective action required as part of Villa 15 commissioning.">
           <header class="issue-head">
@@ -1354,7 +1339,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <p class="issue-type">Observation</p>
           <p class="issue-desc">Three additional lamp dimmers are installed in the Bedroom 4 closet beyond the controlled template/device schedule.</p>
           <p class="issue-res"><span class="label-sm">Resolution</span> Documented for future service and asset reference. No corrective action required as part of Villa 15 commissioning.</p>
-          <p class="issue-meta mono">Jeevan Panjwani · Opened 2026-10-29 · Closed 2026-10-29</p>
+          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29 &middot; Closed 2026-10-29</p>
         </article>
 <article class="issue-card" id="iss-V15-006" data-search="V15-006 Foyer &amp; Living Lamp Dimmers — Labels Observation The Foyer and Living Room lamp dimmers are operational but both still require physical labels before final closeout. Open MNE to label the Foyer and Living Room lamp dimmers.">
           <header class="issue-head">
@@ -1366,7 +1351,7 @@ footer a{color:var(--muted); text-decoration:underline;}
           <p class="issue-type">Observation</p>
           <p class="issue-desc">The Foyer and Living Room lamp dimmers are operational but both still require physical labels before final closeout.</p>
           <p class="issue-res"><span class="label-sm">Resolution</span> MNE to label the Foyer and Living Room lamp dimmers.</p>
-          <p class="issue-meta mono">Jeevan Panjwani · Opened 2026-10-29</p>
+          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29</p>
         </article>
 <article class="issue-card" id="iss-V15-007" data-search="V15-007 Foyer Bulbs Client Request Foyer bulbs are not working. Lutron control/dimmer is operational; failed bulbs require replacement by the client. Waiting Client to replace the failed Foyer bulbs. No Lutron programming repair required for this item.">
           <header class="issue-head">
@@ -1378,15 +1363,14 @@ footer a{color:var(--muted); text-decoration:underline;}
           <p class="issue-type">Client Request</p>
           <p class="issue-desc">Foyer bulbs are not working. Lutron control/dimmer is operational; failed bulbs require replacement by the client.</p>
           <p class="issue-res"><span class="label-sm">Resolution</span> Client to replace the failed Foyer bulbs. No Lutron programming repair required for this item.</p>
-          <p class="issue-meta mono">Client / Apes Hill · Opened 2026-10-29</p>
+          <p class="issue-meta mono">Client / Apes Hill &middot; Opened 2026-10-29</p>
         </article>
     </div>
   </section>
 
   <footer>
-    Source: <i>Apes Hill Hilltop Villas Master Commissioning Tracker</i>, "Villa 15" tab and "Issues &amp; Changes" tab, exported 2026-10-29.
-    Circuit and room labels cross-referenced against electrical drawing A-E-2.01 "Ground Floor Lighting &amp; Switching Layout", rev. 11, M&amp;E Partners Ltd.
-    This view reflects the workbook at the time of generation — re-export to refresh.
+    Source: <i>Apes Hill Hilltop Villas Master Commissioning Tracker</i>, "Villa 15" tab and "Issues &amp; Changes" tab, synced November 2, 2026.
+    A Lutron Designer report package has been processed for this villa &mdash; its keypad engravings and circuit-by-circuit fixture detail are on the <a href="floor-plan.html">Floor Plan</a> page.
   </footer>
 </div>
 
@@ -1426,7 +1410,7 @@ footer a{color:var(--muted); text-decoration:underline;}
         msgRow = document.createElement('tr');
         msgRow.className = 'no-match-row';
         var cols = t.querySelectorAll('thead th').length || 1;
-        msgRow.innerHTML = '<td colspan="'+cols+'" class="no-match">No rows match “<span class="q"></span>” in this section.</td>';
+        msgRow.innerHTML = '<td colspan="'+cols+'" class="no-match">No rows match &ldquo;<span class="q"></span>&rdquo; in this section.</td>';
         body.appendChild(msgRow);
       }
       msgRow.querySelector('.q').textContent = input.value.trim();
@@ -1441,7 +1425,7 @@ footer a{color:var(--muted); text-decoration:underline;}
       if (!gridMsg){
         gridMsg = document.createElement('div');
         gridMsg.className = 'no-match-row no-match';
-        gridMsg.innerHTML = 'No issues match “<span class="q"></span>”.';
+        gridMsg.innerHTML = 'No issues match &ldquo;<span class="q"></span>&rdquo;.';
         grid.appendChild(gridMsg);
       }
       gridMsg.querySelector('.q').textContent = input.value.trim();

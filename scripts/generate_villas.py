@@ -168,6 +168,7 @@ print("gen_villas module loaded ok")
 STATUS_PILL_CLASS = {"Complete": "pass", "In Progress": "pend", "Not Started": "nr"}
 
 SUMMARY_TEXT = {
+    "Villa 15": "Villa 15 is fully commissioned &mdash; every keypad, light and fan circuit is programmed, activated and tested working. Three small items remain before final sign-off, and a few paperwork records are still open; none of them affect how the villa operates today.",
     "Villa 3": "Villa 3 is complete &mdash; all 26 keypads were function tested and are working, and every controlled load, scene and special-logic function has been verified. All 10 plug-in lamp dimmers, the hybrid repeater and all adaptive/switching modules are activated and functionally confirmed. Only the final project backup and signoff walkthrough remain.",
     "Villa 2": "Villa 2 is operationally complete &mdash; all 26 keypads are activated and 20 of 23 checklist items have passed. Granular per-device test evidence is still being backfilled from the Designer report; one item is waiting on the client's furniture to clear before final lamp-dimmer testing.",
     "Villa 4": "Villa 4 is practically complete &mdash; every keypad, module and lighting circuit has been tested and is working, including two field-wiring corrections applied and verified. One item remains: two plug-in lamp dimmers are missing from the unit.",
@@ -176,6 +177,11 @@ SUMMARY_TEXT = {
     "Villa 7": "Villa 7 is practically complete &mdash; all 26 keypads and every programmed load have been tested and are working. One item remains: three bedroom lamp dimmers are missing from the unit.",
 }
 OUTSTANDING = {
+    "Villa 15": [
+        ("b-pend", "Electrician scheduled", "Garage lights don&rsquo;t switch off &mdash; attending Oct 30 to fix."),
+        ("b-pend", "Needs labeling", "Foyer and Living Room dimmer switches still need their name labels."),
+        ("b-wait", "Client action", "Foyer bulbs are dead &mdash; replace at your convenience, not a system fault."),
+    ],
     "Villa 3": [
         ("b-pend", "Final signoff", "Final project backup and functional walkthrough/signoff still need completing."),
         ("b-wait", "Apes Hill IT", "Permanent network uplink cabling is scheduled for Nov 5 &mdash; an external dependency that doesn't block local operation."),
@@ -612,7 +618,7 @@ footer a{color:var(--muted); text-decoration:underline;}
 
   <footer>
     Source: <i>Apes Hill Hilltop Villas Master Commissioning Tracker</i>, "Villa __VNUM__" tab and "Issues &amp; Changes" tab, synced November 2, 2026.
-    No Lutron Designer report package has been processed for this villa yet &mdash; serials and test results come from the tracker alone. Once a report package arrives, engraving and fixture-level detail can be added the same way it was for Villa 15.
+    __REPORT_PACKAGE_FOOTER__
   </footer>
 </div>
 
@@ -839,17 +845,17 @@ def build_outstanding_html(villa_key, dense=True):
         return f'<div class="outstanding-list">{inner}</div>'
     return f'<div class="outstanding"><div class="outstanding-head">Before final sign-off</div><div class="outstanding-list">{inner}</div></div>'
 
-VILLAS = ["Villa 2", "Villa 3", "Villa 4", "Villa 5", "Villa 6", "Villa 7"]
+VILLAS = ["Villa 2", "Villa 3", "Villa 4", "Villa 5", "Villa 6", "Villa 7", "Villa 15"]
 
 # Villas whose Designer report package has been processed -- they get a
 # floor-plan page too, and the fleet dashboard shows their report package
 # as "Processed" instead of "Pending".
-REPORT_PACKAGE_PROCESSED = {"2", "3", "4", "5", "6", "7"}
+REPORT_PACKAGE_PROCESSED = {"2", "3", "4", "5", "6", "7", "15"}
 
 # Status and Technical Record live in the same per-villa folder, so each
 # links to the other with a plain same-folder filename.
-STATUS_URLS = {vnum: "status.html" for vnum in ("2", "3", "4", "5", "6", "7")}
-TECH_URLS = {vnum: "technical-record.html" for vnum in ("2", "3", "4", "5", "6", "7")}
+STATUS_URLS = {vnum: "status.html" for vnum in ("2", "3", "4", "5", "6", "7", "15")}
+TECH_URLS = {vnum: "technical-record.html" for vnum in ("2", "3", "4", "5", "6", "7", "15")}
 
 # Collected while the loop below runs, one dict per villa, for
 # generate_fleet.py's Villas table.
@@ -936,6 +942,17 @@ for vkey in VILLAS:
         if vnum in REPORT_PACKAGE_PROCESSED else ""
     )
     out = out.replace("__FLOORPLAN_BTN_TECH__", floorplan_btn_tech)
+    report_footer = (
+        'A Lutron Designer report package has been processed for this villa &mdash; '
+        'its keypad engravings and circuit-by-circuit fixture detail are on the '
+        '<a href="floor-plan.html">Floor Plan</a> page.'
+        if vnum in REPORT_PACKAGE_PROCESSED else
+        'No Lutron Designer report package has been processed for this villa yet &mdash; '
+        'serials and test results come from the tracker alone. Once a report package '
+        'arrives, engraving and fixture-level detail can be added the same way it was '
+        'for the other villas.'
+    )
+    out = out.replace("__REPORT_PACKAGE_FOOTER__", report_footer)
 
     villa_dir = SITE_DIR / f"villa-{vnum}"
     villa_dir.mkdir(parents=True, exist_ok=True)
