@@ -246,7 +246,7 @@ footer a{color:var(--muted); text-decoration:underline;}
     <div class="topbar-nav-buttons">
       <a class="btn btn-sm" href="../index.html">&larr; All Villas</a>
       <a class="btn btn-sm btn-primary" href="status.html">Status View</a>
-      
+      <a class="btn btn-sm" href="floor-plan.html">Floor Plan</a>
     </div>
     <nav class="nav-pills">
       <a href="#notes">Notes</a>
@@ -283,8 +283,8 @@ footer a{color:var(--muted); text-decoration:underline;}
       <div class="kpi"><div class="kpi-label">Keypads</div><div class="kpi-value">26<small>/26</small></div></div>
       <div class="kpi"><div class="kpi-label">Modules active</div><div class="kpi-value">12<small>/12</small></div></div>
       <div class="kpi warn"><div class="kpi-label">Checklist passed</div><div class="kpi-value">19<small>/23</small></div></div>
-      <div class="kpi"><div class="kpi-label">Open defects</div><div class="kpi-value">4</div></div>
-      <div class="kpi warn"><div class="kpi-label">Open issues</div><div class="kpi-value">1<small>/4</small></div></div>
+      <div class="kpi"><div class="kpi-label">Open defects</div><div class="kpi-value">0</div></div>
+      <div class="kpi "><div class="kpi-label">Open issues</div><div class="kpi-value">0<small>/4</small></div></div>
     </div>
 
     <div class="outstanding-list"><div class="outstanding-item"><span class="badge b-pend">Apes Hill follow-up</span><div>Four lamp dimmers are missing (LD-FOYER, LD-LIVING, LD-01-L, LD-04-L) &mdash; confirm replacement supply.</div></div></div>
@@ -321,6 +321,7 @@ footer a{color:var(--muted); text-decoration:underline;}
 <li><span class="note-mark mono">03</span><span>Oct 29: Bedroom 3 Bathroom/Closet mapping was opposite the template. Villa 5 program corrected to 7-2 = Bathroom 3 L10 Downlights and 7-3 = Bedroom 3 L09 Closet; retested and working.</span></li>
 <li><span class="note-mark mono">04</span><span>Oct 29: Bathroom 3 and Bathroom 4 fan outputs were reversed. Villa 5 program corrected to 4-3 = Bathroom 3 L12/13 Fan and 4-4 = Bathroom 4 L03/05 Fan; retested and working.</span></li>
 <li><span class="note-mark mono">05</span><span>Oct 29: Full functional testing completed. Villa 5 is complete and working except for four missing HQR-3PD-1-SW lamp dimmers: LD-FOYER, LD-LIVING, LD-01-L and LD-04-L. Outstanding item tracked as V5-004; Apes Hill to be advised.</span></li>
+<li><span class="note-mark mono">06</span><span>Nov 4: Returned to Villa 5. The four previously missing lamp dimmers (LD-FOYER, LD-LIVING, LD-01-L and LD-04-L) were installed/programmed. Designer shows all 10 plug-in lamp dimmers and the hybrid repeater Activated: Good. User confirmed all dimmers are working. Serial numbers captured for all 10 lamp dimmers and repeater. V5-004 closed; no lamp-dimmer punch-list items remain.</span></li>
       </ol>
     </div>
   </section>
@@ -1065,89 +1066,89 @@ footer a{color:var(--muted); text-decoration:underline;}
       <table>
         <thead><tr><th>Device</th><th>Location</th><th>Model</th><th>Serial</th><th>Activated</th><th>Tested</th></tr></thead>
         <tbody>
-          <tr class="row-flag" data-search="LD-FOYER Foyer HQR-3PD-1-SW Missing on site. Expected lamp dimmer not present; Apes Hill to be advised.">
+          <tr class="row-flag" data-search="LD-FOYER Foyer HQR-3PD-1-SW 0929F7B3 Replacement dimmer installed/programmed 2026-11-04; activated and function tested working.">
           <td class="mono col-id">LD-FOYER</td>
-          <td>Foyer<div class="cell-note">Missing on site. Expected lamp dimmer not present; Apes Hill to be advised.</div></td>
+          <td>Foyer<div class="cell-note">Replacement dimmer installed/programmed 2026-11-04; activated and function tested working.</div></td>
           <td class="mono muted">HQR-3PD-1-SW</td>
-          <td class="mono"></td>
-          <td class="col-status"><span class="badge b-fail" data-search="Fail">Fail</span></td>
-          <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
+          <td class="mono">0929F7B3</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr class="row-flag" data-search="LD-LIVING Kitchen/Living Room HQR-3PD-1-SW Missing on site. Expected lamp dimmer not present; Apes Hill to be advised.">
+<tr class="row-flag" data-search="LD-LIVING Kitchen/Living Room HQR-3PD-1-SW 0929F7B1 Replacement dimmer installed/programmed 2026-11-04; activated and function tested working.">
           <td class="mono col-id">LD-LIVING</td>
-          <td>Kitchen/Living Room<div class="cell-note">Missing on site. Expected lamp dimmer not present; Apes Hill to be advised.</div></td>
+          <td>Kitchen/Living Room<div class="cell-note">Replacement dimmer installed/programmed 2026-11-04; activated and function tested working.</div></td>
           <td class="mono muted">HQR-3PD-1-SW</td>
-          <td class="mono"></td>
-          <td class="col-status"><span class="badge b-fail" data-search="Fail">Fail</span></td>
-          <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
+          <td class="mono">0929F7B1</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr data-search="LD-01-R Bedroom 1 - Right bedside HQR-3PD-1-SW 05919C5E">
+<tr class="row-flag" data-search="LD-01-R Bedroom 1 - Right bedside HQR-3PD-1-SW 05919C5E Activated and function tested working.">
           <td class="mono col-id">LD-01-R</td>
-          <td>Bedroom 1 - Right bedside</td>
+          <td>Bedroom 1 - Right bedside<div class="cell-note">Activated and function tested working.</div></td>
           <td class="mono muted">HQR-3PD-1-SW</td>
           <td class="mono">05919C5E</td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr class="row-flag" data-search="LD-01-L Bedroom 1 - Left bedside HQR-3PD-1-SW Missing on site. Expected lamp dimmer not present; Apes Hill to be advised.">
+<tr class="row-flag" data-search="LD-01-L Bedroom 1 - Left bedside HQR-3PD-1-SW 0929CF65 Replacement dimmer installed/programmed 2026-11-04; activated and function tested working.">
           <td class="mono col-id">LD-01-L</td>
-          <td>Bedroom 1 - Left bedside<div class="cell-note">Missing on site. Expected lamp dimmer not present; Apes Hill to be advised.</div></td>
+          <td>Bedroom 1 - Left bedside<div class="cell-note">Replacement dimmer installed/programmed 2026-11-04; activated and function tested working.</div></td>
           <td class="mono muted">HQR-3PD-1-SW</td>
-          <td class="mono"></td>
-          <td class="col-status"><span class="badge b-fail" data-search="Fail">Fail</span></td>
-          <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
+          <td class="mono">0929CF65</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr data-search="LD-02-R Bedroom 2 - Right bedside HQR-3PD-1-SW 08598F44">
+<tr class="row-flag" data-search="LD-02-R Bedroom 2 - Right bedside HQR-3PD-1-SW 08598F44 Activated and function tested working.">
           <td class="mono col-id">LD-02-R</td>
-          <td>Bedroom 2 - Right bedside</td>
+          <td>Bedroom 2 - Right bedside<div class="cell-note">Activated and function tested working.</div></td>
           <td class="mono muted">HQR-3PD-1-SW</td>
           <td class="mono">08598F44</td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr data-search="LD-02-L Bedroom 2 - Left bedside HQR-3PD-1-SW 08598F4A">
+<tr class="row-flag" data-search="LD-02-L Bedroom 2 - Left bedside HQR-3PD-1-SW 08598F4A Activated and function tested working.">
           <td class="mono col-id">LD-02-L</td>
-          <td>Bedroom 2 - Left bedside</td>
+          <td>Bedroom 2 - Left bedside<div class="cell-note">Activated and function tested working.</div></td>
           <td class="mono muted">HQR-3PD-1-SW</td>
           <td class="mono">08598F4A</td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr data-search="LD-03-R Bedroom 3 - Right bedside HQR-3PD-1-SW 08598F4F">
+<tr class="row-flag" data-search="LD-03-R Bedroom 3 - Right bedside HQR-3PD-1-SW 08598F4F Activated and function tested working.">
           <td class="mono col-id">LD-03-R</td>
-          <td>Bedroom 3 - Right bedside</td>
+          <td>Bedroom 3 - Right bedside<div class="cell-note">Activated and function tested working.</div></td>
           <td class="mono muted">HQR-3PD-1-SW</td>
           <td class="mono">08598F4F</td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr data-search="LD-03-L Bedroom 3 - Left bedside HQR-3PD-1-SW 08598F41">
+<tr class="row-flag" data-search="LD-03-L Bedroom 3 - Left bedside HQR-3PD-1-SW 08598F41 Activated and function tested working.">
           <td class="mono col-id">LD-03-L</td>
-          <td>Bedroom 3 - Left bedside</td>
+          <td>Bedroom 3 - Left bedside<div class="cell-note">Activated and function tested working.</div></td>
           <td class="mono muted">HQR-3PD-1-SW</td>
           <td class="mono">08598F41</td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr data-search="LD-04-R Bedroom 4 - Right bedside HQR-3PD-1-SW 08598F49">
+<tr class="row-flag" data-search="LD-04-R Bedroom 4 - Right bedside HQR-3PD-1-SW 08598F49 Activated and function tested working.">
           <td class="mono col-id">LD-04-R</td>
-          <td>Bedroom 4 - Right bedside</td>
+          <td>Bedroom 4 - Right bedside<div class="cell-note">Activated and function tested working.</div></td>
           <td class="mono muted">HQR-3PD-1-SW</td>
           <td class="mono">08598F49</td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr class="row-flag" data-search="LD-04-L Bedroom 4 - Left bedside HQR-3PD-1-SW Missing on site. Expected lamp dimmer not present; Apes Hill to be advised.">
+<tr class="row-flag" data-search="LD-04-L Bedroom 4 - Left bedside HQR-3PD-1-SW 0929CF76 Replacement dimmer installed/programmed 2026-11-04; activated and function tested working.">
           <td class="mono col-id">LD-04-L</td>
-          <td>Bedroom 4 - Left bedside<div class="cell-note">Missing on site. Expected lamp dimmer not present; Apes Hill to be advised.</div></td>
+          <td>Bedroom 4 - Left bedside<div class="cell-note">Replacement dimmer installed/programmed 2026-11-04; activated and function tested working.</div></td>
           <td class="mono muted">HQR-3PD-1-SW</td>
-          <td class="mono"></td>
-          <td class="col-status"><span class="badge b-fail" data-search="Fail">Fail</span></td>
-          <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
+          <td class="mono">0929CF76</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr class="row-flag" data-search="Hybrid Repeater Laundry Room — first cabinet on right, behind false backing HQR-REP-120 05F269F0 Standard installation location confirmed 2026-10-29 for all villas: Laundry Room, first cabinet on right, behind false backing.">
+<tr class="row-flag" data-search="Hybrid Repeater Laundry Room — first cabinet on right, behind false backing HQR-REP-120 05F269F0 Hybrid repeater shown Activated: Good in Designer; functionally verified during system testing.">
           <td class="mono col-id">Hybrid Repeater</td>
-          <td>Laundry Room — first cabinet on right, behind false backing<div class="cell-note">Standard installation location confirmed 2026-10-29 for all villas: Laundry Room, first cabinet on right, behind false backing.</div></td>
+          <td>Laundry Room — first cabinet on right, behind false backing<div class="cell-note">Hybrid repeater shown Activated: Good in Designer; functionally verified during system testing.</div></td>
           <td class="mono muted">HQR-REP-120</td>
           <td class="mono">05F269F0</td>
           <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
@@ -1273,7 +1274,7 @@ footer a{color:var(--muted); text-decoration:underline;}
     <div class="section-head">
       <span class="section-num">Log</span>
       <h2 class="section-title">Issues &amp; Changes &mdash; Villa 5</h2>
-      <span class="section-sub">3 closed · 1 open</span>
+      <span class="section-sub">4 closed</span>
     </div>
     <div class="issues-grid">
       <article class="issue-card" id="iss-V5-001" data-search="V5-001 Garage / WC lighting Defect Garage lights were incorrectly wired together with the WC lighting circuit. Closed Field wiring corrected. Garage lights now operate correctly and independently.">
@@ -1312,17 +1313,17 @@ footer a{color:var(--muted); text-decoration:underline;}
           <p class="issue-res"><span class="label-sm">Resolution</span> Villa 5 project file corrected to match field wiring: 4-3 = Bathroom 3 L12/13 Fan; 4-4 = Bathroom 4 L03/05 Fan. Retested and working.</p>
           <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29 &middot; Closed 2026-10-29</p>
         </article>
-<article class="issue-card" id="iss-V5-004" data-search="V5-004 Lamp Dimmers Defect Four expected HQR-3PD-1-SW lamp dimmers are missing from Villa 5: LD-FOYER (Foyer), LD-LIVING (Kitchen/Living Room), LD-01-L (Bedroom 1 left bedside), and LD-04-L (Bedroom 4 left bedside). Remaining six lamp dimmers were activated. Open Advise Apes Hill that four expected lamp dimmers are missing and determine whether replacement units are to be supplied/installed before final commissioning closeout.">
+<article class="issue-card" id="iss-V5-004" data-search="V5-004 Lamp Dimmers Defect Four previously missing HQR-3PD-1-SW lamp dimmers installed/programmed in Villa 5: LD-FOYER, LD-LIVING, LD-01-L and LD-04-L. Designer shows Activated: Good; all four function tested and confirmed working. Serial numbers captured. Closed Advise Apes Hill that four expected lamp dimmers are missing and determine whether replacement units are to be supplied/installed before final commissioning closeout.">
           <header class="issue-head">
             <span class="mono issue-id">V5-004</span>
             <span class="pri-dot pri-med" title="Medium priority"></span>
             <span class="issue-area">Lamp Dimmers</span>
-            <span class="badge b-pend" data-search="Open">Open</span>
+            <span class="badge b-pass" data-search="Closed">Closed</span>
           </header>
           <p class="issue-type">Defect</p>
-          <p class="issue-desc">Four expected HQR-3PD-1-SW lamp dimmers are missing from Villa 5: LD-FOYER (Foyer), LD-LIVING (Kitchen/Living Room), LD-01-L (Bedroom 1 left bedside), and LD-04-L (Bedroom 4 left bedside). Remaining six lamp dimmers were activated.</p>
+          <p class="issue-desc">Four previously missing HQR-3PD-1-SW lamp dimmers installed/programmed in Villa 5: LD-FOYER, LD-LIVING, LD-01-L and LD-04-L. Designer shows Activated: Good; all four function tested and confirmed working. Serial numbers captured.</p>
           <p class="issue-res"><span class="label-sm">Resolution</span> Advise Apes Hill that four expected lamp dimmers are missing and determine whether replacement units are to be supplied/installed before final commissioning closeout.</p>
-          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29</p>
+          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29 &middot; Closed 2026-11-04</p>
         </article>
     </div>
   </section>

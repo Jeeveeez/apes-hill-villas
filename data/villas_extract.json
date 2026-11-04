@@ -25,7 +25,7 @@
     "sw_mod_den": "/ 4",
     "sheet_name": "Villa 2",
     "header_a1": "VILLA 2  |  HOMEWORKS COMMISSIONING",
-    "notes": "COMMISSIONING NOTES\nOperationally complete per site confirmation; granular keypad/task evidence awaits Designer report.\nOct 29 closeout note: Villa 2 plug-in lamp dimmers are currently not plugged in because the furniture is already in place. Final identification/labeling, activation/configuration and functional testing will be completed once the dimmers are plugged in and accessible.",
+    "notes": "COMMISSIONING NOTES\nOperationally complete per site confirmation; granular keypad/task evidence awaits Designer report.\nOct 29 closeout note: Villa 2 plug-in lamp dimmers are currently not plugged in because the furniture is already in place. Final identification/labeling, activation/configuration and functional testing will be completed once the dimmers are plugged in and accessible.\nNov 4: All 10 plug-in lamp dimmers are now powered/accessed and activated. Serial-number capture is pending the Designer screenshot; function-test status will be confirmed separately.\nNov 4: Designer screenshot received and serial numbers captured for all 10 plug-in lamp dimmers plus the hybrid repeater. All 10 lamp dimmers remain Activated = Pass; final function-test confirmation is still pending.",
     "checklist": [
       [
         "Preflight \u2014 Confirm villa identifier and access",
@@ -962,100 +962,100 @@
         "LD-FOYER",
         "Foyer",
         "HQR-3PD-1-SW",
-        "",
+        "05919F91",
+        "Pass",
         "Pending",
-        "Pending",
-        "Not currently plugged in due to furniture placement. Once powered/access is available, MNE to identify, label, configure and function test. V2-001."
+        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
       ],
       [
         "LD-LIVING",
         "Kitchen/Living Room",
         "HQR-3PD-1-SW",
-        "",
+        "0929F7B6",
+        "Pass",
         "Pending",
-        "Pending",
-        "Not currently plugged in due to furniture placement. Once powered/access is available, MNE to identify, label, configure and function test. V2-001."
+        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
       ],
       [
         "LD-01-R",
         "Bedroom 1 - Right bedside",
         "HQR-3PD-1-SW",
-        "",
+        "05919CCA",
+        "Pass",
         "Pending",
-        "Pending",
-        "Not currently plugged in due to furniture placement. Once powered/access is available, MNE to identify, label, configure and function test. V2-001."
+        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
       ],
       [
         "LD-01-L",
         "Bedroom 1 - Left bedside",
         "HQR-3PD-1-SW",
-        "",
+        "05919F9A",
+        "Pass",
         "Pending",
-        "Pending",
-        "Not currently plugged in due to furniture placement. Once powered/access is available, MNE to identify, label, configure and function test. V2-001."
+        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
       ],
       [
         "LD-02-R",
         "Bedroom 2 - Right bedside",
         "HQR-3PD-1-SW",
-        "",
+        "05919F9B",
+        "Pass",
         "Pending",
-        "Pending",
-        "Not currently plugged in due to furniture placement. Once powered/access is available, MNE to identify, label, configure and function test. V2-001."
+        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
       ],
       [
         "LD-02-L",
         "Bedroom 2 - Left bedside",
         "HQR-3PD-1-SW",
-        "",
+        "05919CC8",
+        "Pass",
         "Pending",
-        "Pending",
-        "Not currently plugged in due to furniture placement. Once powered/access is available, MNE to identify, label, configure and function test. V2-001."
+        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
       ],
       [
         "LD-03-R",
         "Bedroom 3 - Right bedside",
         "HQR-3PD-1-SW",
-        "",
+        "05919F90",
+        "Pass",
         "Pending",
-        "Pending",
-        "Not currently plugged in due to furniture placement. Once powered/access is available, MNE to identify, label, configure and function test. V2-001."
+        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
       ],
       [
         "LD-03-L",
         "Bedroom 3 - Left bedside",
         "HQR-3PD-1-SW",
-        "",
+        "05919F96",
+        "Pass",
         "Pending",
-        "Pending",
-        "Not currently plugged in due to furniture placement. Once powered/access is available, MNE to identify, label, configure and function test. V2-001."
+        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
       ],
       [
         "LD-04-R",
         "Bedroom 4 - Right bedside",
         "HQR-3PD-1-SW",
-        "",
+        "05919CC5",
+        "Pass",
         "Pending",
-        "Pending",
-        "Not currently plugged in due to furniture placement. Once powered/access is available, MNE to identify, label, configure and function test. V2-001."
+        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
       ],
       [
         "LD-04-L",
         "Bedroom 4 - Left bedside",
         "HQR-3PD-1-SW",
-        "",
+        "0929F7B0",
+        "Pass",
         "Pending",
-        "Pending",
-        "Not currently plugged in due to furniture placement. Once powered/access is available, MNE to identify, label, configure and function test. V2-001."
+        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
       ],
       [
         "Hybrid Repeater",
         "Laundry Room \u2014 first cabinet on right, behind false backing",
         "HQR-REP-120",
-        "",
+        "05F269EC",
         "Not Recorded",
         "Not Recorded",
-        "Standard installation location confirmed 2026-10-29 for all villas: Laundry Room, first cabinet on right, behind false backing."
+        "Serial number captured from Designer screenshot 2026-11-04. Activation/function-test status not otherwise confirmed."
       ]
     ],
     "modreg": [
@@ -3486,7 +3486,7 @@
     "project_file": "Apes Hill Hill Top Villas - Villa #5",
     "factory_reset_date": "10/29/2026",
     "backup_location": "",
-    "open_defects": 4,
+    "open_defects": 0,
     "kp_act": 26,
     "kp_act_den": "/ 26",
     "kp_test": 26,
@@ -3499,7 +3499,7 @@
     "sw_mod_den": "/ 4",
     "sheet_name": "Villa 5",
     "header_a1": "VILLA 5  |  HOMEWORKS COMMISSIONING",
-    "notes": "COMMISSIONING NOTES\nOct 29: Processor factory reset and Villa 5 project transferred. All 26 keypads, 8 adaptive modules, 4 switching modules, Hybrid Repeater and all 6 lamp dimmers physically present were activated.\nOct 29: Garage lights were incorrectly wired with the WC lights; field wiring corrected and verified working.\nOct 29: Bedroom 3 Bathroom/Closet mapping was opposite the template. Villa 5 program corrected to 7-2 = Bathroom 3 L10 Downlights and 7-3 = Bedroom 3 L09 Closet; retested and working.\nOct 29: Bathroom 3 and Bathroom 4 fan outputs were reversed. Villa 5 program corrected to 4-3 = Bathroom 3 L12/13 Fan and 4-4 = Bathroom 4 L03/05 Fan; retested and working.\nOct 29: Full functional testing completed. Villa 5 is complete and working except for four missing HQR-3PD-1-SW lamp dimmers: LD-FOYER, LD-LIVING, LD-01-L and LD-04-L. Outstanding item tracked as V5-004; Apes Hill to be advised.",
+    "notes": "COMMISSIONING NOTES\nOct 29: Processor factory reset and Villa 5 project transferred. All 26 keypads, 8 adaptive modules, 4 switching modules, Hybrid Repeater and all 6 lamp dimmers physically present were activated.\nOct 29: Garage lights were incorrectly wired with the WC lights; field wiring corrected and verified working.\nOct 29: Bedroom 3 Bathroom/Closet mapping was opposite the template. Villa 5 program corrected to 7-2 = Bathroom 3 L10 Downlights and 7-3 = Bedroom 3 L09 Closet; retested and working.\nOct 29: Bathroom 3 and Bathroom 4 fan outputs were reversed. Villa 5 program corrected to 4-3 = Bathroom 3 L12/13 Fan and 4-4 = Bathroom 4 L03/05 Fan; retested and working.\nOct 29: Full functional testing completed. Villa 5 is complete and working except for four missing HQR-3PD-1-SW lamp dimmers: LD-FOYER, LD-LIVING, LD-01-L and LD-04-L. Outstanding item tracked as V5-004; Apes Hill to be advised.\nNov 4: Returned to Villa 5. The four previously missing lamp dimmers (LD-FOYER, LD-LIVING, LD-01-L and LD-04-L) were installed/programmed. Designer shows all 10 plug-in lamp dimmers and the hybrid repeater Activated: Good. User confirmed all dimmers are working. Serial numbers captured for all 10 lamp dimmers and repeater. V5-004 closed; no lamp-dimmer punch-list items remain.",
     "checklist": [
       [
         "Preflight \u2014 Confirm villa identifier and access",
@@ -4436,19 +4436,19 @@
         "LD-FOYER",
         "Foyer",
         "HQR-3PD-1-SW",
-        "",
-        "Fail",
-        "N/A",
-        "Missing on site. Expected lamp dimmer not present; Apes Hill to be advised."
+        "0929F7B3",
+        "Pass",
+        "Pass",
+        "Replacement dimmer installed/programmed 2026-11-04; activated and function tested working."
       ],
       [
         "LD-LIVING",
         "Kitchen/Living Room",
         "HQR-3PD-1-SW",
-        "",
-        "Fail",
-        "N/A",
-        "Missing on site. Expected lamp dimmer not present; Apes Hill to be advised."
+        "0929F7B1",
+        "Pass",
+        "Pass",
+        "Replacement dimmer installed/programmed 2026-11-04; activated and function tested working."
       ],
       [
         "LD-01-R",
@@ -4457,16 +4457,16 @@
         "05919C5E",
         "Pass",
         "Pass",
-        ""
+        "Activated and function tested working."
       ],
       [
         "LD-01-L",
         "Bedroom 1 - Left bedside",
         "HQR-3PD-1-SW",
-        "",
-        "Fail",
-        "N/A",
-        "Missing on site. Expected lamp dimmer not present; Apes Hill to be advised."
+        "0929CF65",
+        "Pass",
+        "Pass",
+        "Replacement dimmer installed/programmed 2026-11-04; activated and function tested working."
       ],
       [
         "LD-02-R",
@@ -4475,7 +4475,7 @@
         "08598F44",
         "Pass",
         "Pass",
-        ""
+        "Activated and function tested working."
       ],
       [
         "LD-02-L",
@@ -4484,7 +4484,7 @@
         "08598F4A",
         "Pass",
         "Pass",
-        ""
+        "Activated and function tested working."
       ],
       [
         "LD-03-R",
@@ -4493,7 +4493,7 @@
         "08598F4F",
         "Pass",
         "Pass",
-        ""
+        "Activated and function tested working."
       ],
       [
         "LD-03-L",
@@ -4502,7 +4502,7 @@
         "08598F41",
         "Pass",
         "Pass",
-        ""
+        "Activated and function tested working."
       ],
       [
         "LD-04-R",
@@ -4511,16 +4511,16 @@
         "08598F49",
         "Pass",
         "Pass",
-        ""
+        "Activated and function tested working."
       ],
       [
         "LD-04-L",
         "Bedroom 4 - Left bedside",
         "HQR-3PD-1-SW",
-        "",
-        "Fail",
-        "N/A",
-        "Missing on site. Expected lamp dimmer not present; Apes Hill to be advised."
+        "0929CF76",
+        "Pass",
+        "Pass",
+        "Replacement dimmer installed/programmed 2026-11-04; activated and function tested working."
       ],
       [
         "Hybrid Repeater",
@@ -4529,7 +4529,7 @@
         "05F269F0",
         "Pass",
         "Pass",
-        "Standard installation location confirmed 2026-10-29 for all villas: Laundry Room, first cabinet on right, behind false backing."
+        "Hybrid repeater shown Activated: Good in Designer; functionally verified during system testing."
       ]
     ],
     "modreg": [
