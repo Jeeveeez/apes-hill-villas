@@ -428,6 +428,7 @@ footer a{color:var(--muted); text-decoration:underline;}
     <div class="topbar-nav-buttons">
       <a class="btn btn-sm" href="../index.html">&larr; All Villas</a>
       <a class="btn btn-sm btn-primary" href="__STATUS_URL__">Status View</a>
+      __FLOORPLAN_BTN_TECH__
     </div>
     <nav class="nav-pills">
       <a href="#notes">Notes</a>
@@ -814,6 +815,7 @@ h1.villa-title{
 
   <div class="links">
     <a class="btn btn-primary" href="__TECH_URL__">View Technical Record &rarr;</a>
+    __FLOORPLAN_BTN_STATUS__
   </div>
   <p class="foot-note">Reflects the Apes Hill Hilltop Villas commissioning tracker as of November 2, 2026.</p>
 </div>
@@ -929,6 +931,11 @@ for vkey in VILLAS:
     out = out.replace("__ISSUESSUB__", issues_sub)
     out = out.replace("__ISSUES__", issues_html)
     out = out.replace("__STATUS_URL__", STATUS_URLS[vnum])
+    floorplan_btn_tech = (
+        '<a class="btn btn-sm" href="floor-plan.html">Floor Plan</a>'
+        if vnum in REPORT_PACKAGE_PROCESSED else ""
+    )
+    out = out.replace("__FLOORPLAN_BTN_TECH__", floorplan_btn_tech)
 
     villa_dir = SITE_DIR / f"villa-{vnum}"
     villa_dir.mkdir(parents=True, exist_ok=True)
@@ -948,6 +955,11 @@ for vkey in VILLAS:
     sout = sout.replace("__DEFECTS__", str(defects))
     sout = sout.replace("__STATUS_OUTSTANDING__", build_outstanding_html(vkey, dense=False))
     sout = sout.replace("__TECH_URL__", TECH_URLS[vnum])
+    floorplan_btn_status = (
+        '<a class="btn" href="floor-plan.html">View Floor Plan &rarr;</a>'
+        if vnum in REPORT_PACKAGE_PROCESSED else ""
+    )
+    sout = sout.replace("__FLOORPLAN_BTN_STATUS__", floorplan_btn_status)
 
     sfname = villa_dir / "status.html"
     sfname.write_text(wrap_page(sout), encoding="utf-8")
