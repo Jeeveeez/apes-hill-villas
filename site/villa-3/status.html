@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Villa 3 Status</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: one unhurried screen -- status, a plain-English read, the
+   numbers that matter, what's left -- with the technical paper trail pushed
+   to a quiet link at the foot, never competing for the first look.
+   Brand: MNE Innovations -- black/navy, Inter, cyan-to-indigo accent. */
+:root{
+  --bg:#070B1A; --surface:#111A38; --surface-2:#0C1230;
+  --ink:#FFFFFF; --muted:#8E9BC0; --line:#232C52;
+  --accent:#0080CB; --accent-ink:#4FA8E0;
+  --pass:#5FC093; --pass-bg:#15362C;
+  --pend:#E0A94B; --pend-bg:#3A2E12;
+  --wait:#D8C564; --wait-bg:#36300F;
+  --f-display:"Inter",system-ui,sans-serif;
+  --f-body:"Inter",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono","SF Mono",monospace;
+  color-scheme: dark;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--f-body); font-size:16px; line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+}
+a{color:var(--accent);}
+h1{text-wrap:balance; margin:0;}
+.wrap{max-width:640px; margin:0 auto; padding-block:56px 48px;}
+
+.brand{display:flex; justify-content:center;}
+.brand img{height:34px; width:auto; display:block;}
+.top-nav{display:flex; justify-content:center; margin-top:16px;}
+.btn{
+  display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
+  font-family:var(--f-display); font-size:13px; font-weight:600; letter-spacing:.03em;
+  text-decoration:none; padding:9px 17px; border-radius:999px;
+  background:var(--surface); color:var(--ink); border:1px solid var(--line);
+  transition:background .15s ease, border-color .15s ease, color .15s ease, transform .1s ease;
+}
+.btn:hover{background:var(--surface-2); border-color:var(--accent-ink); color:var(--accent-ink); transform:translateY(-1px);}
+.btn-primary{background:var(--accent); color:#fff; border-color:var(--accent);}
+.btn-primary:hover{background:var(--accent-ink); border-color:var(--accent-ink); color:#fff;}
+
+.eyebrow{
+  font-family:var(--f-display); font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent-ink); font-weight:600; text-align:center; margin-top:22px;
+}
+h1.villa-title{
+  font-family:var(--f-display); font-size:56px; font-weight:300; letter-spacing:-.01em;
+  text-align:center; margin-top:6px;
+}
+.status-pill{
+  display:flex; align-items:center; justify-content:center; gap:8px; font-family:var(--f-display);
+  font-size:15px; letter-spacing:.04em; text-transform:uppercase; font-weight:600;
+  padding:8px 18px; border-radius:999px; background:var(--pass-bg); color:var(--pass);
+  border:1px solid color-mix(in srgb, var(--pass) 35%, transparent);
+  width:fit-content; margin:20px auto 0;
+}
+.status-pill .dot{width:8px; height:8px; border-radius:50%; background:var(--pass);}
+
+.summary-text{font-size:17px; line-height:1.7; text-align:center; margin:28px auto 0; max-width:50ch; color:var(--ink); font-weight:300;}
+.summary-text strong{font-weight:600;}
+.byline{font-size:13px; color:var(--muted); text-align:center; margin-top:10px;}
+
+.kpi-row{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:36px;}
+.kpi{
+  background:var(--surface); border:1px solid var(--line); border-radius:12px;
+  padding:16px 14px; display:flex; flex-direction:column; gap:4px; text-align:center;
+}
+.kpi-label{font-family:var(--f-display); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);}
+.kpi-value{font-family:var(--f-mono); font-size:26px; font-weight:500; font-variant-numeric:tabular-nums; color:var(--ink);}
+.kpi-value small{font-size:14px; color:var(--muted); font-weight:400;}
+
+.outstanding{margin-top:40px;}
+.outstanding-head{
+  font-family:var(--f-display); font-size:13px; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--muted); text-align:center; margin-bottom:14px;
+}
+.outstanding-list{display:flex; flex-direction:column; gap:10px;}
+.outstanding-item{
+  display:flex; align-items:flex-start; gap:12px; background:var(--surface); border:1px solid var(--line);
+  border-radius:10px; padding:13px 16px;
+}
+.badge{
+  display:inline-flex; align-items:center; gap:5px; font-family:var(--f-display); font-size:11.5px;
+  letter-spacing:.03em; font-weight:600; padding:3px 9px; border-radius:999px; flex:none; margin-top:1px;
+  white-space:nowrap;
+}
+.b-pend{background:var(--pend-bg); color:var(--pend);}
+.b-wait{background:var(--wait-bg); color:var(--wait);}
+.outstanding-item div{font-size:14.5px;}
+
+.none-outstanding{
+  text-align:center; color:var(--muted); font-size:14.5px; background:var(--surface);
+  border:1px solid var(--line); border-radius:10px; padding:16px;
+}
+
+.links{
+  display:flex; justify-content:center; gap:22px; margin-top:52px; padding-top:22px;
+  border-top:1px solid var(--line);
+}
+.foot-note{text-align:center; font-size:11.5px; color:var(--muted); margin-top:16px;}
+
+@media (max-width:520px){
+  .kpi-row{grid-template-columns:repeat(2,1fr);}
+  h1.villa-title{font-size:42px;}
+  .wrap{padding-block:40px 36px;}
+}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <div class="brand"><img src="../assets/logo.png" alt="MNE Innovations"></div>
+  <div class="top-nav"><a class="btn" href="../index.html">&larr; All Villas</a></div>
+  <div class="eyebrow">Apes Hill Hilltop Villas &middot; St. James, Barbados</div>
+  <h1 class="villa-title">Villa 3</h1>
+  <div class="status-pill"><span class="dot"></span>Complete</div>
+
+  <p class="summary-text">Villa 3 is complete &mdash; all 26 keypads were function tested and are working, and every controlled load, scene and special-logic function has been verified. All 10 plug-in lamp dimmers, the hybrid repeater and all adaptive/switching modules are activated and functionally confirmed. Only the final project backup and signoff walkthrough remain.</p>
+  <p class="byline">Worked by Jeevan Panjwani · 11/04/2026</p>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-label">Keypads</div><div class="kpi-value">26<small>/26</small></div></div>
+    <div class="kpi"><div class="kpi-label">Modules</div><div class="kpi-value">12<small>/12</small></div></div>
+    <div class="kpi"><div class="kpi-label">Checks passed</div><div class="kpi-value">21<small>/23</small></div></div>
+    <div class="kpi"><div class="kpi-label">System faults</div><div class="kpi-value">0</div></div>
+  </div>
+
+  <div class="outstanding"><div class="outstanding-head">Before final sign-off</div><div class="outstanding-list"><div class="outstanding-item"><span class="badge b-pend">Final signoff</span><div>Final project backup and functional walkthrough/signoff still need completing.</div></div>
+<div class="outstanding-item"><span class="badge b-wait">Apes Hill IT</span><div>Permanent network uplink cabling is scheduled for Nov 5 &mdash; an external dependency that doesn't block local operation.</div></div></div></div>
+
+  <div class="links">
+    <a class="btn btn-primary" href="technical-record.html">View Technical Record &rarr;</a>
+  </div>
+  <p class="foot-note">Reflects the Apes Hill Hilltop Villas commissioning tracker as of November 2, 2026.</p>
+</div>
+
+</body>
+</html>

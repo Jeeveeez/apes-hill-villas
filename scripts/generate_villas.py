@@ -168,6 +168,7 @@ print("gen_villas module loaded ok")
 STATUS_PILL_CLASS = {"Complete": "pass", "In Progress": "pend", "Not Started": "nr"}
 
 SUMMARY_TEXT = {
+    "Villa 3": "Villa 3 is complete &mdash; all 26 keypads were function tested and are working, and every controlled load, scene and special-logic function has been verified. All 10 plug-in lamp dimmers, the hybrid repeater and all adaptive/switching modules are activated and functionally confirmed. Only the final project backup and signoff walkthrough remain.",
     "Villa 2": "Villa 2 is operationally complete &mdash; all 26 keypads are activated and 20 of 23 checklist items have passed. Granular per-device test evidence is still being backfilled from the Designer report; one item is waiting on the client's furniture to clear before final lamp-dimmer testing.",
     "Villa 4": "Villa 4 is practically complete &mdash; every keypad, module and lighting circuit has been tested and is working, including two field-wiring corrections applied and verified. One item remains: two plug-in lamp dimmers are missing from the unit.",
     "Villa 5": "Villa 5 is complete and working &mdash; all 26 keypads, modules and lighting circuits tested, including three field-wiring corrections applied and verified. Four plug-in lamp dimmers are missing from the unit and need replacement.",
@@ -175,6 +176,10 @@ SUMMARY_TEXT = {
     "Villa 7": "Villa 7 is practically complete &mdash; all 26 keypads and every programmed load have been tested and are working. One item remains: three bedroom lamp dimmers are missing from the unit.",
 }
 OUTSTANDING = {
+    "Villa 3": [
+        ("b-pend", "Final signoff", "Final project backup and functional walkthrough/signoff still need completing."),
+        ("b-wait", "Apes Hill IT", "Permanent network uplink cabling is scheduled for Nov 5 &mdash; an external dependency that doesn't block local operation."),
+    ],
     "Villa 2": [("b-wait", "Client action", "Plug-in lamp dimmers aren&rsquo;t accessible yet &mdash; furniture is already in place over them.")],
     "Villa 4": [("b-pend", "Apes Hill follow-up", "Two lamp dimmers are missing (LD-FOYER, LD-LIVING) &mdash; confirm replacement supply.")],
     "Villa 5": [("b-pend", "Apes Hill follow-up", "Four lamp dimmers are missing (LD-FOYER, LD-LIVING, LD-01-L, LD-04-L) &mdash; confirm replacement supply.")],
@@ -832,12 +837,17 @@ def build_outstanding_html(villa_key, dense=True):
         return f'<div class="outstanding-list">{inner}</div>'
     return f'<div class="outstanding"><div class="outstanding-head">Before final sign-off</div><div class="outstanding-list">{inner}</div></div>'
 
-VILLAS = ["Villa 2", "Villa 4", "Villa 5", "Villa 6", "Villa 7"]
+VILLAS = ["Villa 2", "Villa 3", "Villa 4", "Villa 5", "Villa 6", "Villa 7"]
+
+# Villas whose Designer report package has been processed -- they get a
+# floor-plan page too, and the fleet dashboard shows their report package
+# as "Processed" instead of "Pending".
+REPORT_PACKAGE_PROCESSED = {"3"}
 
 # Status and Technical Record live in the same per-villa folder, so each
 # links to the other with a plain same-folder filename.
-STATUS_URLS = {vnum: "status.html" for vnum in ("2", "4", "5", "6", "7")}
-TECH_URLS = {vnum: "technical-record.html" for vnum in ("2", "4", "5", "6", "7")}
+STATUS_URLS = {vnum: "status.html" for vnum in ("2", "3", "4", "5", "6", "7")}
+TECH_URLS = {vnum: "technical-record.html" for vnum in ("2", "3", "4", "5", "6", "7")}
 
 # Collected while the loop below runs, one dict per villa, for
 # generate_fleet.py's Villas table.
@@ -950,7 +960,7 @@ for vkey in VILLAS:
         "tasks_pass": tasks_pass, "tasks_total": 23,
         "open_issues": open_count, "total_issues": total_issues,
         "technician": d['technician'] or "—",
-        "report_package": "pending",
+        "report_package": "done" if vnum in REPORT_PACKAGE_PROCESSED else "pending",
         "status_url": f"villa-{vnum}/status.html",
     })
 

@@ -33,7 +33,7 @@ DATA_DIR = REPO_ROOT / "data"
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 
-VILLAS = ["Villa 2", "Villa 4", "Villa 5", "Villa 6", "Villa 7"]
+VILLAS = ["Villa 2", "Villa 3", "Villa 4", "Villa 5", "Villa 6", "Villa 7"]
 ISSUES_TAB = "Issues & Changes"  # confirm this is the live tab's real name
 
 # 1-indexed row ranges, verified against every villa tab checked so far.

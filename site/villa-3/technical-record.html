@@ -1,0 +1,1350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Villa 3 Commissioning</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: a site punch-list clipped to a drafting board -- a title-block
+   header, numbered sections mirroring the tracker's own SECTION 1-6 structure,
+   and panel-schedule style tables for serials, circuits and keypad IDs.
+   Brand: MNE Innovations -- black/navy, Inter, cyan-to-indigo accent. */
+:root{
+  --bg:#070B1A; --surface:#111A38; --surface-2:#0C1230;
+  --ink:#FFFFFF; --muted:#8E9BC0; --line:#232C52;
+  --accent:#0080CB; --accent-ink:#4FA8E0;
+  --pass:#5FC093; --pass-bg:#15362C;
+  --pend:#E0A94B; --pend-bg:#3A2E12;
+  --fail:#E8796A; --fail-bg:#3D1C17;
+  --wait:#D8C564; --wait-bg:#36300F;
+  --nr:#8C9DAD;  --nr-bg:#1B3146;
+
+  --f-display:"Inter",system-ui,sans-serif;
+  --f-body:"Inter",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono","SF Mono",monospace;
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--f-body); font-size:15px; line-height:1.5;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+}
+body::before{
+  content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px);
+  z-index:20; background:var(--surface);
+}
+a{color:var(--accent);}
+h1,h2,h3{text-wrap:balance; margin:0;}
+.wrap{max-width:1040px; margin:0 auto; padding-block:0 48px;}
+
+.topbar{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:15;
+  background:var(--surface); border-bottom:1px solid var(--line);
+  padding-block:10px;
+}
+.topbar-inner{
+  max-width:1040px; margin:0 auto; display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+}
+.topbar-brand{display:flex; align-items:center; gap:9px;}
+.topbar-brand img{height:22px; width:auto; display:block;}
+.topbar-title{
+  font-family:var(--f-display); font-weight:600; font-size:19px; letter-spacing:.02em;
+  white-space:nowrap;
+}
+.topbar-title b{color:var(--accent-ink);}
+.nav-pills{display:flex; gap:4px; flex-wrap:wrap; flex:1 1 auto;}
+.nav-pills a{
+  font-family:var(--f-display); font-size:13px; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--muted); text-decoration:none; padding:5px 9px; border-radius:5px;
+}
+.nav-pills a:hover{background:var(--surface-2); color:var(--ink);}
+.topbar-nav-buttons{display:flex; gap:8px; flex:none;}
+.btn{
+  display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
+  font-family:var(--f-display); font-size:13px; font-weight:600; letter-spacing:.03em;
+  text-decoration:none; padding:8px 15px; border-radius:999px;
+  background:var(--surface-2); color:var(--ink); border:1px solid var(--line);
+  transition:background .15s ease, border-color .15s ease, color .15s ease, transform .1s ease;
+}
+.btn:hover{background:var(--surface); border-color:var(--accent-ink); color:var(--accent-ink); transform:translateY(-1px);}
+.btn-primary{background:var(--accent); color:#fff; border-color:var(--accent);}
+.btn-primary:hover{background:var(--accent-ink); border-color:var(--accent-ink); color:#fff;}
+.btn-sm{padding:6px 12px; font-size:12px;}
+.search-box{
+  display:flex; align-items:center; gap:6px; background:var(--surface-2);
+  border:1px solid var(--line); border-radius:7px; padding:6px 10px; min-width:170px;
+}
+.search-box svg{flex:none; opacity:.55;}
+.search-box input{
+  border:none; background:transparent; outline:none; color:var(--ink);
+  font-family:var(--f-body); font-size:13.5px; width:100%;
+}
+.search-box input::placeholder{color:var(--muted);}
+
+.hero{padding-block:28px 20px; display:flex; flex-direction:column; gap:16px;}
+.hero-top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;}
+.eyebrow{
+  font-family:var(--f-display); font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent); font-weight:600;
+}
+h1.villa-title{font-family:var(--f-display); font-size:44px; font-weight:300; letter-spacing:-.005em; margin-top:2px;}
+.status-pill{
+  display:inline-flex; align-items:center; gap:7px; font-family:var(--f-display);
+  font-size:15px; letter-spacing:.04em; text-transform:uppercase; font-weight:600;
+  padding:7px 14px; border-radius:999px; background:var(--pass-bg); color:var(--pass);
+  border:1px solid color-mix(in srgb, var(--pass) 35%, transparent);
+}
+.status-pill .dot{width:8px; height:8px; border-radius:50%; background:var(--pass);}
+
+.title-block{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+  border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--surface);
+}
+.tb-cell{padding:12px 16px; border-right:1px solid var(--line); border-bottom:1px solid var(--line);}
+.tb-cell:nth-child(4n){border-right:none;}
+.tb-label{font-family:var(--f-display); font-size:11.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted);}
+.tb-value{font-family:var(--f-mono); font-size:14.5px; margin-top:3px; font-variant-numeric:tabular-nums;}
+
+.dataflag{
+  display:flex; gap:9px; align-items:flex-start; font-size:13px; color:var(--muted);
+  background:var(--surface-2); border:1px dashed var(--line); border-radius:8px; padding:10px 13px;
+}
+.dataflag b{color:var(--ink);}
+
+.kpi-row{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; padding-block:4px 8px;}
+.kpi{
+  background:var(--surface); border:1px solid var(--line); border-radius:10px;
+  padding:14px 16px; display:flex; flex-direction:column; gap:4px;
+}
+.kpi.warn{border-color:color-mix(in srgb, var(--pend) 45%, var(--line));}
+.kpi-label{font-family:var(--f-display); font-size:12px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted);}
+.kpi-value{font-family:var(--f-mono); font-size:27px; font-weight:500; font-variant-numeric:tabular-nums;}
+.kpi-value small{font-size:15px; color:var(--muted); font-weight:400;}
+
+.summary-text{font-size:15.5px; line-height:1.65; max-width:70ch;}
+.summary-byline{font-size:13px; color:var(--muted); margin-top:-6px;}
+.outstanding-list{display:flex; flex-direction:column; gap:10px; margin-top:4px;}
+.outstanding-item{display:grid; grid-template-columns:170px 1fr; gap:12px; align-items:baseline; font-size:13.5px;}
+.outstanding-item .badge{justify-self:start;}
+.jump-link{font-size:13px; color:var(--muted);}
+.jump-link a{color:var(--accent-ink); font-weight:500;}
+.tech-divider-wrap{margin-top:34px;}
+.tech-divider{
+  display:flex; align-items:center; gap:14px; color:var(--muted);
+  font-family:var(--f-display); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+}
+.tech-divider::before, .tech-divider::after{content:""; flex:1 1 auto; height:1px; background:var(--line);}
+.tech-sub{font-size:13px; color:var(--muted); margin:8px 0 18px; max-width:70ch;}
+
+.notes-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+.notes-list li{display:flex; gap:12px; font-size:14px; line-height:1.55;}
+.note-mark{
+  flex:none; color:var(--accent); font-size:12px; padding-top:2px; opacity:.85;
+}
+
+.section{padding-block:30px 8px; scroll-margin-top:66px;}
+.section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:14px; flex-wrap:wrap;}
+.section-num{
+  font-family:var(--f-mono); font-size:13px; color:var(--accent); border:1px solid var(--line);
+  border-radius:5px; padding:2px 7px; background:var(--surface);
+}
+.section-title{font-family:var(--f-display); font-size:25px; font-weight:600; letter-spacing:.01em;}
+.section-sub{font-size:13px; color:var(--muted); margin-left:auto;}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:10px; overflow:hidden;}
+.card-pad{padding:18px 20px;}
+
+table{width:100%; border-collapse:collapse; font-size:13.5px;}
+thead th{
+  text-align:left; font-family:var(--f-display); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--muted); padding:9px 14px; border-bottom:1px solid var(--line); background:var(--surface-2);
+}
+tbody td{padding:9px 14px; border-bottom:1px solid var(--line); vertical-align:top;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:var(--surface-2);}
+.table-scroll{overflow-x:auto;}
+.mono{font-family:var(--f-mono); font-variant-numeric:tabular-nums;}
+.muted{color:var(--muted);}
+.col-id{white-space:nowrap; font-size:13px;}
+.col-status{white-space:nowrap;}
+.col-date{white-space:nowrap; font-size:12.5px; color:var(--muted);}
+.col-out{white-space:nowrap;}
+.cell-note{font-size:12.5px; color:var(--muted); margin-top:3px; max-width:46ch;}
+.row-flag td{background:color-mix(in srgb, var(--pend-bg) 55%, var(--surface));}
+.row-fail td{background:var(--fail-bg);}
+.row-muted td{opacity:.55;}
+.phase-row td, .module-row td{
+  background:var(--surface-2); border-bottom:1px solid var(--line); padding:7px 14px;
+}
+.phase-tag{
+  font-family:var(--f-display); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--accent-ink); font-weight:600;
+}
+.model-tag{margin-left:10px; font-size:11.5px; color:var(--muted);}
+.issue-chips{margin-top:4px; display:flex; gap:5px; flex-wrap:wrap;}
+.chip{
+  font-family:var(--f-mono); font-size:11px; color:var(--accent); text-decoration:none;
+  border:1px solid color-mix(in srgb, var(--accent) 40%, var(--line)); border-radius:4px; padding:1px 6px;
+}
+
+.badge{
+  display:inline-flex; align-items:center; gap:5px; font-family:var(--f-display); font-size:12px;
+  letter-spacing:.03em; font-weight:600; padding:3px 9px; border-radius:999px;
+}
+.b-pass{background:var(--pass-bg); color:var(--pass);}
+.b-pend{background:var(--pend-bg); color:var(--pend);}
+.b-fail{background:var(--fail-bg); color:var(--fail);}
+.b-wait{background:var(--wait-bg); color:var(--wait);}
+.b-nr{background:var(--nr-bg); color:var(--nr);}
+
+.issues-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
+.issue-card{
+  background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px 18px;
+  display:flex; flex-direction:column; gap:7px; scroll-margin-top:66px;
+}
+.issue-head{display:flex; align-items:center; gap:9px; flex-wrap:wrap;}
+.issue-id{font-size:13px; color:var(--ink); font-weight:500;}
+.pri-dot{width:9px; height:9px; border-radius:50%; flex:none;}
+.pri-high{background:var(--fail);}
+.pri-med{background:var(--pend);}
+.pri-low{background:var(--nr);}
+.issue-area{font-size:13px; color:var(--muted); flex:1 1 auto;}
+.issue-type{font-family:var(--f-display); font-size:12.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); margin:0;}
+.issue-desc{font-size:13.5px; margin:0; line-height:1.55;}
+.issue-res{font-size:13px; margin:0; color:var(--muted); line-height:1.5;}
+.label-sm{font-family:var(--f-display); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); margin-right:4px;}
+.issue-meta{font-size:11.5px; color:var(--muted); margin:2px 0 0;}
+.no-issues{color:var(--muted); font-size:13.5px; padding:16px;}
+
+footer{padding-block:30px 10px; font-size:12.5px; color:var(--muted); border-top:1px solid var(--line); margin-top:24px;}
+footer a{color:var(--muted); text-decoration:underline;}
+
+[data-search]{ }
+.is-hidden{display:none !important;}
+.no-match{padding:22px; text-align:center; color:var(--muted); font-size:13.5px;}
+
+@media (max-width:760px){
+  .kpi-row{grid-template-columns:repeat(2,1fr);}
+  .title-block{grid-template-columns:repeat(2,1fr);}
+  .issues-grid{grid-template-columns:1fr;}
+  h1.villa-title{font-size:34px;}
+  .nav-pills{display:none;}
+}
+</style>
+</head>
+<body>
+
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-brand"><img src="../assets/logo.png" alt="MNE Innovations"><div class="topbar-title">VILLA <b>3</b> &middot; HomeWorks</div></div>
+    <div class="topbar-nav-buttons">
+      <a class="btn btn-sm" href="../index.html">&larr; All Villas</a>
+      <a class="btn btn-sm btn-primary" href="status.html">Status View</a>
+    </div>
+    <nav class="nav-pills">
+      <a href="#notes">Notes</a>
+      <a href="#sec1">Checklist</a>
+      <a href="#sec2">Keypads</a>
+      <a href="#sec3">Closeout</a>
+      <a href="#sec4">Modules</a>
+      <a href="#sec5">Dimmers</a>
+      <a href="#sec6">Registry</a>
+      <a href="#issues">Issues</a>
+    </nav>
+    <div class="search-box">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="filter" type="search" placeholder="Find a keypad, circuit, serial&hellip;" aria-label="Filter dashboard">
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="hero-top">
+      <div>
+        <div class="eyebrow">Apes Hill Hilltop Villas &middot; St. James, Barbados</div>
+        <h1 class="villa-title">Villa 3</h1>
+      </div>
+      <span class="status-pill"><span class="dot"></span>Complete</span>
+    </div>
+
+    <p class="summary-text">Villa 3 is complete &mdash; all 26 keypads were function tested and are working, and every controlled load, scene and special-logic function has been verified. All 10 plug-in lamp dimmers, the hybrid repeater and all adaptive/switching modules are activated and functionally confirmed. Only the final project backup and signoff walkthrough remain.</p>
+    <p class="summary-byline">Worked by Jeevan Panjwani · 11/04/2026</p>
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-label">Keypads</div><div class="kpi-value">26<small>/26</small></div></div>
+      <div class="kpi"><div class="kpi-label">Modules active</div><div class="kpi-value">12<small>/12</small></div></div>
+      <div class="kpi warn"><div class="kpi-label">Checklist passed</div><div class="kpi-value">21<small>/23</small></div></div>
+      <div class="kpi"><div class="kpi-label">Open defects</div><div class="kpi-value">0</div></div>
+      <div class="kpi "><div class="kpi-label">Open issues</div><div class="kpi-value">0<small>/0</small></div></div>
+    </div>
+
+    <div class="outstanding-list"><div class="outstanding-item"><span class="badge b-pend">Final signoff</span><div>Final project backup and functional walkthrough/signoff still need completing.</div></div>
+<div class="outstanding-item"><span class="badge b-wait">Apes Hill IT</span><div>Permanent network uplink cabling is scheduled for Nov 5 &mdash; an external dependency that doesn't block local operation.</div></div></div>
+
+    <p class="jump-link">Full technical record &mdash; checklist, keypad register, circuit-by-circuit test results &mdash; starts below. <a href="#notes">Jump to it &darr;</a></p>
+  </section>
+
+  <div class="tech-divider-wrap">
+    <div class="tech-divider"><span>Technical Record</span></div>
+    <p class="tech-sub">Everything from here down is the detailed commissioning paper trail: processor identity, the full checklist, every device serial, and circuit-by-circuit test results.</p>
+  </div>
+
+  <div class="title-block">
+    <div class="tb-cell"><div class="tb-label">Base template</div><div class="tb-value">Apes Hill Hill Top Villas - Template</div></div>
+    <div class="tb-cell"><div class="tb-label">Technician</div><div class="tb-value">Jeevan Panjwani</div></div>
+    <div class="tb-cell"><div class="tb-label">Date worked</div><div class="tb-value">11/04/2026</div></div>
+    <div class="tb-cell"><div class="tb-label">Project file</div><div class="tb-value">Apes Hill Hill Top Villas - Villa #3</div></div>
+    <div class="tb-cell"><div class="tb-label">Processor model</div><div class="tb-value">HQP7-2</div></div>
+    <div class="tb-cell"><div class="tb-label">Processor serial</div><div class="tb-value">084FB93C</div></div>
+    <div class="tb-cell"><div class="tb-label">MAC address</div><div class="tb-value">88:0c:e0:d4:cf:5f</div></div>
+    <div class="tb-cell"><div class="tb-label">Firmware</div><div class="tb-value">—</div></div>
+  </div>
+
+  <section class="section" id="notes">
+    <div class="section-head">
+      <span class="section-num">Log</span>
+      <h2 class="section-title">Commissioning Notes</h2>
+      <span class="section-sub">11/04/2026</span>
+    </div>
+    <div class="card card-pad">
+      <ol class="notes-list">
+        <li><span class="note-mark mono">01</span><span>Nov 4: On site for Villa 3 takeover. Processor factory reset completed and processor is currently updating. All 10 plug-in lamp dimmers are on site; all have been reset and physically labelled. Lamp dimmer activation/acquisition and function testing remain pending.</span></li>
+<li><span class="note-mark mono">02</span><span>Nov 4: Processor identified as SN 084FB93C / MAC 88:0c:e0:d4:cf:5f on DHCP and connected via LAN. Serial numbers captured for all 26 keypads, 8 adaptive modules, 4 switching modules, all 10 lamp dimmers, and the hybrid repeater. All keypads and DIN modules shown as Activated: Good in Designer.</span></li>
+<li><span class="note-mark mono">03</span><span>Nov 4: Commissioning completed. All 26 keypads were function tested and are working. All controlled loads were tested for on/off/dimming and correct mapping, including scenes, raise/lower/off functions, multi-location controls and special logic. All 10 plug-in lamp dimmers, the hybrid repeater, 8 adaptive modules and 4 switching modules are activated and functionally verified. Checklist complete except final project backup and final functional walkthrough/signoff. Permanent network uplink cabling remains pending from the Apes Hill IT Department and is scheduled for Nov 5, 2026. Local Lutron control is operational; the IT uplink is an external dependency and does not block Villa 3 commissioning. Villa 3 marked Complete.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="sec1">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Programming &amp; Commissioning Checklist</h2>
+      <span class="section-sub">21 pass · 0 pending · 2 not recorded</span>
+    </div>
+    <div class="card table-scroll">
+      <table>
+        <thead><tr><th>Checklist item</th><th>Status</th><th>Date</th></tr></thead>
+        <tbody>
+          <tr class="phase-row"><td colspan="3" data-search="Preflight"><span class="phase-tag">Preflight</span></td></tr>
+<tr data-search="Preflight Confirm villa identifier and access Pass Villa 3 confirmed; site access available.">
+          <td class="col-item">Confirm villa identifier and access<div class="cell-note">Villa 3 confirmed; site access available.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Preflight Confirm hardware matches template Pass Installed hardware confirmed against controlled template; serials captured.">
+          <td class="col-item">Confirm hardware matches template<div class="cell-note">Installed hardware confirmed against controlled template; serials captured.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Preflight Record processor serial / MAC / firmware Pass Processor serial/MAC and device serials recorded. Firmware verification completed onsite.">
+          <td class="col-item">Record processor serial / MAC / firmware<div class="cell-note">Processor serial/MAC and device serials recorded. Firmware verification completed onsite.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Preflight Connect to processor and confirm communications Pass Processor connected via LAN; DHCP.">
+          <td class="col-item">Connect to processor and confirm communications<div class="cell-note">Processor connected via LAN; DHCP.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr class="phase-row"><td colspan="3" data-search="Reset"><span class="phase-tag">Reset</span></td></tr>
+<tr data-search="Reset Factory reset processor Pass Processor factory reset completed; processor update in progress.">
+          <td class="col-item">Factory reset processor<div class="cell-note">Processor factory reset completed; processor update in progress.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Reset Confirm processor ready for new project Pass Processor ready and commissioned with Villa 3 project.">
+          <td class="col-item">Confirm processor ready for new project<div class="cell-note">Processor ready and commissioned with Villa 3 project.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr class="phase-row"><td colspan="3" data-search="Programming"><span class="phase-tag">Programming</span></td></tr>
+<tr data-search="Programming Duplicate controlled template file Pass Controlled template duplicated for Villa 3.">
+          <td class="col-item">Duplicate controlled template file<div class="cell-note">Controlled template duplicated for Villa 3.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Programming Adjust villa-specific IDs, naming and network settings Pass Villa-specific naming/identifiers/network settings applied.">
+          <td class="col-item">Adjust villa-specific IDs, naming and network settings<div class="cell-note">Villa-specific naming/identifiers/network settings applied.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Programming Check processor and device addresses for conflicts Pass Processor/device addressing verified; no conflicts outstanding.">
+          <td class="col-item">Check processor and device addresses for conflicts<div class="cell-note">Processor/device addressing verified; no conflicts outstanding.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Programming Upload project to processor Pass Villa 3 project transferred to processor.">
+          <td class="col-item">Upload project to processor<div class="cell-note">Villa 3 project transferred to processor.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Programming Verify processor online after transfer Pass Processor verified online after transfer.">
+          <td class="col-item">Verify processor online after transfer<div class="cell-note">Processor verified online after transfer.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr class="phase-row"><td colspan="3" data-search="Activation"><span class="phase-tag">Activation</span></td></tr>
+<tr data-search="Activation Reactivate all installed keypads Pass All 26 installed keypads show Activated: Good in Designer.">
+          <td class="col-item">Reactivate all installed keypads<div class="cell-note">All 26 installed keypads show Activated: Good in Designer.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Activation Reactivate other controls / modules / interfaces Pass All remaining controls, modules, lamp dimmers and hybrid repeater activated.">
+          <td class="col-item">Reactivate other controls / modules / interfaces<div class="cell-note">All remaining controls, modules, lamp dimmers and hybrid repeater activated.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Activation Confirm all expected devices online Pass All expected Lutron devices confirmed online.">
+          <td class="col-item">Confirm all expected devices online<div class="cell-note">All expected Lutron devices confirmed online.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr class="phase-row"><td colspan="3" data-search="Lighting"><span class="phase-tag">Lighting</span></td></tr>
+<tr data-search="Lighting Test each load for on/off/dimming and correct mapping Pass All controlled loads tested for on/off/dimming and correct mapping; working.">
+          <td class="col-item">Test each load for on/off/dimming and correct mapping<div class="cell-note">All controlled loads tested for on/off/dimming and correct mapping; working.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Lighting Test scenes, raise/lower and off functions Pass Scenes, raise/lower and off functions tested; working.">
+          <td class="col-item">Test scenes, raise/lower and off functions<div class="cell-note">Scenes, raise/lower and off functions tested; working.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Lighting Check multi-location controls and special logic Pass Multi-location controls and special logic tested; working.">
+          <td class="col-item">Check multi-location controls and special logic<div class="cell-note">Multi-location controls and special logic tested; working.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Lighting Verify physical wiring / circuit exceptions Pass Physical wiring/circuit behavior verified during functional testing.">
+          <td class="col-item">Verify physical wiring / circuit exceptions<div class="cell-note">Physical wiring/circuit behavior verified during functional testing.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr class="phase-row"><td colspan="3" data-search="Connectivity"><span class="phase-tag">Connectivity</span></td></tr>
+<tr data-search="Connectivity Verify local control and app / cloud where applicable Pass Local control verified. Permanent network uplink cabling by Apes Hill IT is scheduled for 2026-11-05.">
+          <td class="col-item">Verify local control and app / cloud where applicable<div class="cell-note">Local control verified. Permanent network uplink cabling by Apes Hill IT is scheduled for 2026-11-05.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr class="phase-row"><td colspan="3" data-search="Closeout"><span class="phase-tag">Closeout</span></td></tr>
+<tr data-search="Closeout Resolve / log outstanding defects Pass No Lutron system defects outstanding. Network uplink is an external IT dependency.">
+          <td class="col-item">Resolve / log outstanding defects<div class="cell-note">No Lutron system defects outstanding. Network uplink is an external IT dependency.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Closeout Save final project and backup with revision Not Recorded Final project backup pending.">
+          <td class="col-item">Save final project and backup with revision<div class="cell-note">Final project backup pending.</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-date mono"></td>
+        </tr>
+<tr data-search="Closeout Record deviations from template Pass Villa-specific deviations reviewed and recorded; no unresolved Lutron deviations remain.">
+          <td class="col-item">Record deviations from template<div class="cell-note">Villa-specific deviations reviewed and recorded; no unresolved Lutron deviations remain.</div></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-date mono">2026-11-04</td>
+        </tr>
+<tr data-search="Closeout Final functional walkthrough and signoff Not Recorded Final functional walkthrough/signoff pending.">
+          <td class="col-item">Final functional walkthrough and signoff<div class="cell-note">Final functional walkthrough/signoff pending.</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-date mono"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="sec2">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Keypads</h2>
+      <span class="section-sub">26 devices &middot; 24 physical locations</span>
+    </div>
+    <div class="card table-scroll">
+      <table>
+        <thead><tr><th>Device</th><th>Location</th><th>Model</th><th>Serial</th><th>Activated</th><th>Tested</th></tr></thead>
+        <tbody>
+          <tr data-search="KP1 Bedroom 4 — bedside HQWD-W6B-WH 03CBE338">
+          <td class="mono col-id">KP1</td>
+          <td>Bedroom 4 — bedside</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE338</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP2 Bedroom 4 — bedside HQWD-W6B-WH 03CBE41E">
+          <td class="mono col-id">KP2</td>
+          <td>Bedroom 4 — bedside</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE41E</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP3 Bedroom 4 — bathroom HQWD-W4BS-WH 03CB8DFC">
+          <td class="mono col-id">KP3</td>
+          <td>Bedroom 4 — bathroom</td>
+          <td class="mono muted">HQWD-W4BS-WH</td>
+          <td class="mono">03CB8DFC</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP4 Bedroom 4 — Entry HQWD-W6B-WH 03CBE33A">
+          <td class="mono col-id">KP4</td>
+          <td>Bedroom 4 — Entry</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE33A</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP5 Bedroom 3 — Entry HQWD-W6B-WH 03CBE337">
+          <td class="mono col-id">KP5</td>
+          <td>Bedroom 3 — Entry</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE337</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP6 Bedroom 3 — bathroom HQWD-W4BS-WH 03CB8DEF">
+          <td class="mono col-id">KP6</td>
+          <td>Bedroom 3 — bathroom</td>
+          <td class="mono muted">HQWD-W4BS-WH</td>
+          <td class="mono">03CB8DEF</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP7 Bedroom 3 — bedside HQWD-W6B-WH 03CBE421">
+          <td class="mono col-id">KP7</td>
+          <td>Bedroom 3 — bedside</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE421</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP8 Bedroom 3 — bedside HQWD-W6B-WH 03CBE34D">
+          <td class="mono col-id">KP8</td>
+          <td>Bedroom 3 — bedside</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE34D</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP10 Foyer HQWD-W4BS-WH 03CBE3AE">
+          <td class="mono col-id">KP10</td>
+          <td>Foyer</td>
+          <td class="mono muted">HQWD-W4BS-WH</td>
+          <td class="mono">03CBE3AE</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP12 WC HQWD-W4BS-WH 03CB8DE7">
+          <td class="mono col-id">KP12</td>
+          <td>WC</td>
+          <td class="mono muted">HQWD-W4BS-WH</td>
+          <td class="mono">03CB8DE7</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP13 Patio HQWD-W6B-WH 03CBE349">
+          <td class="mono col-id">KP13</td>
+          <td>Patio</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE349</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP14 / Gang 1 Kitchen/Living — terrace controls HQWD-W5B-WH 03CBE3A6">
+          <td class="mono col-id">KP14 / Gang 1</td>
+          <td>Kitchen/Living — terrace controls</td>
+          <td class="mono muted">HQWD-W5B-WH</td>
+          <td class="mono">03CBE3A6</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP14 / Gang 2 Kitchen/Living — living controls HQWD-W6B-WH 03CBE3AA">
+          <td class="mono col-id">KP14 / Gang 2</td>
+          <td>Kitchen/Living — living controls</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE3AA</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP15 Kitchen/Living — living controls HQWD-W6B-WH 03CBE39C">
+          <td class="mono col-id">KP15</td>
+          <td>Kitchen/Living — living controls</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE39C</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP16 / Gang 1 Kitchen/Living — living controls HQWD-W6B-WH 03CBE3BD">
+          <td class="mono col-id">KP16 / Gang 1</td>
+          <td>Kitchen/Living — living controls</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE3BD</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP16 / Gang 2 Kitchen/Living — terrace controls HQWD-W5B-WH 03CBE3B5">
+          <td class="mono col-id">KP16 / Gang 2</td>
+          <td>Kitchen/Living — terrace controls</td>
+          <td class="mono muted">HQWD-W5B-WH</td>
+          <td class="mono">03CBE3B5</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP17 Patio HQWD-W6B-WH 03CBE396">
+          <td class="mono col-id">KP17</td>
+          <td>Patio</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE396</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP18 Bedroom 2 — Entry HQWD-W6B-WH 03CBE398">
+          <td class="mono col-id">KP18</td>
+          <td>Bedroom 2 — Entry</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE398</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP19 Bedroom 2 — bedside HQWD-W6B-WH 03CBE38E">
+          <td class="mono col-id">KP19</td>
+          <td>Bedroom 2 — bedside</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE38E</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP20 Bedroom 2 — bedside HQWD-W6B-WH 03CBE3A8">
+          <td class="mono col-id">KP20</td>
+          <td>Bedroom 2 — bedside</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE3A8</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP21 Bedroom 2 — bathroom HQWD-W4BS-WH 03CB8DF3">
+          <td class="mono col-id">KP21</td>
+          <td>Bedroom 2 — bathroom</td>
+          <td class="mono muted">HQWD-W4BS-WH</td>
+          <td class="mono">03CB8DF3</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP22 Bedroom 1 — Entry HQWD-W6B-WH 03CBE41B">
+          <td class="mono col-id">KP22</td>
+          <td>Bedroom 1 — Entry</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE41B</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP23 Bedroom 1 — bathroom HQWD-W4BS-WH 03CB8DF2">
+          <td class="mono col-id">KP23</td>
+          <td>Bedroom 1 — bathroom</td>
+          <td class="mono muted">HQWD-W4BS-WH</td>
+          <td class="mono">03CB8DF2</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP24 Bedroom 1 — bedside HQWD-W6B-WH 03CBE3B4">
+          <td class="mono col-id">KP24</td>
+          <td>Bedroom 1 — bedside</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE3B4</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP25 Bedroom 1 — bedside HQWD-W6B-WH 03CBE38F">
+          <td class="mono col-id">KP25</td>
+          <td>Bedroom 1 — bedside</td>
+          <td class="mono muted">HQWD-W6B-WH</td>
+          <td class="mono">03CBE38F</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="KP-GARAGE Garage — On/Off HQWD-W1B-WH 03CB8DF1">
+          <td class="mono col-id">KP-GARAGE</td>
+          <td>Garage — On/Off</td>
+          <td class="mono muted">HQWD-W1B-WH</td>
+          <td class="mono">03CB8DF1</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="sec3">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Functional Closeout</h2>
+      <span class="section-sub">Handover checks</span>
+    </div>
+    <div class="card table-scroll">
+      <table>
+        <thead><tr><th>Check / Handover</th><th>Status</th><th>Date</th></tr></thead>
+        <tbody>
+          <tr data-search="Lighting loads and mapping Not Recorded">
+          <td class="col-item">Lighting loads and mapping</td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-date mono"></td>
+        </tr>
+<tr data-search="Scenes and button behavior Not Recorded">
+          <td class="col-item">Scenes and button behavior</td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-date mono"></td>
+        </tr>
+<tr data-search="Non-keypad devices and interfaces Not Recorded">
+          <td class="col-item">Non-keypad devices and interfaces</td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-date mono"></td>
+        </tr>
+<tr data-search="Network / local connectivity Not Recorded">
+          <td class="col-item">Network / local connectivity</td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-date mono"></td>
+        </tr>
+<tr data-search="Cloud / remote connectivity Not Recorded">
+          <td class="col-item">Cloud / remote connectivity</td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-date mono"></td>
+        </tr>
+<tr data-search="Outstanding defects reviewed Not Recorded">
+          <td class="col-item">Outstanding defects reviewed</td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-date mono"></td>
+        </tr>
+<tr data-search="Final database backup archived Not Recorded">
+          <td class="col-item">Final database backup archived</td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-date mono"></td>
+        </tr>
+<tr data-search="Walkthrough and acceptance Not Recorded">
+          <td class="col-item">Walkthrough and acceptance</td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-date mono"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="sec4">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Dimming &amp; Switching Module Output Verification</h2>
+      <span class="section-sub">Panel 001 (Adaptive 1&ndash;8) &middot; Panel 002 (Switch 1&ndash;4) &middot; 48 outputs</span>
+    </div>
+    <div class="card table-scroll">
+      <table>
+        <thead><tr><th>Output</th><th>Programmed load</th><th>Wiring match</th><th>Function test</th></tr></thead>
+        <tbody>
+          <tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 1 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 1</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr data-search="Panel 001 Adaptive 1 1-1 Entrance — L19 Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">1-1</td>
+          <td>Entrance — L19 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 1 1-2 Foyer — L18 Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">1-2</td>
+          <td>Foyer — L18 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 1 1-3 Living — L17 North Hall Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">1-3</td>
+          <td>Living — L17 North Hall<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 1 1-4 WC — L22 Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">1-4</td>
+          <td>WC — L22 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 2 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 2</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr data-search="Panel 001 Adaptive 2 2-1 Living — L34 Pendant Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">2-1</td>
+          <td>Living — L34 Pendant<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 2 2-2 Living — L35 Counter/Extractor Fan Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">2-2</td>
+          <td>Living — L35 Counter/Extractor Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 2 2-3 Living — L39 South Hall Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">2-3</td>
+          <td>Living — L39 South Hall<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 2 2-4 Living — L36 Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">2-4</td>
+          <td>Living — L36 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 3 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 3</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr data-search="Panel 001 Adaptive 3 3-1 Patio — L24 Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">3-1</td>
+          <td>Patio — L24 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 3 3-2 Patio — L26/L27 Pendants Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">3-2</td>
+          <td>Patio — L26/L27 Pendants<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 3 3-3 Patio — L50 Pool Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">3-3</td>
+          <td>Patio — L50 Pool<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="row-muted" data-search="Panel 001 Adaptive 3 3-4 UNASSIGNED IN REPORT Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">3-4</td>
+          <td>UNASSIGNED IN REPORT<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-pend" data-search="Review">Review</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 4 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 4</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr data-search="Panel 001 Adaptive 4 4-1 Bedroom 1 — L08 Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">4-1</td>
+          <td>Bedroom 1 — L08 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 4 4-2 Bathroom 1 — L48 Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">4-2</td>
+          <td>Bathroom 1 — L48 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 4 4-3 Bedroom 1 — L47 Closet Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">4-3</td>
+          <td>Bedroom 1 — L47 Closet<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 4 4-4 Garage — Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">4-4</td>
+          <td>Garage — Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 5 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 5</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr data-search="Panel 001 Adaptive 5 5-1 Bedroom 1 — L49 Lamps Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">5-1</td>
+          <td>Bedroom 1 — L49 Lamps<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 5 5-2 Bedroom 2 — L43 Lamps Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">5-2</td>
+          <td>Bedroom 2 — L43 Lamps<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 5 5-3 Bedroom 3 — L11 Lamps Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">5-3</td>
+          <td>Bedroom 3 — L11 Lamps<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 5 5-4 Bedroom 4 — L06 Lamps Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">5-4</td>
+          <td>Bedroom 4 — L06 Lamps<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 6 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 6</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr data-search="Panel 001 Adaptive 6 6-1 Bedroom 2 — L42 Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">6-1</td>
+          <td>Bedroom 2 — L42 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 6 6-2 Bathroom 2 — L44 Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">6-2</td>
+          <td>Bathroom 2 — L44 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 6 6-3 Bedroom 2 — L40 Closet Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">6-3</td>
+          <td>Bedroom 2 — L40 Closet<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="row-muted" data-search="Panel 001 Adaptive 6 6-4 UNASSIGNED IN REPORT Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">6-4</td>
+          <td>UNASSIGNED IN REPORT<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-pend" data-search="Review">Review</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 7 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 7</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr data-search="Panel 001 Adaptive 7 7-1 Bedroom 3 — L14 Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">7-1</td>
+          <td>Bedroom 3 — L14 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 7 7-2 Bedroom 3 — L09 Closet Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">7-2</td>
+          <td>Bedroom 3 — L09 Closet<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 7 7-3 Bathroom 3 — L10 Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">7-3</td>
+          <td>Bathroom 3 — L10 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="row-muted" data-search="Panel 001 Adaptive 7 7-4 UNASSIGNED IN REPORT Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">7-4</td>
+          <td>UNASSIGNED IN REPORT<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-pend" data-search="Review">Review</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 001 Adaptive 8 LQSE-4A5-120-D"><span class="phase-tag">Panel 001 &middot; Adaptive 8</span><span class="model-tag mono">LQSE-4A5-120-D</span></td></tr>
+<tr data-search="Panel 001 Adaptive 8 8-1 Bedroom 4 — L01 Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">8-1</td>
+          <td>Bedroom 4 — L01 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 8 8-2 Bathroom 4 — L04 Downlights Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">8-2</td>
+          <td>Bathroom 4 — L04 Downlights<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 8 8-3 Bedroom 4 — L07 Closet Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">8-3</td>
+          <td>Bedroom 4 — L07 Closet<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="row-muted" data-search="Panel 001 Adaptive 8 8-4 UNASSIGNED IN REPORT Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">8-4</td>
+          <td>UNASSIGNED IN REPORT<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-pend" data-search="Review">Review</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 002 Switch 1 LQSE-4S8-120-D"><span class="phase-tag">Panel 002 &middot; Switch 1</span><span class="model-tag mono">LQSE-4S8-120-D</span></td></tr>
+<tr data-search="Panel 002 Switch 1 1-1 Living — L32/33 Fans Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">1-1</td>
+          <td>Living — L32/33 Fans<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 1 1-2 Living — L37/L38 Fans Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">1-2</td>
+          <td>Living — L37/L38 Fans<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 1 1-3 Patio — L25/28 Fans Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">1-3</td>
+          <td>Patio — L25/28 Fans<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 1 1-4 Patio — L29/L30 Fans Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">1-4</td>
+          <td>Patio — L29/L30 Fans<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 002 Switch 2 LQSE-4S8-120-D"><span class="phase-tag">Panel 002 &middot; Switch 2</span><span class="model-tag mono">LQSE-4S8-120-D</span></td></tr>
+<tr data-search="Panel 002 Switch 2 2-1 Bedroom 1 — L16 Fan Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">2-1</td>
+          <td>Bedroom 1 — L16 Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 2 2-2 Bedroom 2 — L41 Fan Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">2-2</td>
+          <td>Bedroom 2 — L41 Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 2 2-3 Bedroom 3 — L15 Fan Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">2-3</td>
+          <td>Bedroom 3 — L15 Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 2 2-4 Bedroom 4 — L02 Fan Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">2-4</td>
+          <td>Bedroom 4 — L02 Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 002 Switch 3 LQSE-4S8-120-D"><span class="phase-tag">Panel 002 &middot; Switch 3</span><span class="model-tag mono">LQSE-4S8-120-D</span></td></tr>
+<tr data-search="Panel 002 Switch 3 3-1 WC — L23 Extractor Fan Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">3-1</td>
+          <td>WC — L23 Extractor Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 3 3-2 Laundry — L21 Extractor Fan Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">3-2</td>
+          <td>Laundry — L21 Extractor Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="row-muted" data-search="Panel 002 Switch 3 3-3 UNASSIGNED IN REPORT Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">3-3</td>
+          <td>UNASSIGNED IN REPORT<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-pend" data-search="Review">Review</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="row-muted" data-search="Panel 002 Switch 3 3-4 UNASSIGNED IN REPORT Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">3-4</td>
+          <td>UNASSIGNED IN REPORT<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-pend" data-search="Review">Review</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr class="module-row"><td colspan="5" data-search="Panel 002 Switch 4 LQSE-4S8-120-D"><span class="phase-tag">Panel 002 &middot; Switch 4</span><span class="model-tag mono">LQSE-4S8-120-D</span></td></tr>
+<tr data-search="Panel 002 Switch 4 4-1 Bathroom 1 — L50/51 Fan Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">4-1</td>
+          <td>Bathroom 1 — L50/51 Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 4 4-2 Bathroom 2 — L45/46 Fan Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">4-2</td>
+          <td>Bathroom 2 — L45/46 Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 4 4-3 Bathroom 4 — L03/05 Fan Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">4-3</td>
+          <td>Bathroom 4 — L03/05 Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 4 4-4 Bathroom 3 — L12/13 Fan Reference: Villa 2 wiring report pp. 12–16">
+          <td class="mono col-out">4-4</td>
+          <td>Bathroom 3 — L12/13 Fan<div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+          <td class="col-status"><span class="badge b-nr" data-search="Not Recorded">Not Recorded</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="sec5">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Lamp Dimmers &amp; Hybrid Repeater</h2>
+      <span class="section-sub">Plug-in dimmers &middot; RF repeater</span>
+    </div>
+    <div class="card table-scroll">
+      <table>
+        <thead><tr><th>Device</th><th>Location</th><th>Model</th><th>Serial</th><th>Activated</th><th>Tested</th></tr></thead>
+        <tbody>
+          <tr class="row-flag" data-search="LD-FOYER Foyer HQR-3PD-1-SW 05919C17 Activated and function tested 2026-11-04; working and physically labelled.">
+          <td class="mono col-id">LD-FOYER</td>
+          <td>Foyer<div class="cell-note">Activated and function tested 2026-11-04; working and physically labelled.</div></td>
+          <td class="mono muted">HQR-3PD-1-SW</td>
+          <td class="mono">05919C17</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr class="row-flag" data-search="LD-LIVING Kitchen/Living Room HQR-3PD-1-SW 05919CC4 Activated and function tested 2026-11-04; working and physically labelled.">
+          <td class="mono col-id">LD-LIVING</td>
+          <td>Kitchen/Living Room<div class="cell-note">Activated and function tested 2026-11-04; working and physically labelled.</div></td>
+          <td class="mono muted">HQR-3PD-1-SW</td>
+          <td class="mono">05919CC4</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr class="row-flag" data-search="LD-01-R Bedroom 1 - Right bedside HQR-3PD-1-SW 05919CB3 Activated and function tested 2026-11-04; working and physically labelled.">
+          <td class="mono col-id">LD-01-R</td>
+          <td>Bedroom 1 - Right bedside<div class="cell-note">Activated and function tested 2026-11-04; working and physically labelled.</div></td>
+          <td class="mono muted">HQR-3PD-1-SW</td>
+          <td class="mono">05919CB3</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr class="row-flag" data-search="LD-01-L Bedroom 1 - Left bedside HQR-3PD-1-SW 05919CC0 Activated and function tested 2026-11-04; working and physically labelled.">
+          <td class="mono col-id">LD-01-L</td>
+          <td>Bedroom 1 - Left bedside<div class="cell-note">Activated and function tested 2026-11-04; working and physically labelled.</div></td>
+          <td class="mono muted">HQR-3PD-1-SW</td>
+          <td class="mono">05919CC0</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr class="row-flag" data-search="LD-02-R Bedroom 2 - Right bedside HQR-3PD-1-SW 05919F9E Activated and function tested 2026-11-04; working and physically labelled.">
+          <td class="mono col-id">LD-02-R</td>
+          <td>Bedroom 2 - Right bedside<div class="cell-note">Activated and function tested 2026-11-04; working and physically labelled.</div></td>
+          <td class="mono muted">HQR-3PD-1-SW</td>
+          <td class="mono">05919F9E</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr class="row-flag" data-search="LD-02-L Bedroom 2 - Left bedside HQR-3PD-1-SW 05919F94 Activated and function tested 2026-11-04; working and physically labelled.">
+          <td class="mono col-id">LD-02-L</td>
+          <td>Bedroom 2 - Left bedside<div class="cell-note">Activated and function tested 2026-11-04; working and physically labelled.</div></td>
+          <td class="mono muted">HQR-3PD-1-SW</td>
+          <td class="mono">05919F94</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr class="row-flag" data-search="LD-03-R Bedroom 3 - Right bedside HQR-3PD-1-SW 05919CBE Activated and function tested 2026-11-04; working and physically labelled.">
+          <td class="mono col-id">LD-03-R</td>
+          <td>Bedroom 3 - Right bedside<div class="cell-note">Activated and function tested 2026-11-04; working and physically labelled.</div></td>
+          <td class="mono muted">HQR-3PD-1-SW</td>
+          <td class="mono">05919CBE</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr class="row-flag" data-search="LD-03-L Bedroom 3 - Left bedside HQR-3PD-1-SW 05919CB6 Activated and function tested 2026-11-04; working and physically labelled.">
+          <td class="mono col-id">LD-03-L</td>
+          <td>Bedroom 3 - Left bedside<div class="cell-note">Activated and function tested 2026-11-04; working and physically labelled.</div></td>
+          <td class="mono muted">HQR-3PD-1-SW</td>
+          <td class="mono">05919CB6</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr class="row-flag" data-search="LD-04-R Bedroom 4 - Right bedside HQR-3PD-1-SW 05919C20 Activated and function tested 2026-11-04; working and physically labelled.">
+          <td class="mono col-id">LD-04-R</td>
+          <td>Bedroom 4 - Right bedside<div class="cell-note">Activated and function tested 2026-11-04; working and physically labelled.</div></td>
+          <td class="mono muted">HQR-3PD-1-SW</td>
+          <td class="mono">05919C20</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr class="row-flag" data-search="LD-04-L Bedroom 4 - Left bedside HQR-3PD-1-SW 05919C1D Activated and function tested 2026-11-04; working and physically labelled.">
+          <td class="mono col-id">LD-04-L</td>
+          <td>Bedroom 4 - Left bedside<div class="cell-note">Activated and function tested 2026-11-04; working and physically labelled.</div></td>
+          <td class="mono muted">HQR-3PD-1-SW</td>
+          <td class="mono">05919C1D</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr class="row-flag" data-search="Hybrid Repeater Laundry Room — first cabinet on right, behind false backing HQR-REP-120 05F269EF Activated and functionally verified 2026-11-04; RF operation confirmed during system testing.">
+          <td class="mono col-id">Hybrid Repeater</td>
+          <td>Laundry Room — first cabinet on right, behind false backing<div class="cell-note">Activated and functionally verified 2026-11-04; RF operation confirmed during system testing.</div></td>
+          <td class="mono muted">HQR-REP-120</td>
+          <td class="mono">05F269EF</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="sec6">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Dimming &amp; Switching Modules</h2>
+      <span class="section-sub">Physical serial register</span>
+    </div>
+    <div class="card table-scroll">
+      <table>
+        <thead><tr><th>Panel</th><th>Module</th><th>Model</th><th>Serial</th><th>Activated</th><th>Tested</th></tr></thead>
+        <tbody>
+          <tr data-search="Panel 001 Adaptive 1 06147282">
+          <td>Panel 001</td>
+          <td class="mono col-id">Adaptive 1</td>
+          <td class="mono muted">LQSE-4A5-120-D</td>
+          <td class="mono">06147282</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 2 0614727D">
+          <td>Panel 001</td>
+          <td class="mono col-id">Adaptive 2</td>
+          <td class="mono muted">LQSE-4A5-120-D</td>
+          <td class="mono">0614727D</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 3 06147284">
+          <td>Panel 001</td>
+          <td class="mono col-id">Adaptive 3</td>
+          <td class="mono muted">LQSE-4A5-120-D</td>
+          <td class="mono">06147284</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 4 06147289">
+          <td>Panel 001</td>
+          <td class="mono col-id">Adaptive 4</td>
+          <td class="mono muted">LQSE-4A5-120-D</td>
+          <td class="mono">06147289</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 5 06147297">
+          <td>Panel 001</td>
+          <td class="mono col-id">Adaptive 5</td>
+          <td class="mono muted">LQSE-4A5-120-D</td>
+          <td class="mono">06147297</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 6 0614728B">
+          <td>Panel 001</td>
+          <td class="mono col-id">Adaptive 6</td>
+          <td class="mono muted">LQSE-4A5-120-D</td>
+          <td class="mono">0614728B</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 7 0614728F">
+          <td>Panel 001</td>
+          <td class="mono col-id">Adaptive 7</td>
+          <td class="mono muted">LQSE-4A5-120-D</td>
+          <td class="mono">0614728F</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="Panel 001 Adaptive 8 06147258">
+          <td>Panel 001</td>
+          <td class="mono col-id">Adaptive 8</td>
+          <td class="mono muted">LQSE-4A5-120-D</td>
+          <td class="mono">06147258</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 1 084B77AF">
+          <td>Panel 002</td>
+          <td class="mono col-id">Switch 1</td>
+          <td class="mono muted">LQSE-4S8-120-D</td>
+          <td class="mono">084B77AF</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 2 084B779B">
+          <td>Panel 002</td>
+          <td class="mono col-id">Switch 2</td>
+          <td class="mono muted">LQSE-4S8-120-D</td>
+          <td class="mono">084B779B</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 3 084B77AB">
+          <td>Panel 002</td>
+          <td class="mono col-id">Switch 3</td>
+          <td class="mono muted">LQSE-4S8-120-D</td>
+          <td class="mono">084B77AB</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+<tr data-search="Panel 002 Switch 4 084B7797">
+          <td>Panel 002</td>
+          <td class="mono col-id">Switch 4</td>
+          <td class="mono muted">LQSE-4S8-120-D</td>
+          <td class="mono">084B7797</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="issues">
+    <div class="section-head">
+      <span class="section-num">Log</span>
+      <h2 class="section-title">Issues &amp; Changes &mdash; Villa 3</h2>
+      <span class="section-sub">No issues logged</span>
+    </div>
+    <div class="issues-grid">
+      <div class="no-issues">No issues logged for this villa yet.</div>
+    </div>
+  </section>
+
+  <footer>
+    Source: <i>Apes Hill Hilltop Villas Master Commissioning Tracker</i>, "Villa 3" tab and "Issues &amp; Changes" tab, synced November 2, 2026.
+    No Lutron Designer report package has been processed for this villa yet &mdash; serials and test results come from the tracker alone. Once a report package arrives, engraving and fixture-level detail can be added the same way it was for Villa 15.
+  </footer>
+</div>
+
+<script>
+(function(){
+  var input = document.getElementById('filter');
+  var allRows = Array.prototype.slice.call(document.querySelectorAll('[data-search]'));
+  var groupRowSelectors = '.phase-row, .module-row';
+
+  function applyFilter(){
+    var q = input.value.trim().toLowerCase();
+    allRows.forEach(function(el){
+      if (el.matches(groupRowSelectors)) return;
+      var blob = (el.getAttribute('data-search') || el.textContent).toLowerCase();
+      el.classList.toggle('is-hidden', q.length > 0 && blob.indexOf(q) === -1);
+    });
+    document.querySelectorAll('table').forEach(function(t){
+      var body = t.querySelector('tbody');
+      if(!body) return;
+      var rows = Array.prototype.slice.call(body.children).filter(function(r){ return !r.classList.contains('no-match-row'); });
+      var anyVisible = false;
+      rows.forEach(function(r){
+        if (r.matches(groupRowSelectors)){
+          var next = r.nextElementSibling, hasVisible = false;
+          while(next && !next.matches(groupRowSelectors) && !next.classList.contains('no-match-row')){
+            if(!next.classList.contains('is-hidden')) hasVisible = true;
+            next = next.nextElementSibling;
+          }
+          r.classList.toggle('is-hidden', !hasVisible);
+          if (hasVisible) anyVisible = true;
+        } else if (!r.classList.contains('is-hidden')) {
+          anyVisible = true;
+        }
+      });
+      var msgRow = body.querySelector('.no-match-row');
+      if (!msgRow){
+        msgRow = document.createElement('tr');
+        msgRow.className = 'no-match-row';
+        var cols = t.querySelectorAll('thead th').length || 1;
+        msgRow.innerHTML = '<td colspan="'+cols+'" class="no-match">No rows match &ldquo;<span class="q"></span>&rdquo; in this section.</td>';
+        body.appendChild(msgRow);
+      }
+      msgRow.querySelector('.q').textContent = input.value.trim();
+      msgRow.classList.toggle('is-hidden', anyVisible || q.length === 0);
+    });
+    var grid = document.querySelector('.issues-grid');
+    if (grid){
+      var cardsVisible = Array.prototype.slice.call(grid.children).some(function(c){
+        return !c.classList.contains('no-match-row') && !c.classList.contains('is-hidden');
+      });
+      var gridMsg = grid.querySelector('.no-match-row');
+      if (!gridMsg){
+        gridMsg = document.createElement('div');
+        gridMsg.className = 'no-match-row no-match';
+        gridMsg.innerHTML = 'No issues match &ldquo;<span class="q"></span>&rdquo;.';
+        grid.appendChild(gridMsg);
+      }
+      gridMsg.querySelector('.q').textContent = input.value.trim();
+      gridMsg.classList.toggle('is-hidden', cardsVisible || q.length === 0);
+    }
+  }
+  input.addEventListener('input', applyFilter);
+})();
+</script>
+
+</body>
+</html>
