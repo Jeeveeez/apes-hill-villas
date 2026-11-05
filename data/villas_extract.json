@@ -25,7 +25,7 @@
     "sw_mod_den": "/ 4",
     "sheet_name": "Villa 2",
     "header_a1": "VILLA 2  |  HOMEWORKS COMMISSIONING",
-    "notes": "COMMISSIONING NOTES\nOperationally complete per site confirmation; granular keypad/task evidence awaits Designer report.\nOct 29 closeout note: Villa 2 plug-in lamp dimmers are currently not plugged in because the furniture is already in place. Final identification/labeling, activation/configuration and functional testing will be completed once the dimmers are plugged in and accessible.\nNov 4: All 10 plug-in lamp dimmers are now powered/accessed and activated. Serial-number capture is pending the Designer screenshot; function-test status will be confirmed separately.\nNov 4: Designer screenshot received and serial numbers captured for all 10 plug-in lamp dimmers plus the hybrid repeater. All 10 lamp dimmers remain Activated = Pass; final function-test confirmation is still pending.",
+    "notes": "COMMISSIONING NOTES\nOperationally complete per site confirmation; granular keypad/task evidence awaits Designer report.\nOct 29 closeout note: Villa 2 plug-in lamp dimmers are currently not plugged in because the furniture is already in place. Final identification/labeling, activation/configuration and functional testing will be completed once the dimmers are plugged in and accessible.\nNov 4: All 10 plug-in lamp dimmers are now powered/accessed and activated. Serial-number capture is pending the Designer screenshot; function-test status will be confirmed separately.\nNov 4: Designer screenshot received and serial numbers captured for all 10 plug-in lamp dimmers plus the hybrid repeater. All 10 lamp dimmers remain Activated = Pass; final function-test confirmation is still pending.\nNov 5: Confirmed all 10 plug-in lamp dimmers have been installed, activated and function tested successfully. All are working. V2-001 closed; no Villa 2 lamp-dimmer issues remain.",
     "checklist": [
       [
         "Preflight \u2014 Confirm villa identifier and access",
@@ -964,8 +964,8 @@
         "HQR-3PD-1-SW",
         "05919F91",
         "Pass",
-        "Pending",
-        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
+        "Pass",
+        "Installed, activated and function tested; working. Final confirmation 2026-11-05."
       ],
       [
         "LD-LIVING",
@@ -973,8 +973,8 @@
         "HQR-3PD-1-SW",
         "0929F7B6",
         "Pass",
-        "Pending",
-        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
+        "Pass",
+        "Installed, activated and function tested; working. Final confirmation 2026-11-05."
       ],
       [
         "LD-01-R",
@@ -982,8 +982,8 @@
         "HQR-3PD-1-SW",
         "05919CCA",
         "Pass",
-        "Pending",
-        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
+        "Pass",
+        "Installed, activated and function tested; working. Final confirmation 2026-11-05."
       ],
       [
         "LD-01-L",
@@ -991,8 +991,8 @@
         "HQR-3PD-1-SW",
         "05919F9A",
         "Pass",
-        "Pending",
-        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
+        "Pass",
+        "Installed, activated and function tested; working. Final confirmation 2026-11-05."
       ],
       [
         "LD-02-R",
@@ -1000,8 +1000,8 @@
         "HQR-3PD-1-SW",
         "05919F9B",
         "Pass",
-        "Pending",
-        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
+        "Pass",
+        "Installed, activated and function tested; working. Final confirmation 2026-11-05."
       ],
       [
         "LD-02-L",
@@ -1009,8 +1009,8 @@
         "HQR-3PD-1-SW",
         "05919CC8",
         "Pass",
-        "Pending",
-        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
+        "Pass",
+        "Installed, activated and function tested; working. Final confirmation 2026-11-05."
       ],
       [
         "LD-03-R",
@@ -1018,8 +1018,8 @@
         "HQR-3PD-1-SW",
         "05919F90",
         "Pass",
-        "Pending",
-        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
+        "Pass",
+        "Installed, activated and function tested; working. Final confirmation 2026-11-05."
       ],
       [
         "LD-03-L",
@@ -1027,8 +1027,8 @@
         "HQR-3PD-1-SW",
         "05919F96",
         "Pass",
-        "Pending",
-        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
+        "Pass",
+        "Installed, activated and function tested; working. Final confirmation 2026-11-05."
       ],
       [
         "LD-04-R",
@@ -1036,8 +1036,8 @@
         "HQR-3PD-1-SW",
         "05919CC5",
         "Pass",
-        "Pending",
-        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
+        "Pass",
+        "Installed, activated and function tested; working. Final confirmation 2026-11-05."
       ],
       [
         "LD-04-L",
@@ -1045,8 +1045,8 @@
         "HQR-3PD-1-SW",
         "0929F7B0",
         "Pass",
-        "Pending",
-        "Activated 2026-11-04; serial number captured from Designer screenshot. Final function-test confirmation pending."
+        "Pass",
+        "Installed, activated and function tested; working. Final confirmation 2026-11-05."
       ],
       [
         "Hybrid Repeater",
