@@ -176,21 +176,17 @@ SUMMARY_TEXT = {
     "Villa 6": "Villa 6 is complete &mdash; the North Hall field condition (physically looped with the Foyer circuit) is resolved, and the revised program has been transferred and verified. All 26 keypads and both module panels are active; per-device test evidence for several loads and lamp dimmers is still being backfilled from the Designer report.",
     "Villa 7": "Villa 7 is practically complete &mdash; all 26 keypads and every programmed load have been tested and are working. One item remains: three bedroom lamp dimmers are missing from the unit.",
 }
+# Supplementary outstanding items NOT tracked as rows in the Issues &
+# Changes tab (checklist/closeout gaps, external dependencies mentioned
+# only in COMMISSIONING NOTES) -- anything that IS a tracked issue no
+# longer belongs here: it's now derived live from villa_issues.json by
+# issue_outstanding_items() above, so it can never go stale the way these
+# hand-written entries kept doing every time an issue opened or closed.
 OUTSTANDING = {
-    "Villa 15": [
-        ("b-pend", "Electrician scheduled", "Garage lights don&rsquo;t switch off &mdash; attending Oct 30 to fix."),
-        ("b-pend", "Needs labeling", "Foyer and Living Room dimmer switches still need their name labels."),
-        ("b-wait", "Client action", "Foyer bulbs are dead &mdash; replace at your convenience, not a system fault."),
-    ],
     "Villa 3": [
         ("b-pend", "Final signoff", "Final project backup and functional walkthrough/signoff still need completing."),
         ("b-wait", "Apes Hill IT", "Permanent network uplink cabling is scheduled for Nov 5 &mdash; an external dependency that doesn't block local operation."),
     ],
-    "Villa 2": [("b-wait", "Client action", "Plug-in lamp dimmers aren&rsquo;t accessible yet &mdash; furniture is already in place over them.")],
-    "Villa 4": [("b-pend", "Apes Hill follow-up", "Two lamp dimmers are missing (LD-FOYER, LD-LIVING) &mdash; confirm replacement supply.")],
-    "Villa 5": [("b-pend", "Apes Hill follow-up", "Four lamp dimmers are missing (LD-FOYER, LD-LIVING, LD-01-L, LD-04-L) &mdash; confirm replacement supply.")],
-    "Villa 6": [],
-    "Villa 7": [("b-pend", "Apes Hill follow-up", "Three bedroom lamp dimmers are missing (LD-03-R, LD-03-L, LD-04-L) &mdash; confirm replacement supply.")],
 }
 
 TEMPLATE = r"""<title>Villa __VNUM__ Commissioning</title>
@@ -830,16 +826,38 @@ h1.villa-title{
 def kpi_warn(cond):
     return "warn" if cond else ""
 
-def build_outstanding_html(villa_key, dense=True):
-    items = OUTSTANDING.get(villa_key, [])
+# Label for a non-closed issue's badge, by its tracker Status. Anything not
+# listed here (today: Open, Deferred; tomorrow: whatever new status word
+# shows up in the sheet) falls back to showing that status word itself --
+# deliberately not a whitelist, so a status we've never seen still renders
+# sensibly instead of silently vanishing from every outstanding list and
+# every open-issue count the way "Deferred" used to.
+ISSUE_BADGE_LABEL = {"Waiting": "Waiting on client"}
+
+
+def issue_outstanding_items(issues):
+    """(cls, label, text) tuples for a villa's still-open issues, straight
+    from the Issues & Changes tracker -- this is what keeps "before final
+    sign-off" from going stale the moment an issue is opened or closed in
+    the sheet, instead of needing a hand-edit here every time."""
+    items = []
+    for row in issues:
+        status = row[6]
+        if status == "Closed":
+            continue
+        cls = "b-wait" if status == "Waiting" else "b-pend"
+        label = ISSUE_BADGE_LABEL.get(status, status)
+        items.append((cls, label, esc(row[4])))
+    return items
+
+
+def build_outstanding_html(villa_key, issues, dense=True):
+    items = issue_outstanding_items(issues) + OUTSTANDING.get(villa_key, [])
     if not items:
         return '<div class="none-outstanding">Nothing outstanding right now.</div>' if not dense else ""
     rows = []
     for cls, label, text in items:
-        if dense:
-            rows.append(f'<div class="outstanding-item"><span class="badge {cls}">{label}</span><div>{text}</div></div>')
-        else:
-            rows.append(f'<div class="outstanding-item"><span class="badge {cls}">{label}</span><div>{text}</div></div>')
+        rows.append(f'<div class="outstanding-item"><span class="badge {cls}">{label}</span><div>{text}</div></div>')
     inner = "\n".join(rows)
     if dense:
         return f'<div class="outstanding-list">{inner}</div>'
@@ -877,15 +895,21 @@ for vkey in VILLAS:
 
     issues = issues_by_villa.get(vkey, [])
     issues_html = render_issues(issues, vnum) if issues else '<div class="no-issues">No issues logged for this villa yet.</div>'
-    open_count = sum(1 for r in issues if r[6] in ('Open', 'Waiting'))
     total_issues = len(issues)
+    # "Open" = anything not literally Closed -- never a whitelist of known
+    # status words, so a new one (Deferred, To Verify, ...) still counts
+    # instead of silently vanishing from the open-issue count.
+    open_count = sum(1 for r in issues if r[6] != 'Closed')
     closed_count = sum(1 for r in issues if r[6] == 'Closed')
-    waiting_count = sum(1 for r in issues if r[6] == 'Waiting')
-    open_only = sum(1 for r in issues if r[6] == 'Open')
+    status_counts = {}
+    for r in issues:
+        if r[6] != 'Closed':
+            status_counts[r[6]] = status_counts.get(r[6], 0) + 1
     issues_sub_parts = []
     if closed_count: issues_sub_parts.append(f"{closed_count} closed")
-    if open_only: issues_sub_parts.append(f"{open_only} open")
-    if waiting_count: issues_sub_parts.append(f"{waiting_count} waiting on client")
+    for issue_status, count in sorted(status_counts.items()):
+        label = "waiting on client" if issue_status == "Waiting" else issue_status.lower()
+        issues_sub_parts.append(f"{count} {label}")
     issues_sub = " · ".join(issues_sub_parts) if issues_sub_parts else "No issues logged"
 
     cl_pass = sum(1 for r in d['checklist'] if r[1] == 'Pass')
@@ -917,7 +941,7 @@ for vkey in VILLAS:
     out = out.replace("__OPENISS__", str(open_count))
     out = out.replace("__TOTALISS__", str(total_issues))
     out = out.replace("__ISSWARN__", kpi_warn(open_count > 0))
-    out = out.replace("__OUTSTANDING_HTML__", build_outstanding_html(vkey, dense=True))
+    out = out.replace("__OUTSTANDING_HTML__", build_outstanding_html(vkey, issues, dense=True))
     out = out.replace("__BASETEMPLATE__", esc(d['base_template']))
     out = out.replace("__TECH__", esc(d['technician'] or '—'))
     out = out.replace("__DATEWORKED__", esc(d['date_worked'] or '—'))
@@ -970,7 +994,7 @@ for vkey in VILLAS:
     sout = sout.replace("__MODACT__", str(mod_act))
     sout = sout.replace("__TASKPASS__", str(tasks_pass))
     sout = sout.replace("__DEFECTS__", str(defects))
-    sout = sout.replace("__STATUS_OUTSTANDING__", build_outstanding_html(vkey, dense=False))
+    sout = sout.replace("__STATUS_OUTSTANDING__", build_outstanding_html(vkey, issues, dense=False))
     sout = sout.replace("__TECH_URL__", TECH_URLS[vnum])
     floorplan_btn_status = (
         '<a class="btn" href="floor-plan.html">View Floor Plan &rarr;</a>'

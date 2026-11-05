@@ -284,12 +284,10 @@ footer a{color:var(--muted); text-decoration:underline;}
       <div class="kpi"><div class="kpi-label">Modules active</div><div class="kpi-value">12<small>/12</small></div></div>
       <div class="kpi warn"><div class="kpi-label">Checklist passed</div><div class="kpi-value">19<small>/23</small></div></div>
       <div class="kpi"><div class="kpi-label">Open defects</div><div class="kpi-value">0</div></div>
-      <div class="kpi warn"><div class="kpi-label">Open issues</div><div class="kpi-value">3<small>/7</small></div></div>
+      <div class="kpi warn"><div class="kpi-label">Open issues</div><div class="kpi-value">1<small>/7</small></div></div>
     </div>
 
-    <div class="outstanding-list"><div class="outstanding-item"><span class="badge b-pend">Electrician scheduled</span><div>Garage lights don&rsquo;t switch off &mdash; attending Oct 30 to fix.</div></div>
-<div class="outstanding-item"><span class="badge b-pend">Needs labeling</span><div>Foyer and Living Room dimmer switches still need their name labels.</div></div>
-<div class="outstanding-item"><span class="badge b-wait">Client action</span><div>Foyer bulbs are dead &mdash; replace at your convenience, not a system fault.</div></div></div>
+    <div class="outstanding-list"><div class="outstanding-item"><span class="badge b-pend">Deferred</span><div>Garage downlights are confirmed on Breaker #16. The main cable serving the Electrical Room and Owner&#x27;s Store was traced, but the Garage downlight return could not be located. Further investigation will require removing selected downlights in the Electrical Room and Owner&#x27;s Store to locate the return cable, then rerouting it to the Lutron module if accessible. Best deferred until after the busy season when villa access is easier. Until corrected, the Garage downlights will remain on at 100% as they have been.</div></div></div>
 
     <p class="jump-link">Full technical record &mdash; checklist, keypad register, circuit-by-circuit test results &mdash; starts below. <a href="#notes">Jump to it &darr;</a></p>
   </section>
@@ -326,6 +324,8 @@ footer a{color:var(--muted); text-decoration:underline;}
 <li><span class="note-mark mono">06</span><span>Oct 29: Three additional lamp dimmers were found in the Bedroom 4 closet beyond the controlled template/device schedule. Record as an installation variation for future service reference.</span></li>
 <li><span class="note-mark mono">07</span><span>Oct 29: Final testing complete. Villa 15 tested and working; all commissioning/programming issues resolved. Villa 15 declared 100% complete.</span></li>
 <li><span class="note-mark mono">08</span><span>Oct 29 closeout correction: Villa 15 commissioning/programming is complete, but three closeout items remain. INTERNAL: Garage lights are not switching off at all; electrician is scheduled to attend Oct 30 to investigate. INTERNAL: Foyer and Living lamp dimmers both require labels. CLIENT: Foyer bulbs are not working and need to be replaced by the client.</span></li>
+<li><span class="note-mark mono">09</span><span>Nov 5: Foyer and Living lamp-dimmer labeling completed. Bulb-related closeout item resolved.</span></li>
+<li><span class="note-mark mono">10</span><span>Nov 5: Garage downlights traced to Breaker #16 in the electrical panel. The main cable serving the Electrical Room and Owner&#x27;s Store was traced, but the return for the Garage downlights could not be located. Further invasive investigation is required. Recommended to defer until after the busy season when villa access is easier. Garage downlights will remain on at 100% as they have been. Future corrective work should begin by removing selected downlights in the Electrical Room and Owner&#x27;s Store to locate the return cable, then reroute that return to the Lutron module if accessible.</span></li>
       </ol>
     </div>
   </section>
@@ -1278,7 +1278,7 @@ footer a{color:var(--muted); text-decoration:underline;}
     <div class="section-head">
       <span class="section-num">Log</span>
       <h2 class="section-title">Issues &amp; Changes &mdash; Villa 15</h2>
-      <span class="section-sub">4 closed · 2 open · 1 waiting on client</span>
+      <span class="section-sub">6 closed · 1 deferred</span>
     </div>
     <div class="issues-grid">
       <article class="issue-card" id="iss-V15-001" data-search="V15-001 KP16 / Gang 1 &amp; Gang 2 Programming Change The two physical keypads at KP16 are installed in opposite gang positions relative to the controlled template. Programming was adjusted in Villa 15 to match the actual keypad positions. Closed Villa 15 program updated to match the reversed KP16 keypad positions. Retain as a villa-specific deviation.">
@@ -1305,15 +1305,15 @@ footer a{color:var(--muted); text-decoration:underline;}
           <p class="issue-res"><span class="label-sm">Resolution</span> Programming adjusted to accommodate the actual South Hall/Living Room field condition. Final system test passed.</p>
           <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29 &middot; Closed 2026-10-29</p>
         </article>
-<article class="issue-card" id="iss-V15-003" data-search="V15-003 Garage Downlights — Output 4-4 Defect Garage lights do not switch off at all. Earlier closeout assessment was premature; functional issue remains and requires electrician investigation. Open Electrician to attend Villa 15 on Oct 30 to investigate why garage lights remain on continuously, correct the field wiring/control condition as required, then MNE to verify operation.">
+<article class="issue-card" id="iss-V15-003" data-search="V15-003 Garage Downlights — Output 4-4 Defect Garage downlights are confirmed on Breaker #16. The main cable serving the Electrical Room and Owner&#x27;s Store was traced, but the Garage downlight return could not be located. Further investigation will require removing selected downlights in the Electrical Room and Owner&#x27;s Store to locate the return cable, then rerouting it to the Lutron module if accessible. Best deferred until after the busy season when villa access is easier. Until corrected, the Garage downlights will remain on at 100% as they have been. Deferred Electrician to attend Villa 15 on Oct 30 to investigate why garage lights remain on continuously, correct the field wiring/control condition as required, then MNE to verify operation.">
           <header class="issue-head">
             <span class="mono issue-id">V15-003</span>
             <span class="pri-dot pri-high" title="High priority"></span>
             <span class="issue-area">Garage Downlights — Output 4-4</span>
-            <span class="badge b-pend" data-search="Open">Open</span>
+            <span class="badge b-nr" data-search="Deferred">Deferred</span>
           </header>
           <p class="issue-type">Defect</p>
-          <p class="issue-desc">Garage lights do not switch off at all. Earlier closeout assessment was premature; functional issue remains and requires electrician investigation.</p>
+          <p class="issue-desc">Garage downlights are confirmed on Breaker #16. The main cable serving the Electrical Room and Owner&#x27;s Store was traced, but the Garage downlight return could not be located. Further investigation will require removing selected downlights in the Electrical Room and Owner&#x27;s Store to locate the return cable, then rerouting it to the Lutron module if accessible. Best deferred until after the busy season when villa access is easier. Until corrected, the Garage downlights will remain on at 100% as they have been.</p>
           <p class="issue-res"><span class="label-sm">Resolution</span> Electrician to attend Villa 15 on Oct 30 to investigate why garage lights remain on continuously, correct the field wiring/control condition as required, then MNE to verify operation.</p>
           <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29</p>
         </article>
@@ -1341,29 +1341,29 @@ footer a{color:var(--muted); text-decoration:underline;}
           <p class="issue-res"><span class="label-sm">Resolution</span> Documented for future service and asset reference. No corrective action required as part of Villa 15 commissioning.</p>
           <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29 &middot; Closed 2026-10-29</p>
         </article>
-<article class="issue-card" id="iss-V15-006" data-search="V15-006 Foyer &amp; Living Lamp Dimmers — Labels Observation The Foyer and Living Room lamp dimmers are operational but both still require physical labels before final closeout. Open MNE to label the Foyer and Living Room lamp dimmers.">
+<article class="issue-card" id="iss-V15-006" data-search="V15-006 Foyer &amp; Living Lamp Dimmers — Labels Observation Foyer and Living Room lamp dimmers have now been physically labelled. Closeout item resolved. Closed MNE to label the Foyer and Living Room lamp dimmers.">
           <header class="issue-head">
             <span class="mono issue-id">V15-006</span>
             <span class="pri-dot pri-low" title="Low priority"></span>
             <span class="issue-area">Foyer &amp; Living Lamp Dimmers — Labels</span>
-            <span class="badge b-pend" data-search="Open">Open</span>
+            <span class="badge b-pass" data-search="Closed">Closed</span>
           </header>
           <p class="issue-type">Observation</p>
-          <p class="issue-desc">The Foyer and Living Room lamp dimmers are operational but both still require physical labels before final closeout.</p>
+          <p class="issue-desc">Foyer and Living Room lamp dimmers have now been physically labelled. Closeout item resolved.</p>
           <p class="issue-res"><span class="label-sm">Resolution</span> MNE to label the Foyer and Living Room lamp dimmers.</p>
-          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29</p>
+          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29 &middot; Closed 2026-11-05</p>
         </article>
-<article class="issue-card" id="iss-V15-007" data-search="V15-007 Foyer Bulbs Client Request Foyer bulbs are not working. Lutron control/dimmer is operational; failed bulbs require replacement by the client. Waiting Client to replace the failed Foyer bulbs. No Lutron programming repair required for this item.">
+<article class="issue-card" id="iss-V15-007" data-search="V15-007 Foyer Bulbs Client Request Bulb-related closeout item has been resolved. Lutron control remains operational. Closed Client to replace the failed Foyer bulbs. No Lutron programming repair required for this item.">
           <header class="issue-head">
             <span class="mono issue-id">V15-007</span>
             <span class="pri-dot pri-low" title="Low priority"></span>
             <span class="issue-area">Foyer Bulbs</span>
-            <span class="badge b-wait" data-search="Waiting">Waiting</span>
+            <span class="badge b-pass" data-search="Closed">Closed</span>
           </header>
           <p class="issue-type">Client Request</p>
-          <p class="issue-desc">Foyer bulbs are not working. Lutron control/dimmer is operational; failed bulbs require replacement by the client.</p>
+          <p class="issue-desc">Bulb-related closeout item has been resolved. Lutron control remains operational.</p>
           <p class="issue-res"><span class="label-sm">Resolution</span> Client to replace the failed Foyer bulbs. No Lutron programming repair required for this item.</p>
-          <p class="issue-meta mono">Client / Apes Hill &middot; Opened 2026-10-29</p>
+          <p class="issue-meta mono">Client / Apes Hill &middot; Opened 2026-10-29 &middot; Closed 2026-11-05</p>
         </article>
     </div>
   </section>
