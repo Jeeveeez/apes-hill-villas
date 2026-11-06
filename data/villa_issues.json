@@ -263,12 +263,12 @@
       "Villa 6",
       "Foyer / Living Room Lamp Dimmers",
       "Defect",
-      "Two expected HQR-3PD-1-SW lamp dimmers are missing from Villa 6: LD-FOYER (Foyer) and LD-LIVING (Kitchen/Living Room). These remain outstanding for punch-list closeout.",
+      "Foyer and Living Room HQR-3PD-1-SW lamp dimmers have been installed and activated. Foyer SN 05919F99; Living SN 0929F7BA. Both shown Good in Designer and confirmed working. No Villa 6 lamp-dimmer punch-list items remain.",
       "Medium",
-      "Open",
+      "Closed",
       "Jeevan Panjwani",
       "2026-11-03",
-      "",
+      "2026-11-06",
       "",
       ""
     ]
@@ -277,14 +277,14 @@
     [
       "V7-001",
       "Villa 7",
-      "Bedroom Lamp Dimmers",
+      "Lamp Dimmers \u2014 Foyer, Living Room, Bedroom 3 R/L, Bedroom 4 L",
       "Defect",
-      "Three expected HQR-3PD-1-SW bedroom lamp dimmers are missing from Villa 7: LD-03-R (Bedroom 3 right bedside), LD-03-L (Bedroom 3 left bedside), and LD-04-L (Bedroom 4 left bedside). Five other bedroom lamp dimmers are present and activated.",
+      "All five previously missing HQR-3PD-1-SW lamp dimmers were installed/programmed in Villa 7: LD-FOYER, LD-LIVING, LD-03-R, LD-03-L and LD-04-L. Designer shows all lamp dimmers Activated: Good; serials captured and final function testing completed. No lamp-dimmer punch-list items remain.",
       "Medium",
-      "Open",
+      "Closed",
       "Jeevan Panjwani",
       "2026-10-29",
-      "",
+      "2026-11-06",
       "Advise Apes Hill of the three missing bedroom lamp dimmers and determine replacement supply/install before final closeout.",
       "No"
     ]

@@ -4644,7 +4644,7 @@
     "project_file": "Apes Hill Hill Top Villas - Villa #6",
     "factory_reset_date": "10/29/2026",
     "backup_location": "",
-    "open_defects": 2,
+    "open_defects": 0,
     "kp_act": 26,
     "kp_act_den": "/ 26",
     "kp_test": 0,
@@ -4657,7 +4657,7 @@
     "sw_mod_den": "/ 4",
     "sheet_name": "Villa 6",
     "header_a1": "VILLA 6  |  HOMEWORKS COMMISSIONING",
-    "notes": "COMMISSIONING NOTES\nOct 29: Processor factory reset completed. Villa 6 program updated and loaded. All 26 keypads activated; all 8 adaptive modules and 4 switching modules activated. All bedroom lamp dimmers activated. Load testing in progress.\nOct 29: North Hall (Adaptive 1 / 1-3 \u2014 Living L17 North Hall) and South Hall (Adaptive 2 / 2-3 \u2014 Living L39 South Hall) are not responding during load testing. Investigation required.\nOct 29: South Hall (Adaptive 2 / 2-3 \u2014 Living L39 South Hall) confirmed working. North Hall (Adaptive 1 / 1-3 \u2014 Living L17 North Hall) is operating together with the Foyer lights instead of independently. Panel inspection underway to determine whether the returns/circuits are doubled up.\nOct 29: Panel inspection confirmed North Hall has no dedicated return and is physically looped with the Foyer circuit. North Hall should not remain as an independent programmed load in Villa 6. Remove Living L17 North Hall / Adaptive 1 output 1-3 from the program and treat the North Hall lights as part of the Foyer circuit.\nOct 29: Kitchen Exhaust Fan / Load 35 (Adaptive 2 / 2-2) does not appear to be operating. No load/conductor marked 35 is visible in the panel. One spare cable is present and may be the fan feed, but this has not been confirmed. Direct test deferred because ambient site noise is too high to reliably hear fan operation.\nOct 29: Bedroom 3 Bathroom and Closet are also flipped in Villa 6 relative to the Villa 2/template mapping. Correct Villa 6 assignment is 7-2 = Bathroom 3 L10 Downlights and 7-3 = Bedroom 3 L09 Closet. Program adjustment required, then retest. Villas 4, 5 and 6 now all match this arrangement, making Villa 2 the likely anomaly.\nOct 29: All other lighting loads tested and working except the already documented North Hall programming removal, Kitchen Exhaust Fan investigation, and Bedroom 3 Bathroom/Closet correction. Bathroom 3 and Bathroom 4 fan outputs are also flipped in Villa 6, matching Villas 4 and 5. Program being changed so 4-3 = Bathroom 3 L12/13 Fan and 4-4 = Bathroom 4 L03/05 Fan; retest pending.\nOct 29: Revised Villa 6 program transferred and changes tested. Bedroom 3 Bathroom/Closet mapping and Bathroom 3/4 fan mapping corrected and verified. North Hall independent load removed from program because it is physically looped with Foyer. The previously unidentified spare conductor was confirmed as Load 35 for the Kitchen Exhaust Fan and landed on the correct Adaptive 2 / 2-2 module output. Villa 6 is practically complete.\nOct 29 correction: North Hall was identified for removal from the Villa 6 program, but that final edit/re-transfer has NOT yet been completed. Return to Villa 6, remove independent North Hall / output 1-3 from the program, transfer the revised file, and verify Foyer/North Hall behavior.\nOct 29: North Hall independent load/output 1-3 has now been removed from the Villa 6 program. Revised transfer back to the processor is still pending confirmation.\nNov 3: Final revised program loaded to the processor with the independent North Hall load/output 1-3 removed from programming. Villa 6 marked Complete.\nNov 3: Foyer and Living Room HQR-3PD-1-SW lamp dimmers confirmed missing on site. Logged as V6-005 for punch-list closeout; Apes Hill to provide replacements.",
+    "notes": "COMMISSIONING NOTES\nOct 29: Processor factory reset completed. Villa 6 program updated and loaded. All 26 keypads activated; all 8 adaptive modules and 4 switching modules activated. All bedroom lamp dimmers activated. Load testing in progress.\nOct 29: North Hall (Adaptive 1 / 1-3 \u2014 Living L17 North Hall) and South Hall (Adaptive 2 / 2-3 \u2014 Living L39 South Hall) are not responding during load testing. Investigation required.\nOct 29: South Hall (Adaptive 2 / 2-3 \u2014 Living L39 South Hall) confirmed working. North Hall (Adaptive 1 / 1-3 \u2014 Living L17 North Hall) is operating together with the Foyer lights instead of independently. Panel inspection underway to determine whether the returns/circuits are doubled up.\nOct 29: Panel inspection confirmed North Hall has no dedicated return and is physically looped with the Foyer circuit. North Hall should not remain as an independent programmed load in Villa 6. Remove Living L17 North Hall / Adaptive 1 output 1-3 from the program and treat the North Hall lights as part of the Foyer circuit.\nOct 29: Kitchen Exhaust Fan / Load 35 (Adaptive 2 / 2-2) does not appear to be operating. No load/conductor marked 35 is visible in the panel. One spare cable is present and may be the fan feed, but this has not been confirmed. Direct test deferred because ambient site noise is too high to reliably hear fan operation.\nOct 29: Bedroom 3 Bathroom and Closet are also flipped in Villa 6 relative to the Villa 2/template mapping. Correct Villa 6 assignment is 7-2 = Bathroom 3 L10 Downlights and 7-3 = Bedroom 3 L09 Closet. Program adjustment required, then retest. Villas 4, 5 and 6 now all match this arrangement, making Villa 2 the likely anomaly.\nOct 29: All other lighting loads tested and working except the already documented North Hall programming removal, Kitchen Exhaust Fan investigation, and Bedroom 3 Bathroom/Closet correction. Bathroom 3 and Bathroom 4 fan outputs are also flipped in Villa 6, matching Villas 4 and 5. Program being changed so 4-3 = Bathroom 3 L12/13 Fan and 4-4 = Bathroom 4 L03/05 Fan; retest pending.\nOct 29: Revised Villa 6 program transferred and changes tested. Bedroom 3 Bathroom/Closet mapping and Bathroom 3/4 fan mapping corrected and verified. North Hall independent load removed from program because it is physically looped with Foyer. The previously unidentified spare conductor was confirmed as Load 35 for the Kitchen Exhaust Fan and landed on the correct Adaptive 2 / 2-2 module output. Villa 6 is practically complete.\nOct 29 correction: North Hall was identified for removal from the Villa 6 program, but that final edit/re-transfer has NOT yet been completed. Return to Villa 6, remove independent North Hall / output 1-3 from the program, transfer the revised file, and verify Foyer/North Hall behavior.\nOct 29: North Hall independent load/output 1-3 has now been removed from the Villa 6 program. Revised transfer back to the processor is still pending confirmation.\nNov 3: Final revised program loaded to the processor with the independent North Hall load/output 1-3 removed from programming. Villa 6 marked Complete.\nNov 3: Foyer and Living Room HQR-3PD-1-SW lamp dimmers confirmed missing on site. Logged as V6-005 for punch-list closeout; Apes Hill to provide replacements.\nNov 6: Foyer and Living Room lamp dimmers installed and activated. Foyer SN 05919F99; Living SN 0929F7BA. Both shown Good in Designer and confirmed working. V6-005 closed. All recorded Villa 6 issues are now resolved.",
     "checklist": [
       [
         "Preflight \u2014 Confirm villa identifier and access",
@@ -5594,19 +5594,19 @@
         "LD-FOYER",
         "Foyer",
         "HQR-3PD-1-SW",
-        "",
-        "Fail",
-        "N/A",
-        "Missing on site. Foyer lamp dimmer not present; Apes Hill to provide replacement. See V6-005."
+        "05919F99",
+        "Pass",
+        "Pass",
+        "Installed/activated 2026-11-06; shown Good in Designer and confirmed working. V6-005 closed."
       ],
       [
         "LD-LIVING",
         "Kitchen/Living Room",
         "HQR-3PD-1-SW",
-        "",
-        "Fail",
-        "N/A",
-        "Missing on site. Living Room lamp dimmer not present; Apes Hill to provide replacement. See V6-005."
+        "0929F7BA",
+        "Pass",
+        "Pass",
+        "Installed/activated 2026-11-06; shown Good in Designer and confirmed working. V6-005 closed."
       ],
       [
         "LD-01-R",
@@ -5802,7 +5802,7 @@
     "project_file": "Apes Hill Hill Top Villas - Villa #7",
     "factory_reset_date": "",
     "backup_location": "",
-    "open_defects": 3,
+    "open_defects": 0,
     "kp_act": 26,
     "kp_act_den": "/ 26",
     "kp_test": 26,
@@ -5815,7 +5815,7 @@
     "sw_mod_den": "/ 4",
     "sheet_name": "Villa 7",
     "header_a1": "VILLA 7  |  HOMEWORKS COMMISSIONING",
-    "notes": "COMMISSIONING NOTES\nOct 29: Villa 7 commissioning started. Project update and transfer process underway. Further activation/testing results pending.\nOct 29: All 26 keypads activated. All 8 adaptive dimming modules and 4 switching modules activated. Hybrid Repeater activated. Bedroom lamp dimmers activated: Bedroom 1 left/right, Bedroom 2 left/right, and Bedroom 4 right. Missing bedroom lamp dimmers: Bedroom 3 left, Bedroom 3 right, and Bedroom 4 left.\nOct 29: All Villa 7 lighting/fan loads tested and working. All 26 keypads function tested and working.\nOct 29: Villa 7 is practically complete. All programmed loads and all 26 keypads have been tested and are working. Only outstanding issue is V7-001 for three missing bedroom lamp dimmers: LD-03-R, LD-03-L and LD-04-L.",
+    "notes": "COMMISSIONING NOTES\nOct 29: Villa 7 commissioning started. Project update and transfer process underway. Further activation/testing results pending.\nOct 29: All 26 keypads activated. All 8 adaptive dimming modules and 4 switching modules activated. Hybrid Repeater activated. Bedroom lamp dimmers activated: Bedroom 1 left/right, Bedroom 2 left/right, and Bedroom 4 right. Missing bedroom lamp dimmers: Bedroom 3 left, Bedroom 3 right, and Bedroom 4 left.\nOct 29: All Villa 7 lighting/fan loads tested and working. All 26 keypads function tested and working.\nOct 29: Villa 7 is practically complete. All programmed loads and all 26 keypads have been tested and are working. Outstanding lamp dimmer count corrected to five: LD-FOYER, LD-LIVING, LD-03-R, LD-03-L and LD-04-L.\nNov 6: All five previously missing lamp dimmers were added/programmed. Designer shows all 10 lamp dimmers and the hybrid repeater Activated: Good. Serial numbers captured for all lamp dimmers. Villa 7 finished; V7-001 closed and no lamp-dimmer issues remain.",
     "checklist": [
       [
         "Preflight \u2014 Confirm villa identifier and access",
@@ -6752,19 +6752,19 @@
         "LD-FOYER",
         "Foyer",
         "HQR-3PD-1-SW",
-        "",
-        "Not Recorded",
-        "Not Recorded",
-        ""
+        "0929F7BD",
+        "Pass",
+        "Pass",
+        "Activated and functionally verified; shown Good in Designer. Villa 7 closeout completed 2026-11-06."
       ],
       [
         "LD-LIVING",
         "Kitchen/Living Room",
         "HQR-3PD-1-SW",
-        "",
-        "Not Recorded",
-        "Not Recorded",
-        ""
+        "0929CF71",
+        "Pass",
+        "Pass",
+        "Activated and functionally verified; shown Good in Designer. Villa 7 closeout completed 2026-11-06."
       ],
       [
         "LD-01-R",
@@ -6772,8 +6772,8 @@
         "HQR-3PD-1-SW",
         "05A2B479",
         "Pass",
-        "Not Recorded",
-        "Activated."
+        "Pass",
+        "Activated and functionally verified; shown Good in Designer. Villa 7 closeout completed 2026-11-06."
       ],
       [
         "LD-01-L",
@@ -6781,8 +6781,8 @@
         "HQR-3PD-1-SW",
         "05A2B47B",
         "Pass",
-        "Not Recorded",
-        "Activated."
+        "Pass",
+        "Activated and functionally verified; shown Good in Designer. Villa 7 closeout completed 2026-11-06."
       ],
       [
         "LD-02-R",
@@ -6790,8 +6790,8 @@
         "HQR-3PD-1-SW",
         "05919C0E",
         "Pass",
-        "Not Recorded",
-        "Activated."
+        "Pass",
+        "Activated and functionally verified; shown Good in Designer. Villa 7 closeout completed 2026-11-06."
       ],
       [
         "LD-02-L",
@@ -6799,26 +6799,26 @@
         "HQR-3PD-1-SW",
         "05919FA2",
         "Pass",
-        "Not Recorded",
-        "Activated."
+        "Pass",
+        "Activated and functionally verified; shown Good in Designer. Villa 7 closeout completed 2026-11-06."
       ],
       [
         "LD-03-R",
         "Bedroom 3 - Right bedside",
         "HQR-3PD-1-SW",
-        "",
-        "Fail",
-        "N/A",
-        "Missing on site. Expected Bedroom 3 right bedside lamp dimmer not present."
+        "0929CF77",
+        "Pass",
+        "Pass",
+        "Activated and functionally verified; shown Good in Designer. Villa 7 closeout completed 2026-11-06."
       ],
       [
         "LD-03-L",
         "Bedroom 3 - Left bedside",
         "HQR-3PD-1-SW",
-        "",
-        "Fail",
-        "N/A",
-        "Missing on site. Expected Bedroom 3 left bedside lamp dimmer not present."
+        "0929CF72",
+        "Pass",
+        "Pass",
+        "Activated and functionally verified; shown Good in Designer. Villa 7 closeout completed 2026-11-06."
       ],
       [
         "LD-04-R",
@@ -6826,17 +6826,17 @@
         "HQR-3PD-1-SW",
         "05A2B481",
         "Pass",
-        "Not Recorded",
-        "Activated."
+        "Pass",
+        "Activated and functionally verified; shown Good in Designer. Villa 7 closeout completed 2026-11-06."
       ],
       [
         "LD-04-L",
         "Bedroom 4 - Left bedside",
         "HQR-3PD-1-SW",
-        "",
-        "Fail",
-        "N/A",
-        "Missing on site. Expected Bedroom 4 left bedside lamp dimmer not present."
+        "0929CF69",
+        "Pass",
+        "Pass",
+        "Activated and functionally verified; shown Good in Designer. Villa 7 closeout completed 2026-11-06."
       ],
       [
         "Hybrid Repeater",
@@ -6844,8 +6844,8 @@
         "HQR-REP-120",
         "060835CA",
         "Pass",
-        "Not Recorded",
-        "Hybrid Repeater activated. Standard location: Laundry Room \u2014 first cabinet on right, behind false backing."
+        "Pass",
+        "Hybrid repeater shown Good in Designer; functionally verified during Villa 7 closeout."
       ]
     ],
     "modreg": [
