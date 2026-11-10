@@ -21,6 +21,15 @@ jobs:
     env:
       HAS_SHEET_SECRET: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON != '' }}
     steps:
+      - name: DEBUG secret check
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+        run: |
+          echo "HAS_SHEET_SECRET env value: '${{ env.HAS_SHEET_SECRET }}'"
+          echo "GOOGLE_SERVICE_ACCOUNT_JSON length: ${#GOOGLE_SERVICE_ACCOUNT_JSON}"
+          echo "GOOGLE_SHEET_ID length: ${#GOOGLE_SHEET_ID}"
+
       - name: Check out repo
         uses: actions/checkout@v4
 
