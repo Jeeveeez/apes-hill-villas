@@ -81,9 +81,49 @@ def get_service():
     return build("sheets", "v4", credentials=creds)
 
 
+_RANGE_CACHE = {}
+
+
+def preload_ranges(service, sheet_id):
+    """Pulls every range every villa tab (plus the Issues tab) needs in ONE
+    batchGet call, instead of the ~8 separate .get() calls per villa
+    (header, notes, checklist, keypads, closeout, mods_out, lamps, modreg)
+    this used to make. That per-range-per-villa pattern is what was
+    exceeding the Sheets API's 60-reads-per-minute-per-user quota once this
+    sheet had 9 active villa tabs -- fetch()'s own error handling then
+    silently swallowed the 429 and fell back to stale committed data on
+    every single Update Site run, with no visible failure anywhere. A
+    batchGet call counts as a single read request no matter how many
+    ranges it covers, so this keeps the villa/room count from ever mattering
+    to this quota again."""
+    a1_ranges = []
+    for villa in VILLAS:
+        a1_ranges.append(f"'{villa}'!A1:H14")
+        a1_ranges.append(f"'{villa}'!A14:A17")
+        c_start, c_end, _ = ROW_RANGES["checklist"]
+        a1_ranges.append(f"'{villa}'!A{c_start}:H{c_end}")
+        for key in ("keypads", "closeout", "mods_out", "lamps", "modreg"):
+            start, end, cols = ROW_RANGES[key]
+            first_col, last_col = cols.split(":")
+            a1_ranges.append(f"'{villa}'!{first_col}{start}:{last_col}{end}")
+    a1_ranges.append(f"'{ISSUES_TAB}'!A1:L500")
+
+    resp = service.spreadsheets().values().batchGet(
+        spreadsheetId=sheet_id, ranges=a1_ranges
+    ).execute()
+    for a1, value_range in zip(a1_ranges, resp.get("valueRanges", [])):
+        _RANGE_CACHE[a1] = value_range.get("values", [])
+
+
 def read_range(service, sheet_id, tab, a1_range):
+    key = f"'{tab}'!{a1_range}"
+    if key in _RANGE_CACHE:
+        return _RANGE_CACHE[key]
+    # Shouldn't happen in normal operation (preload_ranges covers every
+    # range the extract_* functions below ever ask for) -- a safety net
+    # for a range nobody anticipated, not the normal path.
     resp = service.spreadsheets().values().get(
-        spreadsheetId=sheet_id, range=f"'{tab}'!{a1_range}"
+        spreadsheetId=sheet_id, range=key
     ).execute()
     return resp.get("values", [])
 
@@ -199,6 +239,9 @@ def extract_issues(service, sheet_id):
 def fetch():
     sheet_id = os.environ["GOOGLE_SHEET_ID"]
     service = get_service()
+
+    print("batch-fetching all villa + issues ranges in one call")
+    preload_ranges(service, sheet_id)
 
     extract = {}
     for villa in VILLAS:
