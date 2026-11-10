@@ -404,5 +404,35 @@
       "Once the lamp dimmers are plugged in and accessible, MNE to identify each unit, apply labels, complete configuration/activation as required, and function test.",
       "No"
     ]
+  ],
+  "Villa 9": [
+    [
+      "V9-001",
+      "Villa 9",
+      "KP16 / Gang 1 & Gang 2",
+      "Programming Change",
+      "KP16 physical gang arrangement differs from the controlled template. Villa 9 program was adjusted to match the installed gang positions and retested successfully.",
+      "Low",
+      "Closed",
+      "Jeevan Panjwani",
+      "2026-11-08",
+      "2026-11-08",
+      "",
+      ""
+    ],
+    [
+      "V9-002",
+      "Villa 9",
+      "Bedroom 2 \u2014 Right-side Receptacle",
+      "Defect",
+      "Bedroom 2 right-side receptacle is not working. This appears to be an electrical/site issue rather than a Lutron programming issue. Apes Hill electrician to investigate and correct.",
+      "Medium",
+      "Waiting",
+      "Apes Hill Electrician",
+      "2026-11-08",
+      "",
+      "",
+      ""
+    ]
   ]
 }

@@ -15,8 +15,6 @@ def esc(s):
     return H.escape(str(s), quote=True)
 
 
-NOT_STARTED_VNUMS = ["8", "9", "10", "11", "12", "14", "16"]
-
 PARCEL_ORDER = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "14", "15", "16"]
 
 STATUS_BADGE = {"Complete": "b-pass", "In Progress": "b-pend", "Not Started": "b-nr"}
@@ -282,7 +280,15 @@ __TABLE_ROWS__
 def main():
     computed = json.load(open(DATA_DIR / "villas_summary.json"))
     by_vnum = {v["vnum"]: v for v in computed}
-    for vnum in NOT_STARTED_VNUMS:
+    # Any parcel-order villa generate_villas.py hasn't produced a summary
+    # row for yet hasn't started -- derived from PARCEL_ORDER vs. what's
+    # actually in villas_summary.json, not a separately hand-maintained
+    # list, so adding a villa to the live pipeline can't leave a stale
+    # duplicate entry here overriding its real data (as happened when
+    # Villa 9/10 were added to generate_villas.py but not removed here).
+    for vnum in PARCEL_ORDER:
+        if vnum in by_vnum:
+            continue
         by_vnum[vnum] = {
             "vnum": vnum, "status": "Not Started",
             "kp_act": 0, "kp_total": 26,

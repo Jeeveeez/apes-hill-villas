@@ -15,7 +15,7 @@ takeover (14 villas, Parcel V, St. James, Barbados). Published at
   something correct to build from, even before live fetching is wired up.
 - **`scripts/generate_villas.py`** turns that data into
   `site/villa-{N}/status.html` and `site/villa-{N}/technical-record.html`
-  for every villa with tracker data (2, 3, 4, 5, 6, 7 and 15), and writes
+  for every villa with tracker data (2, 3, 4, 5, 6, 7, 9, 10 and 15), and writes
   `data/villas_summary.json` (the per-villa stats the fleet dashboard
   needs).
 - **`scripts/generate_fleet.py`** turns `data/villas_summary.json` plus

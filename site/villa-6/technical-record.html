@@ -283,11 +283,11 @@ footer a{color:var(--muted); text-decoration:underline;}
       <div class="kpi"><div class="kpi-label">Keypads</div><div class="kpi-value">26<small>/26</small></div></div>
       <div class="kpi"><div class="kpi-label">Modules active</div><div class="kpi-value">12<small>/12</small></div></div>
       <div class="kpi warn"><div class="kpi-label">Checklist passed</div><div class="kpi-value">14<small>/23</small></div></div>
-      <div class="kpi"><div class="kpi-label">Open defects</div><div class="kpi-value">2</div></div>
-      <div class="kpi warn"><div class="kpi-label">Open issues</div><div class="kpi-value">1<small>/5</small></div></div>
+      <div class="kpi"><div class="kpi-label">Open defects</div><div class="kpi-value">0</div></div>
+      <div class="kpi "><div class="kpi-label">Open issues</div><div class="kpi-value">0<small>/5</small></div></div>
     </div>
 
-    <div class="outstanding-list"><div class="outstanding-item"><span class="badge b-pend">Open</span><div>Two expected HQR-3PD-1-SW lamp dimmers are missing from Villa 6: LD-FOYER (Foyer) and LD-LIVING (Kitchen/Living Room). These remain outstanding for punch-list closeout.</div></div></div>
+    
 
     <p class="jump-link">Full technical record &mdash; checklist, keypad register, circuit-by-circuit test results &mdash; starts below. <a href="#notes">Jump to it &darr;</a></p>
   </section>
@@ -305,7 +305,7 @@ footer a{color:var(--muted); text-decoration:underline;}
     <div class="tb-cell"><div class="tb-label">Processor model</div><div class="tb-value">HQP7-2</div></div>
     <div class="tb-cell"><div class="tb-label">Processor serial</div><div class="tb-value">084FB94A</div></div>
     <div class="tb-cell"><div class="tb-label">MAC address</div><div class="tb-value">88:0c:e0:d5:08:b9</div></div>
-    <div class="tb-cell"><div class="tb-label">Firmware</div><div class="tb-value">—</div></div>
+    <div class="tb-cell"><div class="tb-label">Firmware</div><div class="tb-value">26.07.37f000</div></div>
   </div>
 
   <section class="section" id="notes">
@@ -328,6 +328,7 @@ footer a{color:var(--muted); text-decoration:underline;}
 <li><span class="note-mark mono">10</span><span>Oct 29: North Hall independent load/output 1-3 has now been removed from the Villa 6 program. Revised transfer back to the processor is still pending confirmation.</span></li>
 <li><span class="note-mark mono">11</span><span>Nov 3: Final revised program loaded to the processor with the independent North Hall load/output 1-3 removed from programming. Villa 6 marked Complete.</span></li>
 <li><span class="note-mark mono">12</span><span>Nov 3: Foyer and Living Room HQR-3PD-1-SW lamp dimmers confirmed missing on site. Logged as V6-005 for punch-list closeout; Apes Hill to provide replacements.</span></li>
+<li><span class="note-mark mono">13</span><span>Nov 6: Foyer and Living Room lamp dimmers installed and activated. Foyer SN 05919F99; Living SN 0929F7BA. Both shown Good in Designer and confirmed working. V6-005 closed. All recorded Villa 6 issues are now resolved.</span></li>
       </ol>
     </div>
   </section>
@@ -1072,21 +1073,21 @@ footer a{color:var(--muted); text-decoration:underline;}
       <table>
         <thead><tr><th>Device</th><th>Location</th><th>Model</th><th>Serial</th><th>Activated</th><th>Tested</th></tr></thead>
         <tbody>
-          <tr class="row-flag" data-search="LD-FOYER Foyer HQR-3PD-1-SW Missing on site. Foyer lamp dimmer not present; Apes Hill to provide replacement. See V6-005.">
+          <tr class="row-flag" data-search="LD-FOYER Foyer HQR-3PD-1-SW 05919F99 Installed/activated 2026-11-06; shown Good in Designer and confirmed working. V6-005 closed.">
           <td class="mono col-id">LD-FOYER</td>
-          <td>Foyer<div class="cell-note">Missing on site. Foyer lamp dimmer not present; Apes Hill to provide replacement. See V6-005.</div></td>
+          <td>Foyer<div class="cell-note">Installed/activated 2026-11-06; shown Good in Designer and confirmed working. V6-005 closed.</div></td>
           <td class="mono muted">HQR-3PD-1-SW</td>
-          <td class="mono"></td>
-          <td class="col-status"><span class="badge b-fail" data-search="Fail">Fail</span></td>
-          <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
+          <td class="mono">05919F99</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
-<tr class="row-flag" data-search="LD-LIVING Kitchen/Living Room HQR-3PD-1-SW Missing on site. Living Room lamp dimmer not present; Apes Hill to provide replacement. See V6-005.">
+<tr class="row-flag" data-search="LD-LIVING Kitchen/Living Room HQR-3PD-1-SW 0929F7BA Installed/activated 2026-11-06; shown Good in Designer and confirmed working. V6-005 closed.">
           <td class="mono col-id">LD-LIVING</td>
-          <td>Kitchen/Living Room<div class="cell-note">Missing on site. Living Room lamp dimmer not present; Apes Hill to provide replacement. See V6-005.</div></td>
+          <td>Kitchen/Living Room<div class="cell-note">Installed/activated 2026-11-06; shown Good in Designer and confirmed working. V6-005 closed.</div></td>
           <td class="mono muted">HQR-3PD-1-SW</td>
-          <td class="mono"></td>
-          <td class="col-status"><span class="badge b-fail" data-search="Fail">Fail</span></td>
-          <td class="col-status"><span class="badge b-nr" data-search="N/A">N/A</span></td>
+          <td class="mono">0929F7BA</td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
+          <td class="col-status"><span class="badge b-pass" data-search="Pass">Pass</span></td>
         </tr>
 <tr data-search="LD-01-R Bedroom 1 - Right bedside HQR-3PD-1-SW 08598F50">
           <td class="mono col-id">LD-01-R</td>
@@ -1280,7 +1281,7 @@ footer a{color:var(--muted); text-decoration:underline;}
     <div class="section-head">
       <span class="section-num">Log</span>
       <h2 class="section-title">Issues &amp; Changes &mdash; Villa 6</h2>
-      <span class="section-sub">4 closed · 1 open</span>
+      <span class="section-sub">5 closed</span>
     </div>
     <div class="issues-grid">
       <article class="issue-card" id="iss-V6-001" data-search="V6-001 North Hall / Foyer — Output 1-3 Programming Change Panel inspection confirmed North Hall has no dedicated return. The North Hall lighting circuit is physically looped with the Foyer circuit, so it cannot operate as an independent load. Closed North Hall independent load/output 1-3 removed from the Villa 6 program. Final revised transfer to the processor and verification still pending.">
@@ -1331,23 +1332,23 @@ footer a{color:var(--muted); text-decoration:underline;}
           <p class="issue-res"><span class="label-sm">Resolution</span> Villa 6 program corrected to 4-3 = Bathroom 3 L12/13 Fan and 4-4 = Bathroom 4 L03/05 Fan. Revised project transferred and tested working.</p>
           <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-10-29 &middot; Closed 2026-10-29</p>
         </article>
-<article class="issue-card" id="iss-V6-005" data-search="V6-005 Foyer / Living Room Lamp Dimmers Defect Two expected HQR-3PD-1-SW lamp dimmers are missing from Villa 6: LD-FOYER (Foyer) and LD-LIVING (Kitchen/Living Room). These remain outstanding for punch-list closeout. Open">
+<article class="issue-card" id="iss-V6-005" data-search="V6-005 Foyer / Living Room Lamp Dimmers Defect Foyer and Living Room HQR-3PD-1-SW lamp dimmers have been installed and activated. Foyer SN 05919F99; Living SN 0929F7BA. Both shown Good in Designer and confirmed working. No Villa 6 lamp-dimmer punch-list items remain. Closed">
           <header class="issue-head">
             <span class="mono issue-id">V6-005</span>
             <span class="pri-dot pri-med" title="Medium priority"></span>
             <span class="issue-area">Foyer / Living Room Lamp Dimmers</span>
-            <span class="badge b-pend" data-search="Open">Open</span>
+            <span class="badge b-pass" data-search="Closed">Closed</span>
           </header>
           <p class="issue-type">Defect</p>
-          <p class="issue-desc">Two expected HQR-3PD-1-SW lamp dimmers are missing from Villa 6: LD-FOYER (Foyer) and LD-LIVING (Kitchen/Living Room). These remain outstanding for punch-list closeout.</p>
+          <p class="issue-desc">Foyer and Living Room HQR-3PD-1-SW lamp dimmers have been installed and activated. Foyer SN 05919F99; Living SN 0929F7BA. Both shown Good in Designer and confirmed working. No Villa 6 lamp-dimmer punch-list items remain.</p>
           <p class="issue-res"><span class="label-sm">Resolution</span> </p>
-          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-11-03</p>
+          <p class="issue-meta mono">Jeevan Panjwani &middot; Opened 2026-11-03 &middot; Closed 2026-11-06</p>
         </article>
     </div>
   </section>
 
   <footer>
-    Source: <i>Apes Hill Hilltop Villas Master Commissioning Tracker</i>, "Villa 6" tab and "Issues &amp; Changes" tab, synced November 2, 2026.
+    Source: <i>Apes Hill Hilltop Villas Master Commissioning Tracker</i>, "Villa 6" tab and "Issues &amp; Changes" tab, synced November 10, 2026.
     A Lutron Designer report package has been processed for this villa &mdash; its keypad engravings and circuit-by-circuit fixture detail are on the <a href="floor-plan.html">Floor Plan</a> page.
   </footer>
 </div>

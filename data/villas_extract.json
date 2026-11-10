@@ -6,7 +6,7 @@
     "date_worked": "10/28/2026",
     "processor_model": "HQP7-2",
     "processor_serial": "084FB70A",
-    "firmware": "",
+    "firmware": "26.07.37f000",
     "mac": "88:0c:e0:d5:08:aa",
     "network": "",
     "project_file": "Apes Hill Hill Top Villas - Villa #2",
@@ -1164,7 +1164,7 @@
     "date_worked": "11/04/2026",
     "processor_model": "HQP7-2",
     "processor_serial": "084FB93C",
-    "firmware": "",
+    "firmware": "26.07.37f000",
     "mac": "88:0c:e0:d4:cf:5f",
     "network": "DHCP; permanent network uplink cabling pending Apes Hill IT 2026-11-05",
     "project_file": "Apes Hill Hill Top Villas - Villa #3",
@@ -2322,7 +2322,7 @@
     "date_worked": "10/29/2026",
     "processor_model": "HQP7-2",
     "processor_serial": "084FB70A",
-    "firmware": "",
+    "firmware": "26.07.37f000",
     "mac": "88:0c:e0:d4:a6:b5",
     "network": "",
     "project_file": "Apes Hill Hill Top Villas - Villa #4",
@@ -3480,7 +3480,7 @@
     "date_worked": "10/29/2026",
     "processor_model": "HQP7-2",
     "processor_serial": "084FB94E",
-    "firmware": "",
+    "firmware": "26.07.37f000",
     "mac": "88:0c:e0:d5:08:98",
     "network": "",
     "project_file": "Apes Hill Hill Top Villas - Villa #5",
@@ -4638,7 +4638,7 @@
     "date_worked": "10/29/2026",
     "processor_model": "HQP7-2",
     "processor_serial": "084FB94A",
-    "firmware": "",
+    "firmware": "26.07.37f000",
     "mac": "88:0c:e0:d5:08:b9",
     "network": "",
     "project_file": "Apes Hill Hill Top Villas - Villa #6",
@@ -5796,7 +5796,7 @@
     "date_worked": "10/29/2026",
     "processor_model": "HQP7-2",
     "processor_serial": "085EF2ED",
-    "firmware": "",
+    "firmware": "26.07.37f000",
     "mac": "b8:3d:f6:25:3e:32",
     "network": "",
     "project_file": "Apes Hill Hill Top Villas - Villa #7",
@@ -6947,6 +6947,2322 @@
       ]
     ]
   },
+  "Villa 9": {
+    "overall_status": "Complete",
+    "base_template": "Apes Hill Hill Top Villas - Template",
+    "technician": "Jeevan Panjwani",
+    "date_worked": "11/08/2026",
+    "processor_model": "HQP7-2",
+    "processor_serial": "08675617",
+    "firmware": "26.07.37f000",
+    "mac": "b8:3d:f6:5a:82:f1",
+    "network": "DHCP",
+    "project_file": "Apes Hill Hill Top Villas - Villa #9",
+    "factory_reset_date": "11/08/2026",
+    "backup_location": "",
+    "open_defects": 0,
+    "kp_act": 26,
+    "kp_act_den": "/ 26",
+    "kp_test": 26,
+    "kp_test_den": "/ 26",
+    "tasks_pass": 21,
+    "tasks_den": "/ 23",
+    "dim_mod": 8,
+    "dim_mod_den": "/ 8",
+    "sw_mod": 4,
+    "sw_mod_den": "/ 4",
+    "sheet_name": "Villa 9",
+    "header_a1": "VILLA 9  |  HOMEWORKS COMMISSIONING",
+    "notes": "COMMISSIONING NOTES\nNov 8: Villa 9 commissioning started. Processor factory reset completed and device activation commenced.\nNov 8: KP16 two-gang keypad is physically installed in the opposite gang arrangement relative to the controlled template. Villa 9 programming was adjusted to match the actual physical positions and tested successfully. V9-001 closed.\nNov 8: Processor identified as SN 08675617 / MAC b8:3d:f6:5a:82:f1 on DHCP and connected via LAN.\nNov 8: Serial numbers captured for all 26 keypads, all 10 plug-in lamp dimmers, the hybrid repeater, 8 adaptive modules and 4 switching modules. All devices shown Activated: Good / Connected in Designer.\nNov 8: All keypads, controlled lighting loads, scenes, raise/lower/off functions, multi-location controls, lamp dimmers, modules and repeater tested and confirmed working. Villa 9 commissioning is 100% complete from the Lutron scope.\nNov 8: Bedroom 2 right-side receptacle remains without power. This is an electrical/site issue outside the Lutron scope and remains assigned to the Apes Hill electrician under V9-002.\nNov 8: Checklist complete except Final Backup and Final Functional Walkthrough/Signoff.",
+    "checklist": [
+      [
+        "Preflight \u2014 Confirm villa identifier and access",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Preflight \u2014 Confirm hardware matches template",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Preflight \u2014 Record processor serial / MAC / firmware",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Preflight \u2014 Connect to processor and confirm communications",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Reset \u2014 Factory reset processor",
+        "Pass",
+        "Processor factory reset completed; device activation in progress.",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Reset \u2014 Confirm processor ready for new project",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Programming \u2014 Duplicate controlled template file",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Programming \u2014 Adjust villa-specific IDs, naming and network settings",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Programming \u2014 Check processor and device addresses for conflicts",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Programming \u2014 Upload project to processor",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Programming \u2014 Verify processor online after transfer",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Activation \u2014 Reactivate all installed keypads",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Activation \u2014 Reactivate other controls / modules / interfaces",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Activation \u2014 Confirm all expected devices online",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Lighting \u2014 Test each load for on/off/dimming and correct mapping",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Lighting \u2014 Test scenes, raise/lower and off functions",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Lighting \u2014 Check multi-location controls and special logic",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Lighting \u2014 Verify physical wiring / circuit exceptions",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Connectivity \u2014 Verify local control and app / cloud where applicable",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Closeout \u2014 Resolve / log outstanding defects",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Closeout \u2014 Save final project and backup with revision",
+        "Not Recorded",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Closeout \u2014 Record deviations from template",
+        "Pass",
+        "",
+        "2026-11-08",
+        ""
+      ],
+      [
+        "Closeout \u2014 Final functional walkthrough and signoff",
+        "Not Recorded",
+        "",
+        "",
+        ""
+      ]
+    ],
+    "keypads": [
+      [
+        "KP1",
+        "Bedroom 4 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "08372883",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP2",
+        "Bedroom 4 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "08372885",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP3",
+        "Bedroom 4 \u2014 bathroom",
+        "HQWD-W4BS-WH",
+        "08372881",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP4",
+        "Bedroom 4 \u2014 Entry",
+        "HQWD-W6B-WH",
+        "08372887",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP5",
+        "Bedroom 3 \u2014 Entry",
+        "HQWD-W6B-WH",
+        "08373368",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP6",
+        "Bedroom 3 \u2014 bathroom",
+        "HQWD-W4BS-WH",
+        "0837336B",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP7",
+        "Bedroom 3 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "083727AA",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP8",
+        "Bedroom 3 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "08373365",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP10",
+        "Foyer",
+        "HQWD-W4BS-WH",
+        "0837279F",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP12",
+        "WC",
+        "HQWD-W4BS-WH",
+        "08373366",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP13",
+        "Patio",
+        "HQWD-W6B-WH",
+        "08373369",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP14 / Gang 1",
+        "Kitchen/Living \u2014 terrace controls",
+        "HQWD-W5B-WH",
+        "083727C1",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP14 / Gang 2",
+        "Kitchen/Living \u2014 living controls",
+        "HQWD-W6B-WH",
+        "083727C2",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP15",
+        "Kitchen/Living \u2014 living controls",
+        "HQWD-W6B-WH",
+        "083727A5",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP16 / Gang 1",
+        "Kitchen/Living \u2014 living controls",
+        "HQWD-W6B-WH",
+        "083727C7",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP16 / Gang 2",
+        "Kitchen/Living \u2014 terrace controls",
+        "HQWD-W5B-WH",
+        "083727C6",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP17",
+        "Patio",
+        "HQWD-W6B-WH",
+        "0837336A",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP18",
+        "Bedroom 2 \u2014 Entry",
+        "HQWD-W6B-WH",
+        "08373367",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP19",
+        "Bedroom 2 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "083727A7",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP20",
+        "Bedroom 2 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "08373363",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP21",
+        "Bedroom 2 \u2014 bathroom",
+        "HQWD-W4BS-WH",
+        "083727AB",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP22",
+        "Bedroom 1 \u2014 Entry",
+        "HQWD-W6B-WH",
+        "083727C8",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP23",
+        "Bedroom 1 \u2014 bathroom",
+        "HQWD-W4BS-WH",
+        "083727C5",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP24",
+        "Bedroom 1 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "083727C3",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP25",
+        "Bedroom 1 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "083727C4",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP-GARAGE",
+        "Garage \u2014 On/Off",
+        "HQWD-W1B-WH",
+        "083728B2",
+        "Pass",
+        "Pass",
+        ""
+      ]
+    ],
+    "closeout": [
+      [
+        "Lighting loads and mapping",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Scenes and button behavior",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Non-keypad devices and interfaces",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Network / local connectivity",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Cloud / remote connectivity",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Outstanding defects reviewed",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Final database backup archived",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Walkthrough and acceptance",
+        "Not Recorded",
+        "",
+        ""
+      ]
+    ],
+    "mods_out": [
+      [
+        "Panel 001",
+        "Adaptive 1",
+        "LQSE-4A5-120-D",
+        "1-1",
+        "Entrance \u2014 L19 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 1",
+        "LQSE-4A5-120-D",
+        "1-2",
+        "Foyer \u2014 L18 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 1",
+        "LQSE-4A5-120-D",
+        "1-3",
+        "Living \u2014 L17 North Hall",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 1",
+        "LQSE-4A5-120-D",
+        "1-4",
+        "WC \u2014 L22 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 2",
+        "LQSE-4A5-120-D",
+        "2-1",
+        "Living \u2014 L34 Pendant",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 2",
+        "LQSE-4A5-120-D",
+        "2-2",
+        "Living \u2014 L35 Counter/Extractor Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 2",
+        "LQSE-4A5-120-D",
+        "2-3",
+        "Living \u2014 L39 South Hall",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 2",
+        "LQSE-4A5-120-D",
+        "2-4",
+        "Living \u2014 L36 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 3",
+        "LQSE-4A5-120-D",
+        "3-1",
+        "Patio \u2014 L24 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 3",
+        "LQSE-4A5-120-D",
+        "3-2",
+        "Patio \u2014 L26/L27 Pendants",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 3",
+        "LQSE-4A5-120-D",
+        "3-3",
+        "Patio \u2014 L50 Pool",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 3",
+        "LQSE-4A5-120-D",
+        "3-4",
+        "UNASSIGNED IN REPORT",
+        "Review",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 4",
+        "LQSE-4A5-120-D",
+        "4-1",
+        "Bedroom 1 \u2014 L08 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 4",
+        "LQSE-4A5-120-D",
+        "4-2",
+        "Bathroom 1 \u2014 L48 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 4",
+        "LQSE-4A5-120-D",
+        "4-3",
+        "Bedroom 1 \u2014 L47 Closet",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 4",
+        "LQSE-4A5-120-D",
+        "4-4",
+        "Garage \u2014 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 5",
+        "LQSE-4A5-120-D",
+        "5-1",
+        "Bedroom 1 \u2014 L49 Lamps",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 5",
+        "LQSE-4A5-120-D",
+        "5-2",
+        "Bedroom 2 \u2014 L43 Lamps",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 5",
+        "LQSE-4A5-120-D",
+        "5-3",
+        "Bedroom 3 \u2014 L11 Lamps",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 5",
+        "LQSE-4A5-120-D",
+        "5-4",
+        "Bedroom 4 \u2014 L06 Lamps",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 6",
+        "LQSE-4A5-120-D",
+        "6-1",
+        "Bedroom 2 \u2014 L42 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 6",
+        "LQSE-4A5-120-D",
+        "6-2",
+        "Bathroom 2 \u2014 L44 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 6",
+        "LQSE-4A5-120-D",
+        "6-3",
+        "Bedroom 2 \u2014 L40 Closet",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 6",
+        "LQSE-4A5-120-D",
+        "6-4",
+        "UNASSIGNED IN REPORT",
+        "Review",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 7",
+        "LQSE-4A5-120-D",
+        "7-1",
+        "Bedroom 3 \u2014 L14 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 7",
+        "LQSE-4A5-120-D",
+        "7-2",
+        "Bedroom 3 \u2014 L09 Closet",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 7",
+        "LQSE-4A5-120-D",
+        "7-3",
+        "Bathroom 3 \u2014 L10 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 7",
+        "LQSE-4A5-120-D",
+        "7-4",
+        "UNASSIGNED IN REPORT",
+        "Review",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 8",
+        "LQSE-4A5-120-D",
+        "8-1",
+        "Bedroom 4 \u2014 L01 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 8",
+        "LQSE-4A5-120-D",
+        "8-2",
+        "Bathroom 4 \u2014 L04 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 8",
+        "LQSE-4A5-120-D",
+        "8-3",
+        "Bedroom 4 \u2014 L07 Closet",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 8",
+        "LQSE-4A5-120-D",
+        "8-4",
+        "UNASSIGNED IN REPORT",
+        "Review",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 1",
+        "LQSE-4S8-120-D",
+        "1-1",
+        "Living \u2014 L32/33 Fans",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 1",
+        "LQSE-4S8-120-D",
+        "1-2",
+        "Living \u2014 L37/L38 Fans",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 1",
+        "LQSE-4S8-120-D",
+        "1-3",
+        "Patio \u2014 L25/28 Fans",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 1",
+        "LQSE-4S8-120-D",
+        "1-4",
+        "Patio \u2014 L29/L30 Fans",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 2",
+        "LQSE-4S8-120-D",
+        "2-1",
+        "Bedroom 1 \u2014 L16 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 2",
+        "LQSE-4S8-120-D",
+        "2-2",
+        "Bedroom 2 \u2014 L41 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 2",
+        "LQSE-4S8-120-D",
+        "2-3",
+        "Bedroom 3 \u2014 L15 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 2",
+        "LQSE-4S8-120-D",
+        "2-4",
+        "Bedroom 4 \u2014 L02 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 3",
+        "LQSE-4S8-120-D",
+        "3-1",
+        "WC \u2014 L23 Extractor Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 3",
+        "LQSE-4S8-120-D",
+        "3-2",
+        "Laundry \u2014 L21 Extractor Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 3",
+        "LQSE-4S8-120-D",
+        "3-3",
+        "UNASSIGNED IN REPORT",
+        "Review",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 3",
+        "LQSE-4S8-120-D",
+        "3-4",
+        "UNASSIGNED IN REPORT",
+        "Review",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 4",
+        "LQSE-4S8-120-D",
+        "4-1",
+        "Bathroom 1 \u2014 L50/51 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 4",
+        "LQSE-4S8-120-D",
+        "4-2",
+        "Bathroom 2 \u2014 L45/46 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 4",
+        "LQSE-4S8-120-D",
+        "4-3",
+        "Bathroom 4 \u2014 L03/05 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 4",
+        "LQSE-4S8-120-D",
+        "4-4",
+        "Bathroom 3 \u2014 L12/13 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ]
+    ],
+    "lamps": [
+      [
+        "LD-FOYER",
+        "Foyer",
+        "HQR-3PD-1-SW",
+        "05A2B423",
+        "Pass",
+        "Pass",
+        "Activated and function tested 2026-11-08; working."
+      ],
+      [
+        "LD-LIVING",
+        "Kitchen/Living Room",
+        "HQR-3PD-1-SW",
+        "05A2B434",
+        "Pass",
+        "Pass",
+        "Activated and function tested 2026-11-08; working."
+      ],
+      [
+        "LD-01-R",
+        "Bedroom 1 - Right bedside",
+        "HQR-3PD-1-SW",
+        "05A2B43D",
+        "Pass",
+        "Pass",
+        "Activated and function tested 2026-11-08; working."
+      ],
+      [
+        "LD-01-L",
+        "Bedroom 1 - Left bedside",
+        "HQR-3PD-1-SW",
+        "05A2B43C",
+        "Pass",
+        "Pass",
+        "Activated and function tested 2026-11-08; working."
+      ],
+      [
+        "LD-02-R",
+        "Bedroom 2 - Right bedside",
+        "HQR-3PD-1-SW",
+        "05A2B442",
+        "Pass",
+        "Pass",
+        "Activated and function tested 2026-11-08; working."
+      ],
+      [
+        "LD-02-L",
+        "Bedroom 2 - Left bedside",
+        "HQR-3PD-1-SW",
+        "05A2B441",
+        "Pass",
+        "Pass",
+        "Activated and function tested 2026-11-08; working."
+      ],
+      [
+        "LD-03-R",
+        "Bedroom 3 - Right bedside",
+        "HQR-3PD-1-SW",
+        "05A2B432",
+        "Pass",
+        "Pass",
+        "Activated and function tested 2026-11-08; working."
+      ],
+      [
+        "LD-03-L",
+        "Bedroom 3 - Left bedside",
+        "HQR-3PD-1-SW",
+        "05A2B428",
+        "Pass",
+        "Pass",
+        "Activated and function tested 2026-11-08; working."
+      ],
+      [
+        "LD-04-R",
+        "Bedroom 4 - Right bedside",
+        "HQR-3PD-1-SW",
+        "05A2B437",
+        "Pass",
+        "Pass",
+        "Activated and function tested 2026-11-08; working."
+      ],
+      [
+        "LD-04-L",
+        "Bedroom 4 - Left bedside",
+        "HQR-3PD-1-SW",
+        "05A2B425",
+        "Pass",
+        "Pass",
+        "Activated and function tested 2026-11-08; working."
+      ],
+      [
+        "Hybrid Repeater",
+        "Laundry Room \u2014 first cabinet on right, behind false backing",
+        "HQR-REP-120",
+        "05F269ED",
+        "Pass",
+        "Pass",
+        "Hybrid repeater activated and functionally verified 2026-11-08."
+      ]
+    ],
+    "modreg": [
+      [
+        "Panel 001",
+        "Adaptive 1",
+        "LQSE-4A5-120-D",
+        "0627416B",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 2",
+        "LQSE-4A5-120-D",
+        "062741B5",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 3",
+        "LQSE-4A5-120-D",
+        "062741A9",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 4",
+        "LQSE-4A5-120-D",
+        "06274171",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 5",
+        "LQSE-4A5-120-D",
+        "06274172",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 6",
+        "LQSE-4A5-120-D",
+        "062741A7",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 7",
+        "LQSE-4A5-120-D",
+        "062741A0",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 8",
+        "LQSE-4A5-120-D",
+        "062741B4",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 002",
+        "Switch 1",
+        "LQSE-4S8-120-D",
+        "0869D3BB",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 002",
+        "Switch 2",
+        "LQSE-4S8-120-D",
+        "0869D3F3",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 002",
+        "Switch 3",
+        "LQSE-4S8-120-D",
+        "0869D3EC",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 002",
+        "Switch 4",
+        "LQSE-4S8-120-D",
+        "0869D3CE",
+        "Pass",
+        "Pass"
+      ]
+    ]
+  },
+  "Villa 10": {
+    "overall_status": "Complete",
+    "base_template": "Apes Hill Hill Top Villas - Template",
+    "technician": "Jeevan Panjwani",
+    "date_worked": "11/10/2026",
+    "processor_model": "HQP7-2",
+    "processor_serial": "04E89078",
+    "firmware": "26.07.37f000",
+    "mac": "f8:2e:0c:32:66:31",
+    "network": "",
+    "project_file": "Apes Hill Hill Top Villas - Villa #10",
+    "factory_reset_date": "",
+    "backup_location": "",
+    "open_defects": 0,
+    "kp_act": 26,
+    "kp_act_den": "/ 26",
+    "kp_test": 26,
+    "kp_test_den": "/ 26",
+    "tasks_pass": 21,
+    "tasks_den": "/ 23",
+    "dim_mod": 8,
+    "dim_mod_den": "/ 8",
+    "sw_mod": 4,
+    "sw_mod_den": "/ 4",
+    "sheet_name": "Villa 10",
+    "header_a1": "VILLA 10  |  HOMEWORKS COMMISSIONING",
+    "notes": "COMMISSIONING NOTES\nNov 10: Villa 10 commissioning completed. Processor SN 04E89078, MAC f8:2e:0c:32:66:31, firmware 26.07.37f000. Serial numbers captured for all 26 keypads, all 10 plug-in lamp dimmers, the hybrid repeater, 8 adaptive modules and 4 switching modules.\nNov 10: All keypads, lamp dimmers, DIN modules, controlled loads, scenes, raise/lower/off functions and multi-location controls have been tested and are working. No Villa 10 defects or programming issues are currently logged.\nNov 10: Checklist complete except Final Backup and Final Functional Walkthrough/Signoff. Villa 10 marked Complete.",
+    "checklist": [
+      [
+        "Preflight \u2014 Confirm villa identifier and access",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Preflight \u2014 Confirm hardware matches template",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Preflight \u2014 Record processor serial / MAC / firmware",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Preflight \u2014 Connect to processor and confirm communications",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Reset \u2014 Factory reset processor",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Reset \u2014 Confirm processor ready for new project",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Programming \u2014 Duplicate controlled template file",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Programming \u2014 Adjust villa-specific IDs, naming and network settings",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Programming \u2014 Check processor and device addresses for conflicts",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Programming \u2014 Upload project to processor",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Programming \u2014 Verify processor online after transfer",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Activation \u2014 Reactivate all installed keypads",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Activation \u2014 Reactivate other controls / modules / interfaces",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Activation \u2014 Confirm all expected devices online",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Lighting \u2014 Test each load for on/off/dimming and correct mapping",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Lighting \u2014 Test scenes, raise/lower and off functions",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Lighting \u2014 Check multi-location controls and special logic",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Lighting \u2014 Verify physical wiring / circuit exceptions",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Connectivity \u2014 Verify local control and app / cloud where applicable",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Closeout \u2014 Resolve / log outstanding defects",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Closeout \u2014 Save final project and backup with revision",
+        "Not Recorded",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Closeout \u2014 Record deviations from template",
+        "Pass",
+        "",
+        "2026-11-10",
+        ""
+      ],
+      [
+        "Closeout \u2014 Final functional walkthrough and signoff",
+        "Not Recorded",
+        "",
+        "",
+        ""
+      ]
+    ],
+    "keypads": [
+      [
+        "KP1",
+        "Bedroom 4 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "03CBE33C",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP2",
+        "Bedroom 4 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "03CBE33F",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP3",
+        "Bedroom 4 \u2014 bathroom",
+        "HQWD-W4BS-WH",
+        "03CBE342",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP4",
+        "Bedroom 4 \u2014 Entry",
+        "HQWD-W6B-WH",
+        "03CBE343",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP5",
+        "Bedroom 3 \u2014 Entry",
+        "HQWD-W6B-WH",
+        "03CBE341",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP6",
+        "Bedroom 3 \u2014 bathroom",
+        "HQWD-W4BS-WH",
+        "03CBE388",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP7",
+        "Bedroom 3 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "03CBE339",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP8",
+        "Bedroom 3 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "03CBE38A",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP10",
+        "Foyer",
+        "HQWD-W4BS-WH",
+        "03CBE387",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP12",
+        "WC",
+        "HQWD-W4BS-WH",
+        "03CBBE10",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP13",
+        "Patio",
+        "HQWD-W6B-WH",
+        "03CBE346",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP14 / Gang 1",
+        "Kitchen/Living \u2014 terrace controls",
+        "HQWD-W5B-WH",
+        "03CBE383",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP14 / Gang 2",
+        "Kitchen/Living \u2014 living controls",
+        "HQWD-W6B-WH",
+        "03CBE386",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP15",
+        "Kitchen/Living \u2014 living controls",
+        "HQWD-W6B-WH",
+        "03CBE39D",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP16 / Gang 1",
+        "Kitchen/Living \u2014 living controls",
+        "HQWD-W6B-WH",
+        "03CBE384",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP16 / Gang 2",
+        "Kitchen/Living \u2014 terrace controls",
+        "HQWD-W5B-WH",
+        "03CBE389",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP17",
+        "Patio",
+        "HQWD-W6B-WH",
+        "03CBE33D",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP18",
+        "Bedroom 2 \u2014 Entry",
+        "HQWD-W6B-WH",
+        "03CBE38C",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP19",
+        "Bedroom 2 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "03CBE3AF",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP20",
+        "Bedroom 2 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "03CBE335",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP21",
+        "Bedroom 2 \u2014 bathroom",
+        "HQWD-W4BS-WH",
+        "03CBBE12",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP22",
+        "Bedroom 1 \u2014 Entry",
+        "HQWD-W6B-WH",
+        "03CBE33E",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP23",
+        "Bedroom 1 \u2014 bathroom",
+        "HQWD-W4BS-WH",
+        "03CBBE0D",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP24",
+        "Bedroom 1 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "03CBE391",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP25",
+        "Bedroom 1 \u2014 bedside",
+        "HQWD-W6B-WH",
+        "03CBE397",
+        "Pass",
+        "Pass",
+        ""
+      ],
+      [
+        "KP-GARAGE",
+        "Garage \u2014 On/Off",
+        "HQWD-W1B-WH",
+        "03CB8DFB",
+        "Pass",
+        "Pass",
+        ""
+      ]
+    ],
+    "closeout": [
+      [
+        "Lighting loads and mapping",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Scenes and button behavior",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Non-keypad devices and interfaces",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Network / local connectivity",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Cloud / remote connectivity",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Outstanding defects reviewed",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Final database backup archived",
+        "Not Recorded",
+        "",
+        ""
+      ],
+      [
+        "Walkthrough and acceptance",
+        "Not Recorded",
+        "",
+        ""
+      ]
+    ],
+    "mods_out": [
+      [
+        "Panel 001",
+        "Adaptive 1",
+        "LQSE-4A5-120-D",
+        "1-1",
+        "Entrance \u2014 L19 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 1",
+        "LQSE-4A5-120-D",
+        "1-2",
+        "Foyer \u2014 L18 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 1",
+        "LQSE-4A5-120-D",
+        "1-3",
+        "Living \u2014 L17 North Hall",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 1",
+        "LQSE-4A5-120-D",
+        "1-4",
+        "WC \u2014 L22 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 2",
+        "LQSE-4A5-120-D",
+        "2-1",
+        "Living \u2014 L34 Pendant",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 2",
+        "LQSE-4A5-120-D",
+        "2-2",
+        "Living \u2014 L35 Counter/Extractor Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 2",
+        "LQSE-4A5-120-D",
+        "2-3",
+        "Living \u2014 L39 South Hall",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 2",
+        "LQSE-4A5-120-D",
+        "2-4",
+        "Living \u2014 L36 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 3",
+        "LQSE-4A5-120-D",
+        "3-1",
+        "Patio \u2014 L24 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 3",
+        "LQSE-4A5-120-D",
+        "3-2",
+        "Patio \u2014 L26/L27 Pendants",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 3",
+        "LQSE-4A5-120-D",
+        "3-3",
+        "Patio \u2014 L50 Pool",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 3",
+        "LQSE-4A5-120-D",
+        "3-4",
+        "UNASSIGNED IN REPORT",
+        "Review",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 4",
+        "LQSE-4A5-120-D",
+        "4-1",
+        "Bedroom 1 \u2014 L08 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 4",
+        "LQSE-4A5-120-D",
+        "4-2",
+        "Bathroom 1 \u2014 L48 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 4",
+        "LQSE-4A5-120-D",
+        "4-3",
+        "Bedroom 1 \u2014 L47 Closet",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 4",
+        "LQSE-4A5-120-D",
+        "4-4",
+        "Garage \u2014 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 5",
+        "LQSE-4A5-120-D",
+        "5-1",
+        "Bedroom 1 \u2014 L49 Lamps",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 5",
+        "LQSE-4A5-120-D",
+        "5-2",
+        "Bedroom 2 \u2014 L43 Lamps",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 5",
+        "LQSE-4A5-120-D",
+        "5-3",
+        "Bedroom 3 \u2014 L11 Lamps",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 5",
+        "LQSE-4A5-120-D",
+        "5-4",
+        "Bedroom 4 \u2014 L06 Lamps",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 6",
+        "LQSE-4A5-120-D",
+        "6-1",
+        "Bedroom 2 \u2014 L42 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 6",
+        "LQSE-4A5-120-D",
+        "6-2",
+        "Bathroom 2 \u2014 L44 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 6",
+        "LQSE-4A5-120-D",
+        "6-3",
+        "Bedroom 2 \u2014 L40 Closet",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 6",
+        "LQSE-4A5-120-D",
+        "6-4",
+        "UNASSIGNED IN REPORT",
+        "Review",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 7",
+        "LQSE-4A5-120-D",
+        "7-1",
+        "Bedroom 3 \u2014 L14 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 7",
+        "LQSE-4A5-120-D",
+        "7-2",
+        "Bedroom 3 \u2014 L09 Closet",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 7",
+        "LQSE-4A5-120-D",
+        "7-3",
+        "Bathroom 3 \u2014 L10 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 7",
+        "LQSE-4A5-120-D",
+        "7-4",
+        "UNASSIGNED IN REPORT",
+        "Review",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 8",
+        "LQSE-4A5-120-D",
+        "8-1",
+        "Bedroom 4 \u2014 L01 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 8",
+        "LQSE-4A5-120-D",
+        "8-2",
+        "Bathroom 4 \u2014 L04 Downlights",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 8",
+        "LQSE-4A5-120-D",
+        "8-3",
+        "Bedroom 4 \u2014 L07 Closet",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 8",
+        "LQSE-4A5-120-D",
+        "8-4",
+        "UNASSIGNED IN REPORT",
+        "Review",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 1",
+        "LQSE-4S8-120-D",
+        "1-1",
+        "Living \u2014 L32/33 Fans",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 1",
+        "LQSE-4S8-120-D",
+        "1-2",
+        "Living \u2014 L37/L38 Fans",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 1",
+        "LQSE-4S8-120-D",
+        "1-3",
+        "Patio \u2014 L25/28 Fans",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 1",
+        "LQSE-4S8-120-D",
+        "1-4",
+        "Patio \u2014 L29/L30 Fans",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 2",
+        "LQSE-4S8-120-D",
+        "2-1",
+        "Bedroom 1 \u2014 L16 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 2",
+        "LQSE-4S8-120-D",
+        "2-2",
+        "Bedroom 2 \u2014 L41 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 2",
+        "LQSE-4S8-120-D",
+        "2-3",
+        "Bedroom 3 \u2014 L15 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 2",
+        "LQSE-4S8-120-D",
+        "2-4",
+        "Bedroom 4 \u2014 L02 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 3",
+        "LQSE-4S8-120-D",
+        "3-1",
+        "WC \u2014 L23 Extractor Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 3",
+        "LQSE-4S8-120-D",
+        "3-2",
+        "Laundry \u2014 L21 Extractor Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 3",
+        "LQSE-4S8-120-D",
+        "3-3",
+        "UNASSIGNED IN REPORT",
+        "Review",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 3",
+        "LQSE-4S8-120-D",
+        "3-4",
+        "UNASSIGNED IN REPORT",
+        "Review",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 4",
+        "LQSE-4S8-120-D",
+        "4-1",
+        "Bathroom 1 \u2014 L50/51 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 4",
+        "LQSE-4S8-120-D",
+        "4-2",
+        "Bathroom 2 \u2014 L45/46 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 4",
+        "LQSE-4S8-120-D",
+        "4-3",
+        "Bathroom 4 \u2014 L03/05 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ],
+      [
+        "Panel 002",
+        "Switch 4",
+        "LQSE-4S8-120-D",
+        "4-4",
+        "Bathroom 3 \u2014 L12/13 Fan",
+        "Not Recorded",
+        "Not Recorded",
+        "Reference: Villa 2 wiring report pp. 12\u201316"
+      ]
+    ],
+    "lamps": [
+      [
+        "LD-FOYER",
+        "Foyer",
+        "HQR-3PD-1-SW",
+        "05919C65",
+        "Pass",
+        "Pass",
+        "Activated and function tested; working. Villa 10 closeout 2026-11-10."
+      ],
+      [
+        "LD-LIVING",
+        "Kitchen/Living Room",
+        "HQR-3PD-1-SW",
+        "05A2B478",
+        "Pass",
+        "Pass",
+        "Activated and function tested; working. Villa 10 closeout 2026-11-10."
+      ],
+      [
+        "LD-01-R",
+        "Bedroom 1 - Right bedside",
+        "HQR-3PD-1-SW",
+        "05919F97",
+        "Pass",
+        "Pass",
+        "Activated and function tested; working. Villa 10 closeout 2026-11-10."
+      ],
+      [
+        "LD-01-L",
+        "Bedroom 1 - Left bedside",
+        "HQR-3PD-1-SW",
+        "05919F9D",
+        "Pass",
+        "Pass",
+        "Activated and function tested; working. Villa 10 closeout 2026-11-10."
+      ],
+      [
+        "LD-02-R",
+        "Bedroom 2 - Right bedside",
+        "HQR-3PD-1-SW",
+        "0929F7B7",
+        "Pass",
+        "Pass",
+        "Activated and function tested; working. Villa 10 closeout 2026-11-10."
+      ],
+      [
+        "LD-02-L",
+        "Bedroom 2 - Left bedside",
+        "HQR-3PD-1-SW",
+        "0929F7BE",
+        "Pass",
+        "Pass",
+        "Activated and function tested; working. Villa 10 closeout 2026-11-10."
+      ],
+      [
+        "LD-03-R",
+        "Bedroom 3 - Right bedside",
+        "HQR-3PD-1-SW",
+        "0929CF68",
+        "Pass",
+        "Pass",
+        "Activated and function tested; working. Villa 10 closeout 2026-11-10."
+      ],
+      [
+        "LD-03-L",
+        "Bedroom 3 - Left bedside",
+        "HQR-3PD-1-SW",
+        "0929F7B2",
+        "Pass",
+        "Pass",
+        "Activated and function tested; working. Villa 10 closeout 2026-11-10."
+      ],
+      [
+        "LD-04-R",
+        "Bedroom 4 - Right bedside",
+        "HQR-3PD-1-SW",
+        "05919FA7",
+        "Pass",
+        "Pass",
+        "Activated and function tested; working. Villa 10 closeout 2026-11-10."
+      ],
+      [
+        "LD-04-L",
+        "Bedroom 4 - Left bedside",
+        "HQR-3PD-1-SW",
+        "05919F88",
+        "Pass",
+        "Pass",
+        "Activated and function tested; working. Villa 10 closeout 2026-11-10."
+      ],
+      [
+        "Hybrid Repeater",
+        "Laundry Room \u2014 first cabinet on right, behind false backing",
+        "HQR-REP-120",
+        "05F26A45",
+        "Pass",
+        "Pass",
+        "Hybrid repeater activated and functionally verified. Villa 10 closeout 2026-11-10."
+      ]
+    ],
+    "modreg": [
+      [
+        "Panel 001",
+        "Adaptive 1",
+        "LQSE-4A5-120-D",
+        "06084620",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 2",
+        "LQSE-4A5-120-D",
+        "06084626",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 3",
+        "LQSE-4A5-120-D",
+        "06084623",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 4",
+        "LQSE-4A5-120-D",
+        "0608468E",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 5",
+        "LQSE-4A5-120-D",
+        "06084610",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 6",
+        "LQSE-4A5-120-D",
+        "0608461E",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 7",
+        "LQSE-4A5-120-D",
+        "0608461D",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 001",
+        "Adaptive 8",
+        "LQSE-4A5-120-D",
+        "06189847",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 002",
+        "Switch 1",
+        "LQSE-4S8-120-D",
+        "084B5C25",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 002",
+        "Switch 2",
+        "LQSE-4S8-120-D",
+        "084B5C29",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 002",
+        "Switch 3",
+        "LQSE-4S8-120-D",
+        "084B5C14",
+        "Pass",
+        "Pass"
+      ],
+      [
+        "Panel 002",
+        "Switch 4",
+        "LQSE-4S8-120-D",
+        "084B5C24",
+        "Pass",
+        "Pass"
+      ]
+    ]
+  },
   "Villa 15": {
     "overall_status": "Complete",
     "base_template": "Apes Hill Hill Top Villas - Template",
@@ -6954,7 +9270,7 @@
     "date_worked": "10/29/2026",
     "processor_model": "HQP7-2",
     "processor_serial": "085EF2F3",
-    "firmware": "",
+    "firmware": "26.07.37f000",
     "mac": "b8:3d:f6:23:d1:70",
     "network": "",
     "project_file": "Apes Hill Hill Top Villas - Villa #15",

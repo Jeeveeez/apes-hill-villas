@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Villa 9 Floor Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070B1A; --surface:#111A38; --surface-2:#0C1230;
+  --ink:#FFFFFF; --muted:#8E9BC0; --line:#232C52;
+  --accent:#0080CB; --accent-ink:#4FA8E0;
+  --pass:#5FC093; --pass-bg:#15362C;
+  --pend:#E0A94B; --pend-bg:#3A2E12;
+  --fail:#E8796A; --fail-bg:#3D1C17;
+  --nr:#8C9DAD;  --nr-bg:#1B3146;
+  --f-display:"Inter",system-ui,sans-serif;
+  --f-body:"Inter",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono","SF Mono",monospace;
+  color-scheme: dark;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--f-body); font-size:15px; line-height:1.5;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+}
+body::before{
+  content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px);
+  z-index:20; background:var(--surface);
+}
+a{color:var(--accent);}
+h1,h2,h3{text-wrap:balance; margin:0;}
+.wrap{max-width:1280px; margin:0 auto; padding-block:0 48px;}
+
+.topbar{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:25;
+  background:var(--surface); border-bottom:1px solid var(--line); padding-block:10px;
+}
+.topbar-inner{max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+.topbar-brand{display:flex; align-items:center; gap:9px;}
+.topbar-brand img{height:22px; width:auto; display:block;}
+.topbar-title{font-family:var(--f-display); font-weight:600; font-size:19px; letter-spacing:.02em; white-space:nowrap;}
+.topbar-title b{color:var(--accent-ink);}
+.topbar-nav-buttons{display:flex; gap:8px; flex:none;}
+.btn{
+  display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
+  font-family:var(--f-display); font-size:12px; font-weight:600; letter-spacing:.03em;
+  text-decoration:none; padding:6px 12px; border-radius:999px;
+  background:var(--surface-2); color:var(--ink); border:1px solid var(--line);
+  transition:background .15s ease, border-color .15s ease, color .15s ease, transform .1s ease;
+}
+.btn:hover{background:var(--surface); border-color:var(--accent-ink); color:var(--accent-ink); transform:translateY(-1px);}
+.btn-primary{background:var(--accent); color:#fff; border-color:var(--accent);}
+.btn-primary:hover{background:var(--accent-ink); border-color:var(--accent-ink); color:#fff;}
+.search-box{
+  display:flex; align-items:center; gap:6px; background:var(--surface-2);
+  border:1px solid var(--line); border-radius:7px; padding:6px 10px; min-width:170px; margin-left:auto;
+}
+.search-box svg{flex:none; opacity:.55;}
+.search-box input{border:none; background:transparent; outline:none; color:var(--ink); font-family:var(--f-body); font-size:13.5px; width:100%;}
+.search-box input::placeholder{color:var(--muted);}
+
+.hero{padding-block:24px 16px;}
+.eyebrow{font-family:var(--f-display); font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:600;}
+h1.page-title{font-family:var(--f-display); font-size:38px; font-weight:300; letter-spacing:-.005em; margin-top:2px;}
+.hero-sub{color:var(--muted); font-size:14px; margin-top:6px; max-width:68ch;}
+
+.toolbar{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-block:16px;
+  background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:10px 14px;
+}
+.toolbar-group{display:flex; align-items:center; gap:6px;}
+.toolbar-label{font-family:var(--f-display); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-right:2px;}
+.layer-btn{
+  font-family:var(--f-display); font-size:13px; letter-spacing:.02em; font-weight:600;
+  border:1px solid var(--line); background:var(--surface-2); color:var(--muted);
+  border-radius:7px; padding:6px 12px; cursor:pointer; display:flex; align-items:center; gap:7px;
+}
+.layer-btn .sw{width:10px; height:10px; border-radius:3px; flex:none;}
+.layer-btn[aria-pressed="true"]{color:var(--ink); border-color:var(--accent); background:color-mix(in srgb, var(--accent) 12%, var(--surface));}
+.zoom-btn{
+  font-family:var(--f-mono); font-size:15px; width:30px; height:30px; border-radius:7px;
+  border:1px solid var(--line); background:var(--surface-2); color:var(--ink); cursor:pointer;
+}
+.zoom-level{font-family:var(--f-mono); font-size:12.5px; color:var(--muted); min-width:38px; text-align:center;}
+.toolbar-spacer{flex:1 1 auto;}
+.hint{font-size:12px; color:var(--muted);}
+
+.plan-shell{position:relative;}
+.plan-viewport{
+  position:relative; border:1px solid var(--line); border-radius:10px; overflow:auto;
+  background:var(--surface); max-height:76vh; touch-action:pan-x pan-y;
+}
+.plan-stage{position:relative; width:1300px; max-width:none;}
+.plan-stage img{display:block; width:100%; height:auto; user-select:none; -webkit-user-drag:none; pointer-events:none;}
+
+.pin{
+  position:absolute; transform:translate(-50%,-50%); border:none; cursor:pointer; padding:0;
+  font-family:var(--f-mono); font-weight:700; color:#fff; line-height:1;
+  box-shadow:0 0 0 2px #fff, 0 1px 3px rgba(0,0,0,.35); z-index:2;
+}
+.pin:hover, .pin:focus-visible{z-index:10; transform:translate(-50%,-50%) scale(1.3);}
+.pin-kp{width:21px; height:21px; border-radius:4px; font-size:9px; display:flex; align-items:center; justify-content:center;}
+.pin-l{width:11px; height:11px; border-radius:50%;}
+.pin-pass{background:var(--pass);}
+.pin-pend{background:var(--pend);}
+.pin-fail{background:var(--fail); animation:pulse 1.8s ease-in-out infinite;}
+.pin-nr{background:var(--nr);}
+.pin-est{box-shadow:0 0 0 2px #fff, 0 0 0 4px var(--accent);}
+.pin.is-open{z-index:11; transform:translate(-50%,-50%) scale(1.3); box-shadow:0 0 0 2px #fff, 0 0 0 4px var(--accent-ink);}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 2px #fff, 0 1px 3px rgba(0,0,0,.35);} 50%{box-shadow:0 0 0 2px #fff, 0 0 0 6px color-mix(in srgb, var(--fail) 45%, transparent);}}
+.pin[data-tip]:hover::after, .pin[data-tip]:focus-visible::after{
+  content:attr(data-tip); position:absolute; bottom:135%; left:50%; transform:translateX(-50%);
+  background:var(--ink); color:var(--bg); font-family:var(--f-mono); font-size:11px; font-weight:500;
+  padding:3px 7px; border-radius:5px; white-space:nowrap; pointer-events:none; z-index:30;
+}
+.pin.is-dim{opacity:.22;}
+[data-hide-kp="true"] .pin-kp{display:none;}
+[data-hide-l="true"] .pin-l{display:none;}
+
+.legend-overlay{
+  position:absolute; left:14px; bottom:14px; z-index:8; background:var(--surface);
+  border:1px solid var(--line); border-radius:10px; padding:10px 13px; width:220px;
+  box-shadow:0 4px 16px rgba(0,0,0,.14);
+}
+.legend-head{display:flex; align-items:center; justify-content:space-between; gap:8px; cursor:pointer; user-select:none;}
+.legend-title{font-family:var(--f-display); font-size:11.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted);}
+.legend-toggle{background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer; line-height:1; padding:2px;}
+.legend-body{margin-top:7px; display:flex; flex-direction:column; gap:2px;}
+.legend-overlay.collapsed .legend-body{display:none;}
+.legend-group{display:flex; flex-direction:column; gap:2px; padding-block:3px;}
+.legend-group + .legend-group{border-top:1px solid var(--line); margin-top:3px; padding-top:6px;}
+.legend-row{display:flex; align-items:center; gap:8px; font-size:12px;}
+.legend-sw{width:12px; height:12px; border-radius:4px; flex:none; box-shadow:0 0 0 1px var(--line) inset; background:var(--muted);}
+.legend-sw.round{width:9px; height:9px; border-radius:50%;}
+.legend-sw.est{box-shadow:0 0 0 2px var(--accent); background:transparent;}
+.legend-note{font-size:11px; color:var(--muted); margin-top:5px; line-height:1.5; padding-top:6px; border-top:1px dashed var(--line);}
+
+.popup{
+  position:absolute; z-index:40; background:var(--surface); border:1px solid var(--line); border-radius:10px;
+  box-shadow:0 10px 28px rgba(0,0,0,.2); padding:14px 16px; width:280px; max-height:380px; overflow-y:auto;
+}
+.popup[hidden]{display:none;}
+.popup-close{
+  position:absolute; top:8px; right:8px; width:22px; height:22px; border-radius:50%; border:none;
+  background:var(--surface-2); color:var(--muted); font-size:14px; line-height:1; cursor:pointer;
+}
+.popup .detail-head{padding-right:22px;}
+.popup-img{max-width:100%; max-height:230px; width:auto; height:auto; display:block; margin:4px auto 2px; border-radius:6px;}
+.popup-img-cap{font-size:11px; color:var(--muted); text-align:center; margin-bottom:4px;}
+
+.detail-empty{color:var(--muted); font-size:13.5px; line-height:1.6;}
+.detail-head{display:flex; align-items:center; gap:9px; margin-bottom:10px;}
+.detail-id{font-family:var(--f-mono); font-size:17px; font-weight:500;}
+.detail-section{border-top:1px solid var(--line); padding-top:10px; margin-top:10px;}
+.detail-section:first-of-type{border-top:none; margin-top:0; padding-top:0;}
+.detail-label{font-family:var(--f-display); font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); margin-bottom:3px;}
+.detail-field{font-size:13.5px; margin-bottom:6px;}
+.detail-note{font-size:12.5px; color:var(--muted); margin-top:3px; line-height:1.5;}
+.kv-grid{display:grid; grid-template-columns:auto 1fr; gap:3px 10px; font-size:12.5px; margin-top:4px;}
+.kv-grid dt{color:var(--muted);}
+.kv-grid dd{margin:0; font-family:var(--f-mono);}
+.badge{display:inline-flex; align-items:center; gap:5px; font-family:var(--f-display); font-size:12px; letter-spacing:.03em; font-weight:600; padding:3px 9px; border-radius:999px;}
+.b-pass{background:var(--pass-bg); color:var(--pass);}
+.b-pend{background:var(--pend-bg); color:var(--pend);}
+.b-fail{background:var(--fail-bg); color:var(--fail);}
+.b-nr{background:var(--nr-bg); color:var(--nr);}
+.mono{font-family:var(--f-mono); font-variant-numeric:tabular-nums;}
+
+.supp{margin-top:22px;}
+.supp-head{display:flex; align-items:baseline; gap:12px; margin-bottom:12px; flex-wrap:wrap;}
+.supp-head h2{font-family:var(--f-display); font-size:22px; font-weight:600;}
+.supp-head .hint{margin-left:auto;}
+.supp-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+.supp-row{display:grid; grid-template-columns:90px 1fr auto; gap:12px; align-items:start; padding:14px 16px; background:var(--surface); border:1px solid var(--line); border-radius:10px;}
+.supp-row-fail{border-color:color-mix(in srgb, var(--fail) 45%, var(--line)); background:var(--fail-bg);}
+.supp-id{font-size:13px; padding-top:2px;}
+.cell-note{font-size:12.5px; color:var(--muted); margin-top:3px;}
+
+footer{padding-block:30px 10px; font-size:12.5px; color:var(--muted); border-top:1px solid var(--line); margin-top:10px;}
+
+@media (max-width:900px){
+  .supp-grid{grid-template-columns:1fr;}
+  h1.page-title{font-size:30px;}
+}
+@media (max-width:640px){
+  .legend-overlay{width:168px; padding:8px 10px;}
+  .popup{width:232px;}
+}
+</style>
+</head>
+<body>
+
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-brand"><img src="../assets/logo.png" alt="MNE Innovations"><div class="topbar-title">VILLA <b>9</b> &middot; Floor Plan</div></div>
+    <div class="topbar-nav-buttons">
+      <a class="btn" href="../index.html">&larr; All Villas</a>
+      <a class="btn" href="status.html">Status</a>
+      <a class="btn btn-primary" href="technical-record.html">Technical Record</a>
+    </div>
+    <div class="search-box">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="search" type="search" placeholder="Jump to KP or L number&hellip;" aria-label="Find a pin">
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Apes Hill Hilltop Villas &middot; Ground Floor</div>
+    <h1 class="page-title">Keypad &amp; Circuit Map</h1>
+    <p class="hero-sub">Every marker sits at its drawn position on electrical sheet A-E-2.01 rev. 11. Click a marker for its commissioning record; the floor plan is identical across all 14 villas, carried forward from Villa 15's documentation.</p>
+  </section>
+
+  <div class="toolbar">
+    <div class="toolbar-group">
+      <span class="toolbar-label">Layers</span>
+      <button class="layer-btn" id="toggle-kp" aria-pressed="true" type="button"><span class="sw" style="background:var(--pass); border-radius:3px;"></span>Keypads (23)</button>
+      <button class="layer-btn" id="toggle-l" aria-pressed="true" type="button"><span class="sw" style="background:var(--pass); border-radius:50%;"></span>Light circuits (51)</button>
+    </div>
+    <div class="toolbar-group">
+      <span class="toolbar-label">Zoom</span>
+      <button class="zoom-btn" id="zoom-out" type="button" aria-label="Zoom out">&minus;</button>
+      <span class="zoom-level" id="zoom-level">1300px</span>
+      <button class="zoom-btn" id="zoom-in" type="button" aria-label="Zoom in">+</button>
+    </div>
+    <div class="toolbar-spacer"></div>
+    <span class="hint">Drawing ref: A-E-2.01 rev. 11, M&amp;E Partners Ltd &middot; scale 1:50</span>
+  </div>
+
+  <div class="plan-shell">
+    <div class="plan-viewport" id="viewport">
+      <div class="plan-stage" id="stage">
+        <img src="../assets/plan_bg.png" alt="Villa ground floor lighting and switching layout" draggable="false">
+        <button type="button" class="pin pin-kp pin-pass" style="left:15.937%; top:28.319%" data-kind="kp" data-id="KP1" data-tip="KP1" aria-label="KP1">1</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:25.35%; top:28.223%" data-kind="kp" data-id="KP2" data-tip="KP2" aria-label="KP2">2</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:15.406%; top:32.444%" data-kind="kp" data-id="KP3" data-tip="KP3" aria-label="KP3">3</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:26.091%; top:36.142%" data-kind="kp" data-id="KP4" data-tip="KP4" aria-label="KP4">4</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:25.461%; top:46.52%" data-kind="kp" data-id="KP5" data-tip="KP5" aria-label="KP5">5</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:18.786%; top:51.768%" data-kind="kp" data-id="KP6" data-tip="KP6" aria-label="KP6">6</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:15.437%; top:57.034%" data-kind="kp" data-id="KP7" data-tip="KP7" aria-label="KP7">7</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:23.125%; top:57.034%" data-kind="kp" data-id="KP8" data-tip="KP8" aria-label="KP8">8</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:31.93%; top:27.555%" data-kind="kp" data-id="KP10" data-tip="KP10" aria-label="KP10">10</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:38.11%; top:37.294%" data-kind="kp" data-id="KP12" data-tip="KP12" aria-label="KP12">12</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:37.029%; top:48.66%" data-kind="kp" data-id="KP13" data-tip="KP13" aria-label="KP13">13</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:46.769%; top:43.819%" data-kind="kp" data-id="KP14" data-tip="KP14" aria-label="KP14">14</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:46.88%; top:19.287%" data-kind="kp" data-id="KP15" data-tip="KP15" aria-label="KP15">15</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:65.674%; top:44.429%" data-kind="kp" data-id="KP16" data-tip="KP16" aria-label="KP16">16</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:65.76%; top:48.137%" data-kind="kp" data-id="KP17" data-tip="KP17" aria-label="KP17">17</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:74.029%; top:37.071%" data-kind="kp" data-id="KP18" data-tip="KP18" aria-label="KP18">18</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:74.789%; top:28.319%" data-kind="kp" data-id="KP19" data-tip="KP19" aria-label="KP19">19</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:84.288%; top:28.319%" data-kind="kp" data-id="KP20" data-tip="KP20" aria-label="KP20">20</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:84.616%; top:32.366%" data-kind="kp" data-id="KP21" data-tip="KP21" aria-label="KP21">21</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:74.147%; top:47.605%" data-kind="kp" data-id="KP22" data-tip="KP22" aria-label="KP22">22</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:80.79%; top:51.187%" data-kind="kp" data-id="KP23" data-tip="KP23" aria-label="KP23">23</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:77.076%; top:57.054%" data-kind="kp" data-id="KP24" data-tip="KP24" aria-label="KP24">24</button>
+        <button type="button" class="pin pin-kp pin-pass" style="left:84.999%; top:57.034%" data-kind="kp" data-id="KP25" data-tip="KP25" aria-label="KP25">25</button>
+        <button type="button" class="pin pin-l pin-pend" style="left:13.258%; top:24.215%" data-kind="l" data-id="L01" data-tip="L01" aria-label="L01"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:20.155%; top:24.196%" data-kind="l" data-id="L02" data-tip="L02" aria-label="L02"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:8.734%; top:34.884%" data-kind="l" data-id="L03" data-tip="L03" aria-label="L03"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:15.978%; top:35.765%" data-kind="l" data-id="L04" data-tip="L04" aria-label="L04"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:15.397%; top:33.325%" data-kind="l" data-id="L05" data-tip="L05" aria-label="L05"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:28.443%; top:17.729%" data-kind="l" data-id="L06" data-tip="L06" aria-label="L06"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:25.872%; top:31.515%" data-kind="l" data-id="L07" data-tip="L07" aria-label="L07"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:87.21%; top:61.043%" data-kind="l" data-id="L08" data-tip="L08" aria-label="L08"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:26.719%; top:47.751%" data-kind="l" data-id="L09" data-tip="L09" aria-label="L09"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:20.693%; top:52.63%" data-kind="l" data-id="L10" data-tip="L10" aria-label="L10"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:28.449%; top:67.336%" data-kind="l" data-id="L11" data-tip="L11" aria-label="L11"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:8.24%; top:42.784%" data-kind="l" data-id="L12" data-tip="L12" aria-label="L12"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:8.351%; top:53.133%" data-kind="l" data-id="L13" data-tip="L13" aria-label="L13"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:12.875%; top:61.12%" data-kind="l" data-id="L14" data-tip="L14" aria-label="L14"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:18.042%; top:62.621%" data-kind="l" data-id="L15" data-tip="L15" aria-label="L15"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:81.901%; top:63.425%" data-kind="l" data-id="L16" data-tip="L16" aria-label="L16"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:29.222%; top:38.553%" data-kind="l" data-id="L17" data-tip="L17" aria-label="L17"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:34.988%; top:25.483%" data-kind="l" data-id="L18" data-tip="L18" aria-label="L18"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:64.856%; top:12.907%" data-kind="l" data-id="L19" data-tip="L19" aria-label="L19"></button>
+        <button type="button" class="pin pin-l pin-nr" style="left:38.356%; top:18.281%" data-kind="l" data-id="L20" data-tip="L20" aria-label="L20"></button>
+        <button type="button" class="pin pin-l pin-pend pin-est" style="left:38.92%; top:28.568%" data-kind="l" data-id="L21" data-tip="L21" aria-label="L21"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:35.736%; top:34.971%" data-kind="l" data-id="L22" data-tip="L22" aria-label="L22"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:41.786%; top:36.694%" data-kind="l" data-id="L23" data-tip="L23" aria-label="L23"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:39.209%; top:54.063%" data-kind="l" data-id="L24" data-tip="L24" aria-label="L24"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:38.022%; top:59.155%" data-kind="l" data-id="L25" data-tip="L25" aria-label="L25"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:41.267%; top:59.029%" data-kind="l" data-id="L26" data-tip="L26" aria-label="L26"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:44.505%; top:59.029%" data-kind="l" data-id="L27" data-tip="L27" aria-label="L27"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:47.719%; top:59.155%" data-kind="l" data-id="L28" data-tip="L28" aria-label="L28"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:54.542%; top:59.155%" data-kind="l" data-id="L29" data-tip="L29" aria-label="L29"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:63.293%; top:59.155%" data-kind="l" data-id="L30" data-tip="L30" aria-label="L30"></button>
+        <button type="button" class="pin pin-l pin-nr" style="left:46.186%; top:41.797%" data-kind="l" data-id="L31" data-tip="L31" aria-label="L31"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:56.26%; top:39.599%" data-kind="l" data-id="L32" data-tip="L32" aria-label="L32"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:61.847%; top:38.844%" data-kind="l" data-id="L33" data-tip="L33" aria-label="L33"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:51.186%; top:31.825%" data-kind="l" data-id="L34" data-tip="L34" aria-label="L34"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:44.283%; top:26.771%" data-kind="l" data-id="L35" data-tip="L35" aria-label="L35"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:44.771%; top:22.87%" data-kind="l" data-id="L36" data-tip="L36" aria-label="L36"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:55.376%; top:20.885%" data-kind="l" data-id="L37" data-tip="L37" aria-label="L37"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:65.536%; top:20.982%" data-kind="l" data-id="L38" data-tip="L38" aria-label="L38"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:69.918%; top:43.704%" data-kind="l" data-id="L39" data-tip="L39" aria-label="L39"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:46.161%; top:15.957%" data-kind="l" data-id="L39" data-tip="L39" aria-label="L39"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:74.164%; top:30.586%" data-kind="l" data-id="L40" data-tip="L40" aria-label="L40"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:78.057%; top:23.538%" data-kind="l" data-id="L41" data-tip="L41" aria-label="L41"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:84.892%; top:23.441%" data-kind="l" data-id="L42" data-tip="L42" aria-label="L42"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:71.444%; top:17.729%" data-kind="l" data-id="L43" data-tip="L43" aria-label="L43"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:88.36%; top:37.498%" data-kind="l" data-id="L44" data-tip="L44" aria-label="L44"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:91.759%; top:32.222%" data-kind="l" data-id="L45" data-tip="L45" aria-label="L45"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:81.592%; top:29.046%" data-kind="l" data-id="L46" data-tip="L46" aria-label="L46"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:74.64%; top:52.804%" data-kind="l" data-id="L47" data-tip="L47" aria-label="L47"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:80.777%; top:46.405%" data-kind="l" data-id="L48" data-tip="L48" aria-label="L48"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:71.438%; top:67.336%" data-kind="l" data-id="L49" data-tip="L49" aria-label="L49"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:86.74%; top:42.581%" data-kind="l" data-id="L50" data-tip="L50" aria-label="L50"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:42.064%; top:87.095%" data-kind="l" data-id="L50" data-tip="L50" aria-label="L50"></button>
+        <button type="button" class="pin pin-l pin-pend" style="left:90.825%; top:55.079%" data-kind="l" data-id="L51" data-tip="L51" aria-label="L51"></button>
+      </div>
+    </div>
+
+    <div class="legend-overlay" id="legend">
+      <div class="legend-head" id="legend-head">
+        <span class="legend-title">Legend</span>
+        <button class="legend-toggle" id="legend-toggle" type="button" aria-label="Toggle legend">&minus;</button>
+      </div>
+      <div class="legend-body">
+        <div class="legend-group">
+          <div class="legend-row"><span class="legend-sw"></span>Keypad</div>
+          <div class="legend-row"><span class="legend-sw round"></span>Light / fan circuit</div>
+        </div>
+        <div class="legend-group">
+          <div class="legend-row"><span class="legend-sw" style="background:var(--pass)"></span>Pass</div>
+          <div class="legend-row"><span class="legend-sw" style="background:var(--pend)"></span>Pending</div>
+          <div class="legend-row"><span class="legend-sw" style="background:var(--fail)"></span>Needs review</div>
+          <div class="legend-row"><span class="legend-sw" style="background:var(--nr)"></span>Not in output table</div>
+          <div class="legend-row"><span class="legend-sw round est"></span>Position estimated</div>
+        </div>
+        <div class="legend-note">L20 &amp; L31 are drawn but not in Villa 9&rsquo;s Section 4 output table &mdash; a template-wide gap, not a Villa-specific issue.</div>
+      </div>
+    </div>
+
+    <div class="popup" id="popup" hidden>
+      <button class="popup-close" id="popup-close" type="button" aria-label="Close">&times;</button>
+      <div id="popup-body"></div>
+    </div>
+  </div>
+
+  <section class="supp">
+    <div class="supp-head">
+      <h2>Garage &amp; Technical Room</h2>
+      <span class="hint">Separate inset drawings on sheet A-E-2.01 &mdash; not to the same scale as the main plan above</span>
+    </div>
+    <div class="supp-grid">
+      <div class="supp-row">
+      <div class="supp-id mono">KP-GARAGE</div>
+      <div>
+        <div>Garage — On/Off</div>
+        <div class="cell-note">HQWD-W1B-WH &middot; 083728B2 &middot; Engraved &ldquo;On/Off&rdquo;</div>
+      </div>
+      <span class="badge b-pass">Pass</span>
+    </div>
+      <div class="supp-row">
+  <div class="supp-id mono">4-4</div>
+  <div>
+    <div>Garage — Downlights</div>
+    <div class="cell-note">Reference: Villa 2 wiring report pp. 12–16</div>
+  </div>
+  <span class="badge b-nr">Not Recorded</span>
+</div>
+    </div>
+  </section>
+
+  <footer>
+    Marker positions extracted from the vector text layer of A-E-2.01 rev. 11, reused from Villa 15 (identical floor plan).
+    Device data: Apes Hill Hilltop Villas Master Commissioning Tracker, "Villa 9" tab, Section 2 &amp; Section 4.
+  </footer>
+</div>
+
+<script id="detail-data" type="application/json">{"KP1": {"kind": "kp", "id": "KP1", "status": "pass", "gangs": [{"device": "KP1", "location": "Bedroom 4 \u2014 bedside", "model": "HQWD-W6B-WH", "serial": "08372883", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Bedside", "Floor Lamp", "Fan", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_H.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP2": {"kind": "kp", "id": "KP2", "status": "pass", "gangs": [{"device": "KP2", "location": "Bedroom 4 \u2014 bedside", "model": "HQWD-W6B-WH", "serial": "08372885", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Bedside", "Floor Lamp", "Fan", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_H.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP3": {"kind": "kp", "id": "KP3", "status": "pass", "gangs": [{"device": "KP3", "location": "Bedroom 4 \u2014 bathroom", "model": "HQWD-W4BS-WH", "serial": "08372881", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 4 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 4, "labels": ["On", "Evening", "Fan", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_D.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP4": {"kind": "kp", "id": "KP4", "status": "pass", "gangs": [{"device": "KP4", "location": "Bedroom 4 \u2014 Entry", "model": "HQWD-W6B-WH", "serial": "08372887", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Fan", "Closet", "Lamps", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_G.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP5": {"kind": "kp", "id": "KP5", "status": "pass", "gangs": [{"device": "KP5", "location": "Bedroom 3 \u2014 Entry", "model": "HQWD-W6B-WH", "serial": "08373368", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Fan", "Closet", "Lamps", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_G.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP6": {"kind": "kp", "id": "KP6", "status": "pass", "gangs": [{"device": "KP6", "location": "Bedroom 3 \u2014 bathroom", "model": "HQWD-W4BS-WH", "serial": "0837336B", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 4 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 4, "labels": ["On", "Evening", "Fan", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_D.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP7": {"kind": "kp", "id": "KP7", "status": "pass", "gangs": [{"device": "KP7", "location": "Bedroom 3 \u2014 bedside", "model": "HQWD-W6B-WH", "serial": "083727AA", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Bedside", "Floor Lamp", "Fan", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_H.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP8": {"kind": "kp", "id": "KP8", "status": "pass", "gangs": [{"device": "KP8", "location": "Bedroom 3 \u2014 bedside", "model": "HQWD-W6B-WH", "serial": "08373365", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Bedside", "Floor Lamp", "Fan", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_H.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP10": {"kind": "kp", "id": "KP10", "status": "pass", "gangs": [{"device": "KP10", "location": "Foyer", "model": "HQWD-W4BS-WH", "serial": "0837279F", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 4 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 4, "labels": ["Home", "Foyer", "Evening", "Away"]}}], "engraving_image": {"src": "assets/engravings/eng_A.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP12": {"kind": "kp", "id": "KP12", "status": "pass", "gangs": [{"device": "KP12", "location": "WC", "model": "HQWD-W4BS-WH", "serial": "08373366", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 4 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 4, "labels": ["On", "Evening", "Fan", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_D.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP13": {"kind": "kp", "id": "KP13", "status": "pass", "gangs": [{"device": "KP13", "location": "Patio", "model": "HQWD-W6B-WH", "serial": "08373369", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Pendant", "Fan", "Pool", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_E.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP14": {"kind": "kp", "id": "KP14", "status": "pass", "gangs": [{"device": "KP14 / Gang 1", "location": "Kitchen/Living \u2014 terrace controls", "model": "HQWD-W5B-WH", "serial": "083727C1", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 5 Button Keypad", "engraving": {"wallplate": "CW-2-WH", "color": "White", "backbox": "2", "buttons": 5, "labels": ["Terrace On", "Terrace Fan", "Pendant", "Pool", "All Ext Off"]}}, {"device": "KP14 / Gang 2", "location": "Kitchen/Living \u2014 living controls", "model": "HQWD-W6B-WH", "serial": "083727C2", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-2-WH", "color": "White", "backbox": "2", "buttons": 6, "labels": ["On/Off", "Evening", "Kitchen", "Counter", "Pendant", "Fan"]}}], "engraving_image": {"src": "assets/engravings/eng_B.png", "caption": "Wallplate CW-2-WH &middot; White &middot; backbox 2"}}, "KP15": {"kind": "kp", "id": "KP15", "status": "pass", "gangs": [{"device": "KP15", "location": "Kitchen/Living \u2014 living controls", "model": "HQWD-W6B-WH", "serial": "083727A5", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On/Off", "Evening", "Kitchen", "Counter", "Pendant", "Fan"]}}], "engraving_image": {"src": "assets/engravings/eng_C.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP16": {"kind": "kp", "id": "KP16", "status": "pass", "gangs": [{"device": "KP16 / Gang 1", "location": "Kitchen/Living \u2014 living controls", "model": "HQWD-W6B-WH", "serial": "083727C7", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-2-WH", "color": "White", "backbox": "2", "buttons": 6, "labels": ["On/Off", "Evening", "Kitchen", "Counter", "Pendant", "Fan"]}}, {"device": "KP16 / Gang 2", "location": "Kitchen/Living \u2014 terrace controls", "model": "HQWD-W5B-WH", "serial": "083727C6", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 5 Button Keypad", "engraving": {"wallplate": "CW-2-WH", "color": "White", "backbox": "2", "buttons": 5, "labels": ["Terrace On", "Terrace Fan", "Pendant", "Pool", "All Ext Off"]}}], "engraving_image": {"src": "assets/engravings/eng_B.png", "caption": "Wallplate CW-2-WH &middot; White &middot; backbox 2"}}, "KP17": {"kind": "kp", "id": "KP17", "status": "pass", "gangs": [{"device": "KP17", "location": "Patio", "model": "HQWD-W6B-WH", "serial": "0837336A", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Pendant", "Fan", "Pool", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_E.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP18": {"kind": "kp", "id": "KP18", "status": "pass", "gangs": [{"device": "KP18", "location": "Bedroom 2 \u2014 Entry", "model": "HQWD-W6B-WH", "serial": "08373367", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Fan", "Closet", "Lamps", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_G.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP19": {"kind": "kp", "id": "KP19", "status": "pass", "gangs": [{"device": "KP19", "location": "Bedroom 2 \u2014 bedside", "model": "HQWD-W6B-WH", "serial": "083727A7", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Bedside", "Floor Lamp", "Fan", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_H.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP20": {"kind": "kp", "id": "KP20", "status": "pass", "gangs": [{"device": "KP20", "location": "Bedroom 2 \u2014 bedside", "model": "HQWD-W6B-WH", "serial": "08373363", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Bedside", "Floor Lamp", "Fan", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_H.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP21": {"kind": "kp", "id": "KP21", "status": "pass", "gangs": [{"device": "KP21", "location": "Bedroom 2 \u2014 bathroom", "model": "HQWD-W4BS-WH", "serial": "083727AB", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 4 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 4, "labels": ["On", "Evening", "Fan", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_D.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP22": {"kind": "kp", "id": "KP22", "status": "pass", "gangs": [{"device": "KP22", "location": "Bedroom 1 \u2014 Entry", "model": "HQWD-W6B-WH", "serial": "083727C8", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Fan", "Closet", "Lamps", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_G.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP23": {"kind": "kp", "id": "KP23", "status": "pass", "gangs": [{"device": "KP23", "location": "Bedroom 1 \u2014 bathroom", "model": "HQWD-W4BS-WH", "serial": "083727C5", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 4 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 4, "labels": ["On", "Evening", "Fan", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_D.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP24": {"kind": "kp", "id": "KP24", "status": "pass", "gangs": [{"device": "KP24", "location": "Bedroom 1 \u2014 bedside", "model": "HQWD-W6B-WH", "serial": "083727C3", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Bedside", "Floor Lamp", "Fan", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_H.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP25": {"kind": "kp", "id": "KP25", "status": "pass", "gangs": [{"device": "KP25", "location": "Bedroom 1 \u2014 bedside", "model": "HQWD-W6B-WH", "serial": "083727C4", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 6 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 6, "labels": ["On", "Evening", "Bedside", "Floor Lamp", "Fan", "Off"]}}], "engraving_image": {"src": "assets/engravings/eng_H.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "KP-GARAGE": {"kind": "kp", "id": "KP-GARAGE", "status": "pass", "gangs": [{"device": "KP-GARAGE", "location": "Garage \u2014 On/Off", "model": "HQWD-W1B-WH", "serial": "083728B2", "activated": "Pass", "tested": "Pass", "findings": "", "model_desc": "HWQS Designer Wired seeTouch 1 Button Keypad", "engraving": {"wallplate": "CW-1-WH", "color": "White", "backbox": "1", "buttons": 1, "labels": ["On/Off"]}}], "engraving_image": {"src": "assets/engravings/eng_F.png", "caption": "Wallplate CW-1-WH &middot; White &middot; backbox 1"}}, "L01": {"kind": "l", "id": "L01", "status": "pend", "fixture": {"zone": "Bedroom 4", "name": "Downlights", "type": "LED Reverse Phase", "watt": 153, "assigned": "Panel 001 \u00b7 Adaptive(8) \u00b7 Output 1"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 8", "output": "8-1", "load": "Bedroom 4 \u2014 L01 Downlights", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L02": {"kind": "l", "id": "L02", "status": "pend", "fixture": {"zone": "Bedroom 4", "name": "Fan", "type": "Fan Switched", "watt": 100, "assigned": "Panel 002 \u00b7 Switch(2) \u00b7 Output 4"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 2", "output": "2-4", "load": "Bedroom 4 \u2014 L02 Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L03": {"kind": "l", "id": "L03", "status": "pend", "fixture": {"zone": "Bathroom 4", "name": "Fan", "type": "Fan Switched", "watt": 100, "assigned": "Panel 002 \u00b7 Switch(4) \u00b7 Output 4"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 4", "output": "4-3", "load": "Bathroom 4 \u2014 L03/05 Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L04": {"kind": "l", "id": "L04", "status": "pend", "fixture": {"zone": "Bathroom 4", "name": "Downlights", "type": "LED Reverse Phase", "watt": 136, "assigned": "Panel 001 \u00b7 Adaptive(8) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 8", "output": "8-2", "load": "Bathroom 4 \u2014 L04 Downlights", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L05": {"kind": "l", "id": "L05", "status": "pend", "fixture": {"zone": "Bathroom 4", "name": "Fan", "type": "Fan Switched", "watt": 100, "assigned": "Panel 002 \u00b7 Switch(4) \u00b7 Output 4"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 4", "output": "4-3", "load": "Bathroom 4 \u2014 L03/05 Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L06": {"kind": "l", "id": "L06", "status": "pend", "fixture": {"zone": "Bedroom 4", "name": "Lamps", "type": "LED Reverse Phase", "watt": 114, "assigned": "Panel 001 \u00b7 Adaptive(5) \u00b7 Output 4"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 5", "output": "5-4", "load": "Bedroom 4 \u2014 L06 Lamps", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L07": {"kind": "l", "id": "L07", "status": "pend", "fixture": {"zone": "Bedroom 4 Closet", "name": "Closet", "type": "LED Reverse Phase", "watt": 68, "assigned": "Panel 001 \u00b7 Adaptive(8) \u00b7 Output 3"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 8", "output": "8-3", "load": "Bedroom 4 \u2014 L07 Closet", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L08": {"kind": "l", "id": "L08", "status": "pend", "fixture": {"zone": "Bedroom 1", "name": "Downlights", "type": "LED Reverse Phase", "watt": 153, "assigned": "Panel 001 \u00b7 Adaptive(4) \u00b7 Output 1"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 4", "output": "4-1", "load": "Bedroom 1 \u2014 L08 Downlights", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L09": {"kind": "l", "id": "L09", "status": "pend", "fixture": {"zone": "Bedroom 3 Closet", "name": "Closet", "type": "LED Reverse Phase", "watt": 68, "assigned": "Panel 001 \u00b7 Adaptive(7) \u00b7 Output 3"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 7", "output": "7-2", "load": "Bedroom 3 \u2014 L09 Closet", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L10": {"kind": "l", "id": "L10", "status": "pend", "fixture": {"zone": "Bathroom 3", "name": "Downlights", "type": "LED Reverse Phase", "watt": 136, "assigned": "Panel 001 \u00b7 Adaptive(7) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 7", "output": "7-3", "load": "Bathroom 3 \u2014 L10 Downlights", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L11": {"kind": "l", "id": "L11", "status": "pend", "fixture": {"zone": "Bedroom 3", "name": "Lamps", "type": "LED Reverse Phase", "watt": 114, "assigned": "Panel 001 \u00b7 Adaptive(5) \u00b7 Output 3"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 5", "output": "5-3", "load": "Bedroom 3 \u2014 L11 Lamps", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L12": {"kind": "l", "id": "L12", "status": "pend", "fixture": {"zone": "Bathroom 3", "name": "Fan", "type": "Fan Switched", "watt": 100, "assigned": "Panel 002 \u00b7 Switch(4) \u00b7 Output 3"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 4", "output": "4-4", "load": "Bathroom 3 \u2014 L12/13 Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L13": {"kind": "l", "id": "L13", "status": "pend", "fixture": {"zone": "Bathroom 3", "name": "Fan", "type": "Fan Switched", "watt": 100, "assigned": "Panel 002 \u00b7 Switch(4) \u00b7 Output 3"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 4", "output": "4-4", "load": "Bathroom 3 \u2014 L12/13 Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L14": {"kind": "l", "id": "L14", "status": "pend", "fixture": {"zone": "Bedroom 3", "name": "Downlights", "type": "LED Reverse Phase", "watt": 153, "assigned": "Panel 001 \u00b7 Adaptive(7) \u00b7 Output 1"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 7", "output": "7-1", "load": "Bedroom 3 \u2014 L14 Downlights", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L15": {"kind": "l", "id": "L15", "status": "pend", "fixture": {"zone": "Bedroom 3", "name": "Fan", "type": "Fan Switched", "watt": 100, "assigned": "Panel 002 \u00b7 Switch(2) \u00b7 Output 3"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 2", "output": "2-3", "load": "Bedroom 3 \u2014 L15 Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L16": {"kind": "l", "id": "L16", "status": "pend", "fixture": {"zone": "Bedroom 1", "name": "Fan", "type": "Fan Switched", "watt": 100, "assigned": "Panel 002 \u00b7 Switch(2) \u00b7 Output 1"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 2", "output": "2-1", "load": "Bedroom 1 \u2014 L16 Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L17": {"kind": "l", "id": "L17", "status": "pend", "fixture": {"zone": "Kitchen/Living Room", "name": "North Hall", "type": "LED Reverse Phase", "watt": 23, "assigned": "Panel 001 \u00b7 Adaptive(1) \u00b7 Output 3"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 1", "output": "1-3", "load": "Living \u2014 L17 North Hall", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L18": {"kind": "l", "id": "L18", "status": "pend", "fixture": {"zone": "Foyer", "name": "Downlights", "type": "LED Reverse Phase", "watt": 119, "assigned": "Panel 001 \u00b7 Adaptive(1) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 1", "output": "1-2", "load": "Foyer \u2014 L18 Downlights", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L19": {"kind": "l", "id": "L19", "status": "pend", "fixture": {"zone": "Entrance", "name": "Downlights", "type": "LED Reverse Phase", "watt": 136, "assigned": "Panel 001 \u00b7 Adaptive(1) \u00b7 Output 1"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 1", "output": "1-1", "load": "Entrance \u2014 L19 Downlights", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L20": {"kind": "l", "id": "L20", "status": "nr", "fixture": {"zone": "Laundry", "name": "Downlights", "type": "LED Reverse Phase", "watt": 34, "assigned": null}, "fixture_note": null, "entries": []}, "L21": {"kind": "l", "id": "L21", "status": "pend", "fixture": {"zone": "Laundry", "name": "Extractor Fan", "type": "Fan Switched", "watt": 100, "assigned": "Panel 002 \u00b7 Switch(3) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 3", "output": "3-2", "load": "Laundry \u2014 L21 Extractor Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L22": {"kind": "l", "id": "L22", "status": "pend", "fixture": {"zone": "WC", "name": "Downlights", "type": "LED Reverse Phase", "watt": 34, "assigned": "Panel 001 \u00b7 Adaptive(1) \u00b7 Output 4"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 1", "output": "1-4", "load": "WC \u2014 L22 Downlights", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L23": {"kind": "l", "id": "L23", "status": "pend", "fixture": {"zone": "WC", "name": "Extractor Fan", "type": "Fan Switched", "watt": 100, "assigned": "Panel 002 \u00b7 Switch(3) \u00b7 Output 1"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 3", "output": "3-1", "load": "WC \u2014 L23 Extractor Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L24": {"kind": "l", "id": "L24", "status": "pend", "fixture": {"zone": "Patio", "name": "Downlights", "type": "LED Reverse Phase", "watt": 221, "assigned": "Panel 001 \u00b7 Adaptive(3) \u00b7 Output 1"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 3", "output": "3-1", "load": "Patio \u2014 L24 Downlights", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L25": {"kind": "l", "id": "L25", "status": "pend", "fixture": {"zone": "Patio", "name": "Fans", "type": "Fan Switched", "watt": 400, "assigned": "Panel 002 \u00b7 Switch(1) \u00b7 Output 3"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 1", "output": "1-3", "load": "Patio \u2014 L25/28 Fans", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L26": {"kind": "l", "id": "L26", "status": "pend", "fixture": {"zone": "Patio", "name": "Pendants", "type": "LED Reverse Phase", "watt": 57, "assigned": "Panel 001 \u00b7 Adaptive(3) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 3", "output": "3-2", "load": "Patio \u2014 L26/L27 Pendants", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L27": {"kind": "l", "id": "L27", "status": "pend", "fixture": {"zone": "Patio", "name": "Pendants", "type": "LED Reverse Phase", "watt": 57, "assigned": "Panel 001 \u00b7 Adaptive(3) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 3", "output": "3-2", "load": "Patio \u2014 L26/L27 Pendants", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L28": {"kind": "l", "id": "L28", "status": "pend", "fixture": {"zone": "Patio", "name": "Fans", "type": "Fan Switched", "watt": 400, "assigned": "Panel 002 \u00b7 Switch(1) \u00b7 Output 3"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 1", "output": "1-3", "load": "Patio \u2014 L25/28 Fans", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L29": {"kind": "l", "id": "L29", "status": "pend", "fixture": {"zone": "Patio", "name": "Fans", "type": "Fan Switched", "watt": null, "assigned": "Panel 002 \u00b7 Switch(1) \u00b7 Output 4"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 1", "output": "1-4", "load": "Patio \u2014 L29/L30 Fans", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L30": {"kind": "l", "id": "L30", "status": "pend", "fixture": {"zone": "Patio", "name": "Fans", "type": "Fan Switched", "watt": null, "assigned": "Panel 002 \u00b7 Switch(1) \u00b7 Output 4"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 1", "output": "1-4", "load": "Patio \u2014 L29/L30 Fans", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L32": {"kind": "l", "id": "L32", "status": "pend", "fixture": {"zone": "Kitchen/Living Room", "name": "Fans", "type": "Fan Switched", "watt": 200, "assigned": "Panel 002 \u00b7 Switch(1) \u00b7 Output 1"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 1", "output": "1-1", "load": "Living \u2014 L32/33 Fans", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L33": {"kind": "l", "id": "L33", "status": "pend", "fixture": {"zone": "Kitchen/Living Room", "name": "Fans", "type": "Fan Switched", "watt": 200, "assigned": "Panel 002 \u00b7 Switch(1) \u00b7 Output 1"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 1", "output": "1-1", "load": "Living \u2014 L32/33 Fans", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L34": {"kind": "l", "id": "L34", "status": "pend", "fixture": {"zone": "Kitchen/Living Room", "name": "Pendant", "type": "LED Reverse Phase", "watt": 115, "assigned": "Panel 001 \u00b7 Adaptive(2) \u00b7 Output 1"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 2", "output": "2-1", "load": "Living \u2014 L34 Pendant", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L35": {"kind": "l", "id": "L35", "status": "pend", "fixture": {"zone": "Kitchen/Living Room", "name": "Counter/Extractor Fan", "type": "LED Switched", "watt": 85, "assigned": "Panel 001 \u00b7 Adaptive(2) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 2", "output": "2-2", "load": "Living \u2014 L35 Counter/Extractor Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L36": {"kind": "l", "id": "L36", "status": "pend", "fixture": {"zone": "Kitchen/Living Room", "name": "Downlights", "type": "LED Reverse Phase", "watt": 374, "assigned": "Panel 001 \u00b7 Adaptive(2) \u00b7 Output 4"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 2", "output": "2-4", "load": "Living \u2014 L36 Downlights", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L37": {"kind": "l", "id": "L37", "status": "pend", "fixture": {"zone": "Kitchen/Living Room", "name": "Fans", "type": "Fan Switched", "watt": null, "assigned": "Panel 002 \u00b7 Switch(1) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 1", "output": "1-2", "load": "Living \u2014 L37/L38 Fans", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L38": {"kind": "l", "id": "L38", "status": "pend", "fixture": {"zone": "Kitchen/Living Room", "name": "Fans", "type": "Fan Switched", "watt": null, "assigned": "Panel 002 \u00b7 Switch(1) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 1", "output": "1-2", "load": "Living \u2014 L37/L38 Fans", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L39": {"kind": "l", "id": "L39", "status": "pend", "fixture": {"zone": "Kitchen/Living Room", "name": "South Hall", "type": "LED Reverse Phase", "watt": 23, "assigned": "Panel 001 \u00b7 Adaptive(2) \u00b7 Output 3"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 2", "output": "2-3", "load": "Living \u2014 L39 South Hall", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L40": {"kind": "l", "id": "L40", "status": "pend", "fixture": {"zone": "Bedroom 2 Closet", "name": "Closet", "type": "LED Reverse Phase", "watt": 68, "assigned": "Panel 001 \u00b7 Adaptive(6) \u00b7 Output 3"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 6", "output": "6-3", "load": "Bedroom 2 \u2014 L40 Closet", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L41": {"kind": "l", "id": "L41", "status": "pend", "fixture": {"zone": "Bedroom 2", "name": "Fan", "type": "Fan Switched", "watt": 100, "assigned": "Panel 002 \u00b7 Switch(2) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 2", "output": "2-2", "load": "Bedroom 2 \u2014 L41 Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L42": {"kind": "l", "id": "L42", "status": "pend", "fixture": {"zone": "Bedroom 2", "name": "Downlights", "type": "LED Reverse Phase", "watt": 153, "assigned": "Panel 001 \u00b7 Adaptive(6) \u00b7 Output 1"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 6", "output": "6-1", "load": "Bedroom 2 \u2014 L42 Downlights", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L43": {"kind": "l", "id": "L43", "status": "pend", "fixture": {"zone": "Bedroom 2", "name": "Lamps", "type": "LED Reverse Phase", "watt": 114, "assigned": "Panel 001 \u00b7 Adaptive(5) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 5", "output": "5-2", "load": "Bedroom 2 \u2014 L43 Lamps", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L44": {"kind": "l", "id": "L44", "status": "pend", "fixture": {"zone": "Bathroom 2", "name": "Downlights", "type": "LED Reverse Phase", "watt": 136, "assigned": "Panel 001 \u00b7 Adaptive(6) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 6", "output": "6-2", "load": "Bathroom 2 \u2014 L44 Downlights", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L45": {"kind": "l", "id": "L45", "status": "pend", "fixture": {"zone": "Bathroom 2", "name": "Fan", "type": "Fan Switched", "watt": 100, "assigned": "Panel 002 \u00b7 Switch(4) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 4", "output": "4-2", "load": "Bathroom 2 \u2014 L45/46 Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L46": {"kind": "l", "id": "L46", "status": "pend", "fixture": {"zone": "Bathroom 2", "name": "Fan", "type": "Fan Switched", "watt": 100, "assigned": "Panel 002 \u00b7 Switch(4) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 4", "output": "4-2", "load": "Bathroom 2 \u2014 L45/46 Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L47": {"kind": "l", "id": "L47", "status": "pend", "fixture": {"zone": "Bedroom 1 Closet", "name": "Closet", "type": "LED Reverse Phase", "watt": 68, "assigned": "Panel 001 \u00b7 Adaptive(4) \u00b7 Output 3"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 4", "output": "4-3", "load": "Bedroom 1 \u2014 L47 Closet", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L48": {"kind": "l", "id": "L48", "status": "pend", "fixture": {"zone": "Bathroom 1", "name": "Downlights", "type": "LED Reverse Phase", "watt": 136, "assigned": "Panel 001 \u00b7 Adaptive(4) \u00b7 Output 2"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 4", "output": "4-2", "load": "Bathroom 1 \u2014 L48 Downlights", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L49": {"kind": "l", "id": "L49", "status": "pend", "fixture": {"zone": "Bedroom 1", "name": "Lamps", "type": "LED Reverse Phase", "watt": 114, "assigned": "Panel 001 \u00b7 Adaptive(5) \u00b7 Output 1"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 5", "output": "5-1", "load": "Bedroom 1 \u2014 L49 Lamps", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L50": {"kind": "l", "id": "L50", "status": "pend", "fixture": {"zone": "Patio", "name": "Pool", "type": "Inc/Halogen Switched", "watt": 20, "assigned": "Panel 001 \u00b7 Adaptive(3) \u00b7 Output 3", "feed": "PSP 18"}, "fixture_note": null, "entries": [{"panel": "Panel 001", "module": "Adaptive 3", "output": "3-3", "load": "Patio \u2014 L50 Pool", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}, {"panel": "Panel 002", "module": "Switch 4", "output": "4-1", "load": "Bathroom 1 \u2014 L50/51 Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}, "L51": {"kind": "l", "id": "L51", "status": "pend", "fixture": {"zone": "Bathroom 1", "name": "Fan", "type": "Fan Switched", "watt": 100, "assigned": "Panel 002 \u00b7 Switch(4) \u00b7 Output 1"}, "fixture_note": null, "entries": [{"panel": "Panel 002", "module": "Switch 4", "output": "4-1", "load": "Bathroom 1 \u2014 L50/51 Fan", "wiring_match": "Not Recorded", "func_test": "Not Recorded", "notes": "Reference: Villa 2 wiring report pp. 12\u201316"}]}}</script>
+<script>
+(function(){
+  var DATA = JSON.parse(document.getElementById('detail-data').textContent);
+  var shell = document.querySelector('.plan-shell');
+  var viewport = document.getElementById('viewport');
+  var stage = document.getElementById('stage');
+  var popup = document.getElementById('popup');
+  var popupBody = document.getElementById('popup-body');
+  var zoomLevels = [900, 1300, 1800, 2400, 3100];
+  var zoomIdx = 1;
+  var openPinId = null;
+
+  function buildPopupHTML(id){
+    var d = DATA[id];
+    if(!d){ return '<div class="detail-empty">No record for '+id+'.</div>'; }
+    var html = '<div class="detail-head"><span class="detail-id mono">'+id+'</span>'+badge(d.status)+'</div>';
+    if (d.kind === 'kp'){
+      if (d.engraving_image){
+        html += '<img class="popup-img" src="'+d.engraving_image.src+'" alt="'+id+' keypad engraving">';
+        html += '<div class="popup-img-cap">'+d.engraving_image.caption+'</div>';
+      }
+      d.gangs.forEach(function(g){
+        html += '<div class="detail-section">';
+        html += '<div class="detail-label">'+(g.device)+'</div>';
+        html += '<div class="detail-field">'+g.location+'</div>';
+        html += '<div class="detail-field mono">'+g.model+' &middot; '+g.serial+'</div>';
+        if (g.model_desc) html += '<div class="detail-note">'+g.model_desc+'</div>';
+        html += '<div class="detail-field">Activated '+badge(g.activated==='Pass'?'pass':'pend', g.activated)+' &nbsp; Tested '+badge(g.tested==='Pass'?'pass':'pend', g.tested)+'</div>';
+        if (g.findings) html += '<div class="detail-note">'+g.findings+'</div>';
+        html += '</div>';
+      });
+    } else {
+      if (d.fixture){
+        var f = d.fixture;
+        html += '<div class="detail-section"><div class="detail-label">Fixture</div>';
+        html += '<dl class="kv-grid">';
+        html += '<dt>Zone</dt><dd>'+f.zone+'</dd>';
+        html += '<dt>Load type</dt><dd>'+f.type+'</dd>';
+        html += '<dt>Wattage</dt><dd>'+(f.watt!=null ? f.watt+' W' : 'Unspecified') +'</dd>';
+        html += '<dt>Assigned to</dt><dd>'+(f.assigned || 'Unassigned') +'</dd>';
+        html += '</dl></div>';
+      }
+      if (d.fixture_note){
+        html += '<div class="detail-section"><div class="detail-note">'+d.fixture_note+'</div></div>';
+      }
+      if (d.entries.length === 0 && !d.fixture){
+        html += '<div class="detail-section"><div class="detail-note">This circuit is drawn on the sheet but has no row in this villa&rsquo;s Section 4 output-verification table.</div></div>';
+      } else {
+        d.entries.forEach(function(e){
+          html += '<div class="detail-section">';
+          html += '<div class="detail-label">'+e.panel+' &middot; '+e.module+' &middot; output '+e.output+'</div>';
+          html += '<div class="detail-field">'+e.load+'</div>';
+          html += '<div class="detail-field">Wiring '+badge(e.wiring_match==='Pass'?'pass':(e.wiring_match==='Review'?'fail':'nr'), e.wiring_match)+' &nbsp; Test '+badge(e.func_test==='Pass'?'pass':(e.func_test==='Fail'?'fail':'nr'), e.func_test)+'</div>';
+          if (e.notes) html += '<div class="detail-note">'+e.notes+'</div>';
+          html += '</div>';
+        });
+      }
+    }
+    return html;
+  }
+  function badge(cls, text){
+    text = text || ({pass:'Pass',pend:'Pending',fail:'Review',nr:'N/A'})[cls];
+    return '<span class="badge b-'+cls+'">'+text+'</span>';
+  }
+
+  function findPin(id){ return viewport.querySelector('.pin[data-id="'+id+'"]'); }
+
+  function positionPopup(pin){
+    var shellRect = shell.getBoundingClientRect();
+    var pinRect = pin.getBoundingClientRect();
+    var px = pinRect.left - shellRect.left + pinRect.width/2;
+    var py = pinRect.top - shellRect.top;
+    var pw = popup.offsetWidth, ph = popup.offsetHeight;
+    var left = Math.max(8, Math.min(px - pw/2, shellRect.width - pw - 8));
+    var top = py - ph - 14;
+    if (top < 8) top = py + 22;
+    top = Math.max(8, Math.min(top, shellRect.height - ph - 8));
+    popup.style.left = left + 'px';
+    popup.style.top = top + 'px';
+  }
+
+  function openPopup(pin){
+    var id = pin.getAttribute('data-id');
+    popupBody.innerHTML = buildPopupHTML(id);
+    popup.hidden = false;
+    positionPopup(pin);
+    document.querySelectorAll('.pin.is-open').forEach(function(p){p.classList.remove('is-open');});
+    pin.classList.add('is-open');
+    openPinId = id;
+  }
+  function closePopup(){
+    popup.hidden = true;
+    document.querySelectorAll('.pin.is-open').forEach(function(p){p.classList.remove('is-open');});
+    openPinId = null;
+  }
+
+  viewport.addEventListener('click', function(ev){
+    var pin = ev.target.closest('.pin');
+    if(!pin){ closePopup(); return; }
+    if (pin.getAttribute('data-id') === openPinId){ closePopup(); return; }
+    openPopup(pin);
+  });
+  document.getElementById('popup-close').addEventListener('click', closePopup);
+  document.addEventListener('keydown', function(ev){ if (ev.key === 'Escape') closePopup(); });
+  viewport.addEventListener('scroll', function(){
+    if (openPinId){ var p = findPin(openPinId); if (p) positionPopup(p); }
+  });
+
+  function setZoom(idx){
+    zoomIdx = Math.max(0, Math.min(zoomLevels.length-1, idx));
+    stage.style.width = zoomLevels[zoomIdx] + 'px';
+    document.getElementById('zoom-level').textContent = zoomLevels[zoomIdx] + 'px';
+    if (openPinId){ var p = findPin(openPinId); if (p) positionPopup(p); }
+  }
+  document.getElementById('zoom-in').addEventListener('click', function(){ setZoom(zoomIdx+1); });
+  document.getElementById('zoom-out').addEventListener('click', function(){ setZoom(zoomIdx-1); });
+
+  var legend = document.getElementById('legend');
+  document.getElementById('legend-head').addEventListener('click', function(){
+    var collapsed = legend.classList.toggle('collapsed');
+    document.getElementById('legend-toggle').textContent = collapsed ? '+' : '−';
+  });
+
+  function toggleLayer(btn, attr){
+    var pressed = btn.getAttribute('aria-pressed') === 'true';
+    btn.setAttribute('aria-pressed', String(!pressed));
+    stage.parentElement.setAttribute(attr, String(pressed));
+  }
+  document.getElementById('toggle-kp').addEventListener('click', function(){ toggleLayer(this, 'data-hide-kp'); });
+  document.getElementById('toggle-l').addEventListener('click', function(){ toggleLayer(this, 'data-hide-l'); });
+
+  var searchInput = document.getElementById('search');
+  searchInput.addEventListener('input', function(){
+    var q = searchInput.value.trim().toUpperCase();
+    var pins = document.querySelectorAll('.pin');
+    var firstMatch = null;
+    pins.forEach(function(p){
+      var id = p.getAttribute('data-id');
+      var match = q.length > 0 && id.indexOf(q) !== -1;
+      p.classList.toggle('is-dim', q.length > 0 && !match);
+      if (match && !firstMatch) firstMatch = p;
+    });
+    if (firstMatch){ firstMatch.scrollIntoView({block:'center', inline:'center', behavior:'smooth'}); }
+  });
+
+  setZoom(1);
+})();
+</script>
+
+</body>
+</html>
