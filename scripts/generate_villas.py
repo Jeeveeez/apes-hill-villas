@@ -183,6 +183,8 @@ SUMMARY_TEXT = {
     "Villa 7": "Villa 7 is complete &mdash; all 26 keypads and every programmed load have been tested and are working, and all five previously missing HQR-3PD-1-SW lamp dimmers have since been installed, programmed and function tested. No lamp-dimmer punch-list items remain.",
     "Villa 9": "Villa 9 is fully commissioned &mdash; all 26 keypads, 10 plug-in lamp dimmers, the hybrid repeater, 8 adaptive modules and 4 switching modules are activated and tested working, including a KP16 gang-arrangement correction applied and verified. One item remains outside the Lutron scope: a Bedroom 2 receptacle issue assigned to the Apes Hill electrician.",
     "Villa 10": "Villa 10 is fully commissioned &mdash; all 26 keypads, lamp dimmers, DIN modules, controlled loads, scenes and multi-location controls have been tested and are working, with no outstanding Lutron defects or programming issues currently logged.",
+    "Villa 14": "Villa 14 is fully commissioned &mdash; all 26 keypads, both module panels and the full 23-item checklist have passed with zero defects, including a KP16 gang-arrangement correction applied and verified. No outstanding items remain.",
+    "Villa 16": "Villa 16 is complete &mdash; all 26 keypads and both module panels are active and tested working, including corrected KP16 gang mapping and extraction-fan output assignments verified in the field. Three bathroom keypads are running on temporary blank 4-button kits while permanent engraved kits are sourced, and the final project backup and signoff still need completing.",
 }
 # Supplementary outstanding items NOT tracked as rows in the Issues &
 # Changes tab (checklist/closeout gaps, external dependencies mentioned
@@ -194,6 +196,9 @@ OUTSTANDING = {
     "Villa 3": [
         ("b-pend", "Final signoff", "Final project backup and functional walkthrough/signoff still need completing."),
         ("b-wait", "Apes Hill IT", "Permanent network uplink cabling is scheduled for Nov 5 &mdash; an external dependency that doesn't block local operation."),
+    ],
+    "Villa 16": [
+        ("b-pend", "Final signoff", "Final project backup and functional walkthrough/signoff still need completing."),
     ],
 }
 
@@ -879,7 +884,7 @@ def build_outstanding_html(villa_key, issues, dense=True):
         return f'<div class="outstanding-list">{inner}</div>'
     return f'<div class="outstanding"><div class="outstanding-head">Before final sign-off</div><div class="outstanding-list">{inner}</div></div>'
 
-VILLAS = ["Villa 2", "Villa 3", "Villa 4", "Villa 5", "Villa 6", "Villa 7", "Villa 9", "Villa 10", "Villa 15"]
+VILLAS = ["Villa 2", "Villa 3", "Villa 4", "Villa 5", "Villa 6", "Villa 7", "Villa 9", "Villa 10", "Villa 14", "Villa 15", "Villa 16"]
 
 # Villas whose Designer report package has been processed -- they get a
 # floor-plan page too, and the fleet dashboard shows their report package

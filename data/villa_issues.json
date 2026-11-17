@@ -434,5 +434,65 @@
       "",
       ""
     ]
+  ],
+  "Villa 16": [
+    [
+      "V16-001",
+      "Villa 16",
+      "KP16 / Gang 1 & Gang 2",
+      "Programming Change",
+      "KP16 physical gang arrangement differs from the controlled template. Villa 16 program was adjusted to match the installed gang positions and retested successfully.",
+      "Low",
+      "Closed",
+      "Jeevan Panjwani",
+      "2026-11-16",
+      "2026-11-16",
+      "",
+      ""
+    ],
+    [
+      "V16-002",
+      "Villa 16",
+      "KP12 / KP6 / KP21 bathroom-WC keypads",
+      "Defect",
+      "Temporary functional correction completed. Spare stock from Green Bond contained no engraved 4-button bathroom kits, so blank 4-button kits were installed on KP12 (WC), KP6 (Bathroom 3) and KP21 (Bathroom 2) and new temporary stickers applied. All three keypads were tested and are operating correctly. Permanent engraved 4-button kits are still required for final finish.",
+      "Low",
+      "Waiting",
+      "MNE / Apes Hill",
+      "2026-11-16",
+      "",
+      "",
+      ""
+    ],
+    [
+      "V16-003",
+      "Villa 16",
+      "Bathroom / WC Extraction Fans",
+      "Programming Change",
+      "Actual Villa 16 extraction-fan mapping confirmed as 4-1 = Bathroom 3, 4-2 = Bathroom 4, 4-3 = Bathroom 2, 4-4 = Bathroom 1. Program updated to match field wiring and all four extraction fans retested successfully.",
+      "Medium",
+      "Closed",
+      "Jeevan Panjwani",
+      "2026-11-16",
+      "2026-11-16",
+      "",
+      ""
+    ]
+  ],
+  "Villa 14": [
+    [
+      "V14-001",
+      "Villa 14",
+      "KP16 / Gang 1 & Gang 2",
+      "Programming Change",
+      "KP16 physical gang arrangement differs from the controlled template. Villa 14 program was adjusted to match the installed gang positions and retested successfully.",
+      "Low",
+      "Closed",
+      "Jeevan Panjwani",
+      "2026-11-17",
+      "2026-11-17",
+      "",
+      ""
+    ]
   ]
 }
