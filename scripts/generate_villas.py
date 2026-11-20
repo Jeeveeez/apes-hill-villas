@@ -889,7 +889,7 @@ VILLAS = ["Villa 2", "Villa 3", "Villa 4", "Villa 5", "Villa 6", "Villa 7", "Vil
 # Villas whose Designer report package has been processed -- they get a
 # floor-plan page too, and the fleet dashboard shows their report package
 # as "Processed" instead of "Pending".
-REPORT_PACKAGE_PROCESSED = {"2", "3", "4", "5", "6", "7", "9", "10", "15"}
+REPORT_PACKAGE_PROCESSED = {"2", "3", "4", "5", "6", "7", "9", "10", "14", "15", "16"}
 
 # Status and Technical Record live in the same per-villa folder, so each
 # links to the other with a plain same-folder filename.
